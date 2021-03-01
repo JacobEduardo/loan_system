@@ -1,5 +1,7 @@
 <?php
-    require 'db/classConnectionMySQL.php';
+    Class Clients {
+        
+    }
     
     Class Client {
         private $name;
@@ -8,6 +10,7 @@
         private $id_location;
         private $last_name;
         private $nickname;
+        
         
         function __construct($name, $rut, $permitis, $id_location, $last_name, $nickname) {
             $this->name = $name;

@@ -17,9 +17,8 @@ if($query_result->num_rows == 1){
     $session->set("name", $rows['NAME']);
     $session->set("rut", $rows['RUT']);
     $session->set("last_name", $rows['LAST_NAME']);
-    
+    $conn->CloseConnection();
     header("location:index.php");
-    echo "estoy aca";
 }else{
     header("location:index.php");
 }
