@@ -22,10 +22,12 @@ function CreateClients($srt){
     $conn->CreateConnection();
     $result = $conn->ExecuteQuery("SELECT * FROM client WHERE rut LIKE '%$srt%';");
    
-    while ($row = $result->fetch_array(MYSQLI_ASSOC)){
-        $clients['AllClients'][] = $row;
+    $i=1;
+    while($row = mysqli_fetch_array($result, MYSQLI_ASSOC)){         
+        $clients[$i] = $row;
+        $i++;
     }
     
     $conn->CloseConnection();
-    return $clients;
+    return json_encode($clients);
 }
