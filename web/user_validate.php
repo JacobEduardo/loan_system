@@ -20,5 +20,6 @@ if($query_result->num_rows == 1){
     $conn->CloseConnection();
     header("location:index.php");
 }else{
+    $conn->CloseConnection();
     header("location:index.php");
 }

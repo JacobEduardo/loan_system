@@ -1,48 +1,31 @@
 <?php
-    Class Clients {
-        
+require_once 'C:\xampp\htdocs\loan_system\web\db\ConnectionMySQL.php';
+
+Class Client {
+    private $name;
+    private $rut;
+    private $kind;
+    private $status;
+    
+    function __construct($name, $rut, $kind, $status) {
+        $this->name = $name;
+        $this->rut = $rut;
+        $this->kind = $kind;
+        $this->status = $status;
+    }
+}
+
+function CreateClients($srt){
+    $clients = array();
+    
+    $conn = new ConnectionMySQL();
+    $conn->CreateConnection();
+    $result = $conn->ExecuteQuery("SELECT * FROM client WHERE rut LIKE '%$srt%';");
+   
+    while ($row = $result->fetch_array(MYSQLI_ASSOC)){
+        $clients['AllClients'][] = $row;
     }
     
-    Class Client {
-        private $name;
-        private $rut;
-        private $permitis;
-        private $id_location;
-        private $last_name;
-        private $nickname;
-        
-        
-        function __construct($name, $rut, $permitis, $id_location, $last_name, $nickname) {
-            $this->name = $name;
-            $this->rut = $rut;
-            $this->permitis = $permitis;
-            $this->id_location = $id_location;
-            $this->last_name = $last_name;
-            $this->nickname = $nickname;
-        }
-
-        function getName() {
-            return $this->name;
-        }
-
-        function getRut() {
-            return $this->rut;
-        }
-
-        function getPermitis() {
-            return $this->permitis;
-        }
-
-        function getId_location() {
-            return $this->id_location;
-        }
-
-        function getLast_name() {
-            return $this->last_name;
-        }
-
-        function getNickname() {
-            return $this->nickname;
-        }
-    }  
-?>
+    $conn->CloseConnection();
+    return $clients;
+}

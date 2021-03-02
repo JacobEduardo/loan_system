@@ -12,11 +12,13 @@ function loadDoc(srt) {
     if(srt.length > 3){
         var xhttp = new XMLHttpRequest();
         xhttp.onreadystatechange = function() {
-          if (this.readyState == 4 && this.status == 200) {
-              var json = xhttp.responseText;
-              console.log(json);
-              this.responseText;
-          }
+            if (this.readyState == 4 && this.status == 200) {
+                var json = xhttp.responseText;
+                console.log(json);
+            for (let i in json[]) {
+                console.log("% " + i);
+            }
+            }
         };
         xhttp.open("GET", "controllers/inicio.php?search=" + srt, true);
         xhttp.send();
