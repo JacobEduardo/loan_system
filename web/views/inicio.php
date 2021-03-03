@@ -12,19 +12,31 @@
 </div>
 
 <script>
-    function loadDoc(srt) {
-        if(srt.length > 3){
-            var xhttp = new XMLHttpRequest();
-            xhttp.onreadystatechange = function() {
-                if (this.readyState == 4 && this.status == 200) {
-                    let json = JSON.parse(xhttp.responseText);
-                    console.log(json);
+function loadDoc(srt) {
+    if(srt.length > 3){
+        var xhttp = new XMLHttpRequest();
+        xhttp.onreadystatechange = function() {
+            if (this.readyState === 4 && this.status === 200) {
+                let json = JSON.parse(xhttp.responseText);
+                console.log(json);
+                 let txt = "";
+                for(let row in json) {
+                    txt = txt + "<div>";
+                    txt = txt + json[row]['NAME'];
+                    txt = txt + " </div> </br>" 
+                    document.getElementById("result_client").innerHTML = txt;
                     
-                    document.getElementById("result_client").innerHTML = "downloads";
-                }
-            };
-            xhttp.open("GET", "controllers/inicio.php?search=" + srt, true);
-            xhttp.send();
-        }
+                    console.log(json[1]['RUT']);
+                    console.log(json[1]['NAME']);
+                    console.log(json[1]['KIND']);
+                    console.log(json[1]['STATUS']);
+                }   
+            }
+        };
+        xhttp.open("GET", "controllers/inicio.php?search=" + srt, true);
+        xhttp.send();
+    }else{
+        document.getElementById("result_client").innerHTML = "";                    
     }
+}
 </script>
