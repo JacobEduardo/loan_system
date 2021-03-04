@@ -5,10 +5,14 @@
         <group>
             <file>file:/C:/xampp/htdocs/loan_system/web/index.php</file>
             <file>file:/C:/xampp/htdocs/loan_system/web/models/Session.php</file>
+            <file>file:/C:/xampp/htdocs/loan_system/web/db/ConnectionMySQL.php</file>
+            <file>file:/C:/xampp/htdocs/loan_system/web/views/login.php</file>
+            <file>file:/C:/xampp/htdocs/loan_system/web/user_validate.php</file>
             <file>file:/C:/xampp/htdocs/loan_system/web/views/inicio.php</file>
             <file>file:/C:/xampp/htdocs/loan_system/web/controllers/inicio.php</file>
             <file>file:/C:/xampp/htdocs/loan_system/web/controllers/login.php</file>
             <file>file:/C:/xampp/htdocs/loan_system/web/controllers/master.php</file>
+            <file>file:/C:/xampp/htdocs/loan_system/web/views/master.php</file>
             <file>file:/C:/xampp/htdocs/loan_system/web/models/Client.php</file>
         </group>
     </open-files>
