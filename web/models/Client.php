@@ -15,7 +15,7 @@ Class Client {
     }
 }
 
-function CreateClients($srt){
+function SearchClientsAsJSON($srt){
     $clients = array();
     
     $conn = new ConnectionMySQL();

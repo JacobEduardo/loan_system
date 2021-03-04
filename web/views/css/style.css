@@ -20,7 +20,6 @@ body{
 
 #menu ul li{
     display: inline-block;
-
 }
 
 #menu ul li a{
@@ -106,4 +105,18 @@ td, th {
   
 tr:nth-child(even) {
     background-color: #dddddd;
+}
+
+#simple_client{
+    width: 100%;
+    max-width: 500px;
+    padding: 5px;
+}
+
+#simple_client:hover{
+    width: 100%;
+    max-width: 500px;
+    color:#ffffff;
+    background-color: #4ca800;
+    cursor:pointer;
 }
