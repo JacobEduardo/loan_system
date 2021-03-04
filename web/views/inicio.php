@@ -19,6 +19,7 @@ function SearchClient(srt) {
             if (this.readyState === 4 && this.status === 200) {
                 let json = JSON.parse(xhttp.responseText);
                 console.log(Object.keys(json).length);
+                console.log(json);
                 CreatHtmlClient(json);
             }
         };
@@ -30,25 +31,28 @@ function SearchClient(srt) {
 }
 
 function CreatHtmlClient(json){
-    if(Object.keys(json).length == 1 ){
+      let count = Object.keys(json).length;
+    if(count == 1 ){
+        console.log("---222");
+        CreatHtmlOneClient(json);
+    } 
+    if(count > 1 ){
         CreatHtmlAllCliesnt(json);
-    }
-    if(Object.keys(json).length > 1 ){
-        CreatHtmlAllCliesnt(json);
+        console.log("++++111");
     }
 }
 
 function CreatHtmlOneClient(json){
     let txt = "";
     for(let row in json) {
-        txt = txt + "<div id=simple_client>";
+        txt = txt + "<div id=two_or_mor_client>";
         txt = txt + "<b>" + json[row]['NAME'] + "</b>";
         txt = txt + "</br>";
         txt = txt + json[row]['RUT'];
-        txt = "<input id='search'  name='t' placeholder='Buscar' type='text' size='20' maxlength='128' onkeyup='SearchClient(this.value)" />
+        txt = txt + "<input id='a'  name='t' placeholder='Buscar' type='text' size='20' maxlength='128' onkeyup='SearchClient(this.value)' />";
         txt = txt + "</div>"; 
         document.getElementById("result_client").innerHTML = txt;
-    }   
+    }
 }
 
 function CreatHtmlAllCliesnt(json){
