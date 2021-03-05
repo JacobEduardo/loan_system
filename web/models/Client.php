@@ -37,7 +37,7 @@ function GetDebtsAsJSON($name_client){
     
     $conn = new ConnectionMySQL();
     $conn->CreateConnection();
-    //$result = $conn->ExecuteQuery("SELECT * FROM goods WHERE code LIKE '%$name_client%';");
+    $result = $conn->ExecuteQuery("SELECT * FROM goods WHERE code LIKE '%$name_client%';");
    
     $i=1;
     while($row = mysqli_fetch_array($result, MYSQLI_ASSOC)){         
@@ -47,5 +47,4 @@ function GetDebtsAsJSON($name_client){
     
     $conn->CloseConnection();
     return json_encode($clients);
-}
 }
