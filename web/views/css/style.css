@@ -122,10 +122,9 @@ tr:nth-child(even) {
     cursor:pointer;
 }
 
-#only_client{
+#one_client{
     width: 100%;
     max-width: 500px;
-    padding: 25px;
-    background-color: #ffffff;
-    border: rgb(94, 94, 94) 1px solid;
+    padding: 30px;
+    background-color: #fefff2;
 }

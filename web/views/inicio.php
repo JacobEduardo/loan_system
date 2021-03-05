@@ -30,61 +30,83 @@ function SearchClient(srt) {
     }
 }
 
+function LoadDebt(name_client) {
+    if(srt.length > 3){
+        var xhttp = new XMLHttpRequest();
+        xhttp.onreadystatechange = function() {
+            if (this.readyState === 4 && this.status === 200) {
+                let json = JSON.parse(xhttp.responseText);
+                CreateHtmlDebt(json);
+            }
+        };
+        xhttp.open("GET", "controllers/inicio.php?search_debt=" + name_client, true);
+        xhttp.send();
+    }else{
+        document.getElementById("debt").innerHTML = "";                    
+    }
+}
+
 function CreatHtmlClient(json){
       let count = Object.keys(json).length;
     if(count == 1 ){
         console.log("---222");
-        CreatHtmlOneClient(json);
+        CreateHtmlOneClient(json);
     } 
     if(count > 1 ){
-        CreatHtmlAllCliesnt(json);
+        CreateHtmlTwoOrMoreClients(json);
         console.log("++++111");
     }
 }
 
-function CreatHtmlOneClient(json){
+function CreateHtmlOneClient(json){
     let txt = "";
     for(let row in json) {
-        txt = txt + "<div id=two_or_mor_client>";
-        txt = txt + "<b>" + json[row]['NAME'] + "</b>";
-        txt = txt + "</br>";
-        txt = txt + json[row]['RUT'];
-        txt = txt + "<input id='a'  name='t' placeholder='Buscar' type='text' size='20' maxlength='128' onkeyup='SearchClient(this.value)' />";
-        txt = txt + "</div>"; 
+        txt = txt + "<div id=one_client>";
+        txt = txt +     "<b>" + json[row]['NAME'] + "</b></br>";
+        txt = txt +     json[row]['NAME'] + "</br>";
+        txt = txt +     json[row]['KIND'] + "</br>";
+
+        txt = txt +     "<div style='text-align: right; margin-top: 10px; margin-bottom: 25px;'>";
+        txt = txt +         "<input  name='' placeholder='Buscar' class='form-control form-text' type='text' size='20' maxlength='150' />";
+        txt = txt +         "<input  name='' type='submit' value='Prestar' onclick='LoadBorrowedGoods()' />";
+        txt = txt +         "<div style='color: rgb(32, 160, 0); vertical-align:top; margin-top: 8px;'>HDMI34 ingresado Exitozamente</div>";
+        txt = txt +     "</div>";
+
+        txt = txt +     "<div id='debt' >";
+        txt = txt +     "</div>";
+
+        txt = txt + "</div>";
+        
         document.getElementById("result_client").innerHTML = txt;
+        LoadDebt(json[row]['NAME']);
     }
 }
 
-function CreatHtmlAllCliesnt(json){
+function CreateHtmlTwoOrMoreClients(json){
     let txt = "";
     for(let row in json) {
         txt = txt + "<div id=simple_client>";
         txt = txt + "<b>" + json[row]['NAME'] + "</b>";
         txt = txt + "</br>";
         txt = txt + json[row]['RUT'];
-        txt = txt + "</div>"; 
+        txt = txt + "</div>";
         document.getElementById("result_client").innerHTML = txt;
-    }   
+    }
+}
+
+function LoadBorrowedGoods(){
+    document.getElementById("load_borrowed_goods").innerHTML = "LoadBorrowedGoods";
+}
+
+function CreateHtmlDebt(){
+    var txt = "";
+    txt = txt + "<div style='margin-top: 6px'>"
+    txt = txt + "<b>HDMI n°5</b>"
+    txt = txt + "<a href='' style='float: right;'>Devolver</a>"
+
+    txt = txt + "</div>";
+
+    document.getElementById("debt").innerHTML = txt;
 }
 
 </script>
-
-<!DOCTYPE html>
-
-<div id=only_client style="font-family:Roboto;" >
-    <b>Armando Camiones Piña</b></br>
-    164577732</br>
-    Administrativo</br>
-
-    <div style="text-align: right; margin-top: 10px; margin-bottom: 25px;">
-        <input  name="" placeholder="Buscar" class="form-control form-text" type="text" size="20" maxlength="150" />
-        <input  name="" type="submit" value="Prestar"/>
-        <div style="color: rgb(32, 160, 0); vertical-align:top; margin-top: 8px;">HDMI34 ingresado Exitozamente</div>
-    </div>
-
-    <div style="margin-top: 6px">
-        <b>HDMI n°5</b>
-        <a href="" style="float: right;">Devolver</a>
-    </div>
-
-</div>

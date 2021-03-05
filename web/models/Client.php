@@ -15,9 +15,8 @@ Class Client {
     }
 }
 
-function SearchClientsAsJSON($srt){
+function GetClientsAsJSON($srt){
     $clients = array();
-    
     $conn = new ConnectionMySQL();
     $conn->CreateConnection();
     $result = $conn->ExecuteQuery("SELECT * FROM client WHERE rut LIKE '%$srt%';");
@@ -29,5 +28,24 @@ function SearchClientsAsJSON($srt){
     }
     
     $conn->CloseConnection();
+
     return json_encode($clients);
+}
+
+function GetDebtsAsJSON($name_client){
+    $clients = array();
+    
+    $conn = new ConnectionMySQL();
+    $conn->CreateConnection();
+    //$result = $conn->ExecuteQuery("SELECT * FROM goods WHERE code LIKE '%$name_client%';");
+   
+    $i=1;
+    while($row = mysqli_fetch_array($result, MYSQLI_ASSOC)){         
+        $clients[$i] = $row;
+        $i++;
+    }
+    
+    $conn->CloseConnection();
+    return json_encode($clients);
+}
 }

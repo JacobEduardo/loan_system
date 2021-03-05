@@ -5,7 +5,13 @@ if( isset($_GET['page']) ) {
 
 if( isset($_GET['search']) ) {
     require_once 'C:\xampp\htdocs\loan_system\web\models\Client.php';
-    $clients = SearchClientsAsJSON($_GET['search']);
+    $clients = GetClientsAsJSON($_GET['search']);
     echo $clients;
+    exit();
+}
+if( isset($_GET['search_debt']) ) {
+    require_once 'C:\xampp\htdocs\loan_system\web\models\Client.php';
+    $debt = GetDebtsAsJSON($_GET['search_debt']);
+    echo $debt;
     exit();
 }
