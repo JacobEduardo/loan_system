@@ -68,3 +68,23 @@ function CreatHtmlAllCliesnt(json){
 }
 
 </script>
+
+<!DOCTYPE html>
+
+<div id=only_client style="font-family:Roboto;" >
+    <b>Armando Camiones Piña</b></br>
+    164577732</br>
+    Administrativo</br>
+
+    <div style="text-align: right; margin-top: 10px; margin-bottom: 25px;">
+        <input  name="" placeholder="Buscar" class="form-control form-text" type="text" size="20" maxlength="150" />
+        <input  name="" type="submit" value="Prestar"/>
+        <div style="color: rgb(32, 160, 0); vertical-align:top; margin-top: 8px;">HDMI34 ingresado Exitozamente</div>
+    </div>
+
+    <div style="margin-top: 6px">
+        <b>HDMI n°5</b>
+        <a href="" style="float: right;">Devolver</a>
+    </div>
+
+</div>

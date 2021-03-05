@@ -111,6 +111,7 @@ tr:nth-child(even) {
     width: 100%;
     max-width: 500px;
     padding: 5px;
+    background-color: #fefff2;
 }
 
 #simple_client:hover{
@@ -119,4 +120,12 @@ tr:nth-child(even) {
     color:#ffffff;
     background-color: #4ca800;
     cursor:pointer;
+}
+
+#only_client{
+    width: 100%;
+    max-width: 500px;
+    padding: 25px;
+    background-color: #ffffff;
+    border: rgb(94, 94, 94) 1px solid;
 }
