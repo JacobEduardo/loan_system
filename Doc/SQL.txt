@@ -98,3 +98,9 @@ INSERT INTO client (RUT, NAME, KIND, STATUS) VALUE ('18766434-3', 'Milcíades Co
 INSERT INTO client (RUT, NAME, KIND, STATUS) VALUE ('10123994-3', 'Jaden Olivares Guillén', 'Administrativo', '1');
 INSERT INTO client (RUT, NAME, KIND, STATUS) VALUE ('12345674-3', 'Audrey Archuleta Godínez', 'Profesor', '1');
 INSERT INTO client (RUT, NAME, KIND, STATUS) VALUE ('13347684-3', 'Olalla Espino Madera', 'Profesor', '1');
+
+INSERT INTO loan_history (`ID_GOODS`,`ID_USER_START`,`ID_CLIENT`,`STATUS`) values (1,1,2,1);
+
+SELECT ID_CLIENT FROM client WHERE Rut = '12345674-3'
+
+SELECT ID_USER FROM `user` WHERE rut = '16457773-2'

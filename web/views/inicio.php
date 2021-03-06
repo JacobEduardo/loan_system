@@ -67,9 +67,9 @@ function CreateHtmlOneClient(json){
         txt = txt +     json[row]['KIND'] + "</br>";
 
         txt = txt +     "<div style='text-align: right; margin-top: 10px; margin-bottom: 25px;'>";
-        txt = txt +         "<input  name='' placeholder='Buscar' class='form-control form-text' type='text' size='20' maxlength='150' />";
-        txt = txt +         "<input  name='' type='submit' value='Prestar' onclick='LoadBorrowedGoods()' />";
-        txt = txt +         "<div style='color: rgb(32, 160, 0); vertical-align:top; margin-top: 8px;'>HDMI34 ingresado Exitozamente</div>";
+        txt = txt +             "<input  id='code' placeholder='Buscar' class='form-control form-text' type='text' size='20' maxlength='150' />";
+        txt = txt +             "<input  type='submit' value='Prestar' onclick='LendGood()' />";
+        txt = txt +             "<div id='messenger_lend' style='color: rgb(32, 160, 0); vertical-align:top; margin-top: 8px;'>HDMI34 ingresado Exitozamente</div>";
         txt = txt +     "</div>";
 
         txt = txt +     "<div id='debt' >";
@@ -78,7 +78,7 @@ function CreateHtmlOneClient(json){
         txt = txt + "</div>";
         
         document.getElementById("result_client").innerHTML = txt;
-        LoadDebt(json[row]['NAME']);
+        //LoadDebt(json[row]['NAME']);
     }
 }
 
@@ -94,10 +94,6 @@ function CreateHtmlTwoOrMoreClients(json){
     }
 }
 
-function LoadBorrowedGoods(){
-    document.getElementById("load_borrowed_goods").innerHTML = "LoadBorrowedGoods";
-}
-
 function CreateHtmlDebt(){
     var txt = "";
     txt = txt + "<div style='margin-top: 6px'>"
@@ -107,6 +103,23 @@ function CreateHtmlDebt(){
     txt = txt + "</div>";
 
     document.getElementById("debt").innerHTML = txt;
+}
+
+function LendGood(){
+    var code = document.getElementById("code").value;
+    if(srt.length > 3){
+        var xhttp = new XMLHttpRequest();
+        xhttp.onreadystatechange = function() {
+            if (this.readyState === 4 && this.status === 200) {
+                let json = JSON.parse(xhttp.responseText);
+                document.getElementById("messenger_lend").innerHTML = "LoadBorrowedGoods"; 
+            }
+        };
+        xhttp.open("GET", "controllers/inicio.php?code_goods=" + code, true);
+        xhttp.send();
+    }else{
+                        
+    }
 }
 
 </script>

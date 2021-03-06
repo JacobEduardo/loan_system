@@ -15,3 +15,9 @@ if( isset($_GET['search_debt']) ) {
     echo $debt;
     exit();
 }
+if( isset($_GET['code_goods']) ) {
+    require_once 'C:\xampp\htdocs\loan_system\web\models\goods.php';
+    $debt = LendGoods($_GET['search_debt']);
+    echo $debt;
+    exit();
+}
