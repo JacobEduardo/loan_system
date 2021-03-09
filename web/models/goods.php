@@ -6,13 +6,13 @@ require_once 'C:\xampp\htdocs\loan_system\web\models\user.php';
 function LendGoods($code_goods, $rut_client, $rut_user){
     $id_client = GetIdClientByRut($rut_client);
     $id_user = GetIdUserByRut($rut_user);
-
+    
     $id_good = GetIdGoodsByCode($code_goods);
     if(!$id_good){
         return 2;
     }
 
-    $result = ExecuteQuery("SELECT * FROM `loan_history` WHERE (STATUS='1') AND (ID_GOODS='$id_good')");
+    $result = ExecuteQuery("SELECT * FROM `loan_history` WHERE (STATUS='1') AND (ID_GOODS=$id_good)");
     if($result == 1){
         return 3;
     }
