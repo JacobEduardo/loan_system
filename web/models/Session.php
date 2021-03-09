@@ -22,7 +22,6 @@
          unset ( $_SESSION [$nombre] );
     }
     
-    
     public function endSession() {
          $_SESSION = array();
          session_destroy ();

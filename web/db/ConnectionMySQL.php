@@ -59,7 +59,7 @@ private $conn;
     
 }
 
-function CreateConexionAndExecute($query){
+function  ExecuteQueryGetResultLikeArray($query){
     $conn = new ConnectionMySQL();
     $conn->CreateConnection();
     $result = $conn->ExecuteQueryReturnAsArray($query);
@@ -67,4 +67,26 @@ function CreateConexionAndExecute($query){
     return $result;
 }
     
+function ExecuteQuery($query){
+    $conn = new ConnectionMySQL();
+    $conn->CreateConnection();
+    $result = $conn->ExecuteQuery($query);
+    $conn->CloseConnection();
+    if (!$result) {
+        return 0;
+    }else{
+        return 1;
+    }
+}
 
+    
+function ExecuteQueryGetResultLikeString($query){
+    $conn = new ConnectionMySQL();
+    $conn->CreateConnection();
+    $resutl = $conn->ExecuteQuery($query);
+        while ($fila = $resutl->fetch_row()) {
+            $id = $fila[0];
+        }
+    $conn->CloseConnection();
+    return($id);
+}

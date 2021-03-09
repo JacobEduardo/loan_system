@@ -63,12 +63,12 @@ function CreateHtmlOneClient(json){
     for(let row in json) {
         txt = txt + "<div id=one_client>";
         txt = txt +     "<b>" + json[row]['NAME'] + "</b></br>";
-        txt = txt +     json[row]['NAME'] + "</br>";
+        txt = txt +     "<div id=rut_client>" + json[row]['RUT'] +"</div>" + "</br>";
         txt = txt +     json[row]['KIND'] + "</br>";
 
         txt = txt +     "<div style='text-align: right; margin-top: 10px; margin-bottom: 25px;'>";
-        txt = txt +             "<input  id='code' placeholder='Buscar' class='form-control form-text' type='text' size='20' maxlength='150' />";
-        txt = txt +             "<input  type='submit' value='Prestar' onclick='LendGood()' />";
+        txt = txt +             "<input  id='code_goods' placeholder='Buscar' class='form-control form-text' type='text' size='20' maxlength='150' />";
+        txt = txt +             "<input  type='submit' value='Prestar' onclick='LendGoods()' />";
         txt = txt +             "<div id='messenger_lend' style='color: rgb(32, 160, 0); vertical-align:top; margin-top: 8px;'>HDMI34 ingresado Exitozamente</div>";
         txt = txt +     "</div>";
 
@@ -99,26 +99,26 @@ function CreateHtmlDebt(){
     txt = txt + "<div style='margin-top: 6px'>"
     txt = txt + "<b>HDMI n°5</b>"
     txt = txt + "<a href='' style='float: right;'>Devolver</a>"
-
     txt = txt + "</div>";
-
     document.getElementById("debt").innerHTML = txt;
 }
 
-function LendGood(){
-    var code = document.getElementById("code").value;
-    if(srt.length > 3){
+function LendGoods(){
+    let code_goods = document.getElementById("code_goods").value;
+    let rut_client = document.getElementById("rut_client").innerHTML;
+
+    if(code_goods.length > 3){
         var xhttp = new XMLHttpRequest();
         xhttp.onreadystatechange = function() {
             if (this.readyState === 4 && this.status === 200) {
-                let json = JSON.parse(xhttp.responseText);
+                console.log(xhttp.responseText);
                 document.getElementById("messenger_lend").innerHTML = "LoadBorrowedGoods"; 
             }
         };
-        xhttp.open("GET", "controllers/inicio.php?code_goods=" + code, true);
+        xhttp.open("GET", "controllers/inicio.php?code_goods=" + code_goods + "&rut_client=" + rut_client, true);
         xhttp.send();
     }else{
-                        
+     
     }
 }
 
