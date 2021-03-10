@@ -125,6 +125,5 @@ tr:nth-child(even) {
 #one_client{
     width: 100%;
     max-width: 500px;
-    padding: 30px;
     background-color: #fefff2;
 }

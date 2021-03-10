@@ -25,7 +25,6 @@ function LendGoods($code_goods, $rut_client, $rut_user){
         $arr = array("Id"=>3, "Color"=>'este es el color ExecuteQuery', "Mensaje"=>''.$code_goods.'Ingresado correctamente');
         return $arr;
     }
-
     return 0;
 }
 

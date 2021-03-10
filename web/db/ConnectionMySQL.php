@@ -64,7 +64,7 @@ function ExecuteQueryBoolean($sql){
     $conn->CreateConnection();
     $result = $conn->ExecuteQuery($sql);
     $a = mysqli_num_rows($result);
-    if($a == 1 ){
+    if($a > 0 ){
         return 1;
     }else{
         return 0;

@@ -62,9 +62,11 @@ function CreateHtmlOneClient(json){
     let txt = "";
     for(let row in json) {
         txt = txt + "<div id=one_client>";
-        txt = txt +     "<b>" + json[row]['NAME'] + "</b></br>";
-        txt = txt +     "<div id=rut_client>" + json[row]['RUT'] +"</div>" + "</br>";
-        txt = txt +     json[row]['KIND'] + "</br>";
+        txt = txt +     "<div style='margin-top: 5px; margin-bottom: 5px; padding: 20px; color:#ffffff; background-color: #0079eb;'>";
+        txt = txt +         "<div id='name_client'>" + "<b>" + json[row]['NAME'] + "</b>" + "</div>";
+        txt = txt +         "<div id='rut_client'>" + json[row]['RUT'] + "</div>";
+        txt = txt +         "<div id='kind_client'>" + json[row]['KIND'] + "</div>";
+        txt = txt +     "</div>";
 
         txt = txt +     "<div style='text-align: right; margin-top: 10px; margin-bottom: 25px;'>";
         txt = txt +             "<input  id='code_goods' placeholder='Buscar' class='form-control form-text' type='text' size='20' maxlength='150' />";
