@@ -25,14 +25,6 @@ if( isset($_GET['code_goods']) ) {
     $rut_user = $_SESSION['rut'];
     require_once 'C:\xampp\htdocs\loan_system\web\models\goods.php';
     $debt = LendGoods($code_goods ,$rut_client,$rut_user);
-    if($debt == 1){
-        echo "si";
-    }elseif ($debt == 2){
-        echo "es dos";
-    }elseif ($debt == 3){
-        echo "es tres";
-    }else{
-        echo "no";
-    }
+    echo json_encode($debt);
     exit();
 }

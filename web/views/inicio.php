@@ -69,7 +69,7 @@ function CreateHtmlOneClient(json){
         txt = txt +     "<div style='text-align: right; margin-top: 10px; margin-bottom: 25px;'>";
         txt = txt +             "<input  id='code_goods' placeholder='Buscar' class='form-control form-text' type='text' size='20' maxlength='150' />";
         txt = txt +             "<input  type='submit' value='Prestar' onclick='LendGoods()' />";
-        txt = txt +             "<div id='messenger_lend' style='color: rgb(32, 160, 0); vertical-align:top; margin-top: 8px;'>HDMI34 ingresado Exitozamente</div>";
+        txt = txt +             "<div id='messenger_lend'></div>";
         txt = txt +     "</div>";
 
         txt = txt +     "<div id='debt' >";
@@ -111,8 +111,14 @@ function LendGoods(){
         var xhttp = new XMLHttpRequest();
         xhttp.onreadystatechange = function() {
             if (this.readyState === 4 && this.status === 200) {
-                console.log(xhttp.responseText);
-                document.getElementById("messenger_lend").innerHTML = "LoadBorrowedGoods"; 
+                let json =  JSON.parse(xhttp.responseText);
+                console.log(json);
+                var txt = "";
+                txt = txt + "<div style='margin-top: 10px; margin-bottom: 5px;'>" + json.Mensaje + "</div>";  
+                if(json.Id = 1){
+                    txt = "<div style='margin-top: 5px; margin-bottom: 5px; background-color: #be0000; padding: 5px;  padding-right: 10px;'>" + json.Mensaje + "</div>";   
+                }            
+                document.getElementById("messenger_lend").innerHTML = txt; 
             }
         };
         xhttp.open("GET", "controllers/inicio.php?code_goods=" + code_goods + "&rut_client=" + rut_client, true);

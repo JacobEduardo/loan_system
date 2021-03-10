@@ -28,9 +28,6 @@ private $conn;
     
     public function ExecuteQuery($sql){
         $result = $this->conn->query($sql);
-        if ($mysqli->query("CREATE TEMPORARY TABLE myCity LIKE City") === TRUE) {
-            printf("Se creó con éxtio la tabla myCity.\n");
-        }
         return $result;
     }
     
@@ -60,6 +57,18 @@ private $conn;
         return $arr;
     }
     
+}
+
+function ExecuteQueryBoolean($sql){
+    $conn = new ConnectionMySQL();
+    $conn->CreateConnection();
+    $result = $conn->ExecuteQuery($sql);
+    $a = mysqli_num_rows($result);
+    if($a == 1 ){
+        return 1;
+    }else{
+        return 0;
+    }
 }
 
 function  ExecuteQueryGetResultLikeArray($query){
