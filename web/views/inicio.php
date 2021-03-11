@@ -2,7 +2,6 @@
 <FORM METHOD="POST" ACTION="">
     <input id="search"  name="text_input" placeholder="Buscar" type="text" size="20" maxlength="128" onkeyup="SearchClient(this.value)" />
     <input id="seeker_btn" name="search" type="submit" value="Buscar"/>
-
     <div id="search_result" style="margin-top: 20px;">
     </div>
 </FORM>
@@ -62,7 +61,7 @@ function CreateHtmlOneClient(json){
     let txt = "";
     for(let row in json) {
         txt = txt + "<div id=one_client>";
-        txt = txt +     "<div style='margin-top: 5px; margin-bottom: 5px; padding: 20px; color:#ffffff; background-color: #0079eb;'>";
+        txt = txt +     "<div style='margin-top: 5px; margin-bottom: 5px; padding: 20px; color:#ffffff; background-color: #0079eb;   width: 200px;  margin: 0 auto;'>";
         txt = txt +         "<div id='name_client'>" + "<b>" + json[row]['NAME'] + "</b>" + "</div>";
         txt = txt +         "<div id='rut_client'>" + json[row]['RUT'] + "</div>";
         txt = txt +         "<div id='kind_client'>" + json[row]['KIND'] + "</div>";
