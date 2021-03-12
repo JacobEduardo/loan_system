@@ -34,3 +34,4 @@ function GetIdGoodsByCode($code_goods)
     $id = ExecuteQueryGetResultLikeString($query);
     return($id);
 }
+

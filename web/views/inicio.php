@@ -12,6 +12,7 @@
 </div>
 
 <script>
+
 function SearchClient(srt) {
     if(srt.length > 3){
         var xhttp = new XMLHttpRequest();
@@ -27,22 +28,6 @@ function SearchClient(srt) {
         xhttp.send();
     }else{
         document.getElementById("result_client").innerHTML = "";                    
-    }
-}
-
-function LoadDebt(name_client) {
-    if(srt.length > 3){
-        var xhttp = new XMLHttpRequest();
-        xhttp.onreadystatechange = function() {
-            if (this.readyState === 4 && this.status === 200) {
-                let json = JSON.parse(xhttp.responseText);
-                CreateHtmlDebt(json);
-            }
-        };
-        xhttp.open("GET", "controllers/inicio.php?search_debt=" + name_client, true);
-        xhttp.send();
-    }else{
-        document.getElementById("debt").innerHTML = "";                    
     }
 }
 
@@ -80,7 +65,8 @@ function CreateHtmlOneClient(json){
         txt = txt + "</div>";
         
         document.getElementById("result_client").innerHTML = txt;
-        //LoadDebt(json[row]['NAME']);
+        console.log("id:" + json[row]['ID_CLIENT']);
+        LoadDebt(json[row]['ID_CLIENT']);
     }
 }
 
@@ -90,18 +76,37 @@ function CreateHtmlTwoOrMoreClients(json){
         txt = txt + "<div id=simple_client>";
         txt = txt + "<b>" + json[row]['NAME'] + "</b>";
         txt = txt + "</br>";
-        txt = txt + json[row]['RUT'];
+        txt = txt + json;
         txt = txt + "</div>";
         document.getElementById("result_client").innerHTML = txt;
     }
 }
 
-function CreateHtmlDebt(){
-    var txt = "";
-    txt = txt + "<div style='margin-top: 6px'>"
-    txt = txt + "<b>HDMI n°5</b>"
-    txt = txt + "<a href='' style='float: right;'>Devolver</a>"
-    txt = txt + "</div>";
+function LoadDebt(id_client) {
+    if(id_client.length > 0){
+        var xhttp = new XMLHttpRequest();
+        xhttp.onreadystatechange = function() {
+            if (this.readyState === 4 && this.status === 200) {
+                let json = JSON.parse(xhttp.responseText);
+                console.log(json);
+                CreateHtmlDebt(json);
+            }
+        };
+        xhttp.open("GET", "controllers/inicio.php?id_client=" + id_client, true);
+        xhttp.send();
+    }else{
+        //document.getElementById("").innerHTML = "";                    
+    }
+}
+
+function CreateHtmlDebt(json){
+    let txt = "";
+    for(let row in json) {
+        txt = txt + "<div style='margin-top: 6px'>";
+        txt = txt + "<b>" + json[row]['ID_GOODS'] + "</b>";
+        txt = txt + "<a href='' style='float: right;'>Devolver</a>";
+        txt = txt + "</div>";
+    }
     document.getElementById("debt").innerHTML = txt;
 }
 

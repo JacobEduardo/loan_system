@@ -7,12 +7,6 @@ function GetClientsAsJSON($rut_client){
     return json_encode($result);
 }
 
-function GetDebtsAsJSON($rut_client){
-    $query = "INSERT INTO goods WHERE code LIKE '%$rut_client%';";
-    $result = ExecuteQueryGetResultLikeArray($query);
-    return json_encode($result);
-}
-
 function GetIdClientByRut($rut_client)
 {
     $result = "SELECT ID_CLIENT FROM client WHERE rut = '$rut_client'";
