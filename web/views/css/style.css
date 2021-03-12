@@ -5,12 +5,15 @@ body{
 }
 #menu{
     width: 100%;
+    max-width: 800px;
     height: 40px;
     background-color: rgb(53, 64, 128);
     position: fixed; 
     left: 0px;
     top: 0px;
     text-align: right;
+    margin-left: auto;
+    margin-right: auto;
 }
 #menu ul{
     list-style: none;
