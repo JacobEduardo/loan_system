@@ -46,7 +46,7 @@ function CreateHtmlOneClient(json){
     let txt = "";
     for(let row in json) {
         txt = txt + "<div id=one_client>";
-        txt = txt +     "<div style='margin-top: 5px; margin-bottom: 5px; padding: 20px; color:#ffffff; background-color: #0079eb;   width: 200px;  margin: 0 auto;'>";
+        txt = txt +     "<div id='client' style='padding: 20px';>";
         txt = txt +         "<div id='name_client'>" + "<b>" + json[row]['NAME'] + "</b>" + "</div>";
         txt = txt +         "<div id='rut_client'>" + json[row]['RUT'] + "</div>";
         txt = txt +         "<div id='kind_client'>" + json[row]['KIND'] + "</div>";
@@ -101,9 +101,11 @@ function LoadDebt(id_client) {
 function CreateHtmlDebt(json){
     let txt = "";
     for(let row in json) {
-        txt = txt + "<div style='margin-top: 6px'>";
-        txt = txt + "<b>" + json[row]['ID_GOODS'] + "</b>";
-        txt = txt + "<a href='' style='float: right;'>Devolver</a>";
+        txt = txt + "<div id=simple_debt>";
+        txt = txt +     "<div style='padding: 8px 20px 8px 20px;';>";
+        txt = txt +         "<b>" + json[row]['ID_GOODS'] + "</b>";
+        txt = txt +         "<a href='' style='float: right;'>Devolver</a>";
+        txt = txt +     "</div>";
         txt = txt + "</div>";
     }
     document.getElementById("debt").innerHTML = txt;
