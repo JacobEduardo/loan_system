@@ -29,3 +29,11 @@ if( isset($_GET['id_client']) ) {
     echo $debt;
     exit();
 }
+
+if( isset($_GET['return_code']) ) {
+    $return_id_goods = $_GET['return_code'];
+    require_once 'C:\xampp\htdocs\loan_system\web\models\history.php';
+    $debt = ReturnGoods($return_id_goods);
+    echo $debt;
+    exit();
+}

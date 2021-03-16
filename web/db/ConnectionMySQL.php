@@ -98,3 +98,10 @@ function ExecuteQueryGetResultLikeString($query){
     $conn->CloseConnection();
     return($id);
 }
+
+function ExecuteQuerySimple($query){
+    $conn = new ConnectionMySQL();
+    $conn->CreateConnection();
+    $result = $conn->ExecuteQuery($query);
+    $conn->CloseConnection();
+}

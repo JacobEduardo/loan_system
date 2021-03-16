@@ -20,7 +20,7 @@ function SearchClient(srt) {
                 let json = JSON.parse(xhttp.responseText);
                 console.log(Object.keys(json).length);
                 console.log(json);
-                CreatHtmlClient(json);
+                CreatHtmlSearch(json);
             }
         };
         xhttp.open("GET", "controllers/inicio.php?search=" + srt, true);
@@ -30,7 +30,7 @@ function SearchClient(srt) {
     }
 }
 
-function CreatHtmlClient(json){
+function CreatHtmlSearch(json){
       let count = Object.keys(json).length;
     if(count == 1 ){
         console.log("---222");
@@ -54,7 +54,7 @@ function CreateHtmlOneClient(json){
 
         txt = txt +     "<div style='text-align: right; margin-top: 10px; margin-bottom: 25px;'>";
         txt = txt +             "<input  id='code_goods' placeholder='Buscar' class='form-control form-text' type='text' size='20' maxlength='150' />";
-        txt = txt +             "<input  type='submit' value='Prestar' onclick='LendGoods()' />";
+        txt = txt +             "<input  type='submit' value='Prestar' onclick=LendGoods('" + json[row]['ID_CLIENT'] + "') />";
         txt = txt +             "<div id='messenger_lend'></div>";
         txt = txt +     "</div>";
 
@@ -103,15 +103,33 @@ function CreateHtmlDebt(json){
     for(let row in json) {
         txt = txt + "<div id=simple_debt>";
         txt = txt +     "<div style='padding: 8px 20px 8px 20px;';>";
-        txt = txt +         "<b>" + json[row]['ID_GOODS'] + "</b>";
-        txt = txt +         "<a href='' style='float: right;'>Devolver</a>";
+        txt = txt +         "<b>" + json[row]['CODE'] + "</b></br>";
+        txt = txt +         json[row]['DATE_START']; 
+        txt = txt +         "<input  style='float: right' type='submit' value='Devolver' onclick=ReturnGoods('"+ json[row]['ID_GOODS'] + "','" + json[row]['ID_CLIENT'] +"') />";
         txt = txt +     "</div>";
         txt = txt + "</div>";
     }
     document.getElementById("debt").innerHTML = txt;
 }
 
-function LendGoods(){
+function ReturnGoods(id_goods, id_client){
+    console.log(id_goods);
+    console.log(id_client);
+    if(id_goods.length > 0){
+        var xhttp = new XMLHttpRequest();
+        xhttp.onreadystatechange = function() {
+            if (this.readyState === 4 && this.status === 200) {
+                LoadDebt(id_client);
+            }
+        };
+        xhttp.open("GET", "controllers/inicio.php?return_code=" + id_goods, true);
+        xhttp.send();
+    }else{
+        //document.getElementById("").innerHTML = "";                    
+    }
+}
+
+function LendGoods(id_client){
     let code_goods = document.getElementById("code_goods").value;
     let rut_client = document.getElementById("rut_client").innerHTML;
 
@@ -131,9 +149,8 @@ function LendGoods(){
         };
         xhttp.open("GET", "controllers/inicio.php?code_goods=" + code_goods + "&rut_client=" + rut_client, true);
         xhttp.send();
-    }else{
-     
     }
+    LoadDebt(id_client);
 }
 
 </script>
