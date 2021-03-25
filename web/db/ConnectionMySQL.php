@@ -45,15 +45,12 @@ private $conn;
     
     function ExecuteQueryReturnAsArray($query){
         $arr = array();
-
-        $result = $this->conn->query($query);
-        
+        $result = $this->conn->query($query);  
         $i=1;
         while($row = mysqli_fetch_array($result, MYSQLI_ASSOC)){         
             $arr[$i] = $row;
             $i++;
         }
-
         return $arr;
     }
     
@@ -63,8 +60,7 @@ function ExecuteQueryBoolean($sql){
     $conn = new ConnectionMySQL();
     $conn->CreateConnection();
     $result = $conn->ExecuteQuery($sql);
-    $a = mysqli_num_rows($result);
-    if($a > 0 ){
+    if(!empty($result) AND mysqli_num_rows($result) == 1){
         return 1;
     }else{
         return 0;

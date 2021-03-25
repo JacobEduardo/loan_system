@@ -12,13 +12,27 @@ if( isset($_GET['search']) ) {
     exit();
 }
 
+if( isset($_GET['check_product']) ) {
+    require_once 'C:\xampp\htdocs\loan_system\web\models\goods.php';
+    $product = CheckLoan($_GET['check_product']);
+    echo $product;
+    exit();
+}
+
+if( isset($_GET['product_inloan']) ) {
+    require_once 'C:\xampp\htdocs\loan_system\web\models\goods.php';
+    $product = GetProductInLoanAsJSON($_GET['product_inloan']);
+    echo $product;
+    exit();
+}
+
 if( isset($_GET['code_goods']) ) {
     $code_goods = $_GET['code_goods'];
     $rut_client = $_GET['rut_client'];
     $rut_user = $_SESSION['rut'];
     require_once 'C:\xampp\htdocs\loan_system\web\models\goods.php';
-    $debt = LendGoods($code_goods ,$rut_client,$rut_user);
-    echo json_encode($debt);
+    $resutl = LendGoods($code_goods,$rut_client,$rut_user);
+    echo $resutl;
     exit();
 }
 
@@ -35,5 +49,12 @@ if( isset($_GET['return_code']) ) {
     require_once 'C:\xampp\htdocs\loan_system\web\models\history.php';
     $debt = ReturnGoods($return_id_goods);
     echo $debt;
+    exit();
+}
+
+if( isset($_GET['search_product_available']) ) {
+    require_once 'C:\xampp\htdocs\loan_system\web\models\goods.php';
+    $product = GetProductAsJSON($_GET['search_product_available']);
+    echo $product;
     exit();
 }
