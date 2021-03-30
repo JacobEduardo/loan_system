@@ -7,3 +7,9 @@ function GetIdUserByRut($rut_user)
     $id = ExecuteQueryGetResultLikeString($query);
     return($id);
 }
+
+function GetPermitsAsJSON($id_user){
+    $query = "SELECT PERMITIS FROM `user` WHERE ID_USER = $id_user";
+    $result = ExecuteQueryGetResultLikeArray($query);
+    return json_encode($result);
+}

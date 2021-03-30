@@ -86,9 +86,9 @@ INSERT INTO user (ID_LOCATION, NICKNAME,PASSWORD) VALUES (1, 'jparraguezv', 'ojo
 
 SELECT * FROM user where nickname='jparraguezv' and password='ojoescher'
 
-INSERT INTO goods (NAME, VALUE, LOAN_STATUS, DESCRIPTION, CODE,	INVENTORY_STATUS, ID_LOCATION) VALUE ('HDMI', '3', '1', 'Clave hdmi 1,8 metros', 'HDMI01', '1', '1');
-INSERT INTO goods (NAME, VALUE, LOAN_STATUS, DESCRIPTION, CODE,	INVENTORY_STATUS, ID_LOCATION) VALUE ('HDMI', '3', '1', 'Clave hdmi 1,8 metros', 'HDMI02', '1', '1');
-INSERT INTO goods (NAME, VALUE, LOAN_STATUS, DESCRIPTION, CODE,	INVENTORY_STATUS, ID_LOCATION) VALUE ('HDMI', '3', '1', 'Clave hdmi 1,8 metros', 'HDMI03', '1', '1');
+INSERT INTO product (NAME, VALUE, LOAN_STATUS, DESCRIPTION, CODE,	INVENTORY_STATUS, ID_LOCATION) VALUE ('HDMI', '3', '1', 'Clave hdmi 1,8 metros', 'HDMI01', '1', '1');
+INSERT INTO product (NAME, VALUE, LOAN_STATUS, DESCRIPTION, CODE,	INVENTORY_STATUS, ID_LOCATION) VALUE ('HDMI', '3', '1', 'Clave hdmi 1,8 metros', 'HDMI02', '1', '1');
+INSERT INTO product (NAME, VALUE, LOAN_STATUS, DESCRIPTION, CODE,	INVENTORY_STATUS, ID_LOCATION) VALUE ('HDMI', '3', '1', 'Clave hdmi 1,8 metros', 'HDMI03', '1', '1');
 
 INSERT INTO client (RUT, NAME, KIND, STATUS) VALUE ('11123234-3', 'Tico Tejada Zarate', 'Administrativo', '1');
 INSERT INTO client (RUT, NAME, KIND, STATUS) VALUE ('13423234-3', 'Baldovino Cervantes Domínguez', 'Administrativo', '1');
@@ -99,7 +99,7 @@ INSERT INTO client (RUT, NAME, KIND, STATUS) VALUE ('10123994-3', 'Jaden Olivare
 INSERT INTO client (RUT, NAME, KIND, STATUS) VALUE ('12345674-3', 'Audrey Archuleta Godínez', 'Profesor', '1');
 INSERT INTO client (RUT, NAME, KIND, STATUS) VALUE ('13347684-3', 'Olalla Espino Madera', 'Profesor', '1');
 
-INSERT INTO loan_history (`ID_GOODS`,`ID_USER_START`,`ID_CLIENT`,`STATUS`) values (1,1,2,1);
+INSERT INTO loan_history (`ID_PRODUCT`,`ID_USER_START`,`ID_CLIENT`,`STATUS`) values (1,1,2,1);
 
 SELECT ID_CLIENT FROM client WHERE Rut = '12345674-3'
 

@@ -1,6 +1,6 @@
 <?php 
-    function search_in_goods($text,$conn){
-        return basic_query("SELECT * FROM goods WHERE code LIKE '%$text%';", $conn);
+    function search_in_product($text,$conn){
+        return basic_query("SELECT * FROM product WHERE code LIKE '%$text%';", $conn);
     }
 
     function search_in_client($text,$conn){

@@ -8,7 +8,8 @@ $password = $_POST['password'];
 $conn = new ConnectionMySQL();
 $conn->CreateConnection();
 
-$query_result = $conn->ExecuteQuery("SELECT * FROM user where nickname='$user' and pass='$password'");
+$query_result = $conn->ExecuteQuery("SELECT * FROM user where NICKNAME='$user' and PASSWORD='$password'");
+
 
 if($query_result->num_rows == 1){
     $session = new Session();
@@ -17,6 +18,8 @@ if($query_result->num_rows == 1){
     $session->set("name", $rows['NAME']);
     $session->set("rut", $rows['RUT']);
     $session->set("last_name", $rows['LAST_NAME']);
+    $session->set("id_user", $rows['ID_USER']);
+    $session->set("permits", $rows['PERMITS']);
     $conn->CloseConnection();
     header("location:index.php");
 }else{
