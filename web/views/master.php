@@ -1,4 +1,24 @@
-<?php $pagina = isset($_GET['page']) ? strtolower($_GET['page']) : 'inicio'; ?>
+<?php 
+    $permits = GetMenu($_SESSION['permits']);
+
+    if(isset($_GET['page'])){
+        $page = CheckPermits($permits);
+    }else{
+        $page =  'inicio';
+    }   
+
+    function CheckPermits($permits){
+        foreach($permits as $row){
+            echo "<script>console.log('" .$row['URL'] ."')</script>";
+            if ($row['URL'] == $_GET['page']){
+                return strtolower($_GET['page']);
+            }
+        }
+        return 'inicio';
+    }
+
+?>
+
 
 <div id="master">
     <div id="menu"> 
@@ -12,9 +32,7 @@
             <ul id="left_menu">
                 
                 <?php
-
                     CreateMenu();
-
                 ?>
 
             </ul>
@@ -23,7 +41,7 @@
         <div id="pages">
             <div  style="padding: 20px;">
                 <?php  
-                    require_once 'views/' .$pagina .'.php';
+                    require_once 'views/' .$page .'.php';
                 ?>
             </div>
         </div>
@@ -48,7 +66,7 @@ function CreateMenu(){
                 $txt1 = $txt1 ."<li><a class='active'>Inicio</a></li>";
                 $x = 0;
             }
-            $txt1 = $txt1 ."<li><a href=" .$row['MENU_CODE'] .">" .$row['MENU_NAME'] .'</a></li>' ;
+            $txt1 = $txt1 ."<li><a href=index.php?page=" .$row['URL'] .">" .$row['MENU_NAME'] .'</a></li>' ;
         }
 
         if($num == 2){
@@ -56,7 +74,7 @@ function CreateMenu(){
                 $txt2 = $txt2 ."<li><a class='active'>Historial</a></li>" ;
                 $y = 0;
             }
-            $txt2 = $txt2 ."<li><a href=" .$row['MENU_CODE'] .">" .$row['MENU_NAME'] .'</a></li>' ;
+            $txt2 = $txt2 ."<li><a href=index.php?page=" .$row['URL'] .">" .$row['MENU_NAME'] .'</a></li>' ;
         }
         
         if($num == 3){
@@ -64,7 +82,7 @@ function CreateMenu(){
                 $txt3 = $txt3 ."<li><a class='active'>Administracion</a></li>" ;
                 $z = 0;
             }
-            $txt3 = $txt3 ."<li><a href=" .$row['MENU_CODE'] .">" .$row['MENU_NAME'] .'</a></li>' ;
+            $txt3 = $txt3 ."<li><a href=index.php?page=" .$row['URL'] .">" .$row['MENU_NAME'] .'</a></li>' ;
         }
     }
     echo $txt1;

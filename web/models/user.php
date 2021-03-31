@@ -13,3 +13,4 @@ function GetPermitsAsJSON($id_user){
     $result = ExecuteQueryGetResultLikeArray($query);
     return json_encode($result);
 }
+
