@@ -29,14 +29,14 @@
 </form>
 
 <script>
-Check();
-function Check() {
-    document.getElementById("1.1").checked = true;
-}
-
+    Check();
+    function Check() {
+        document.getElementById("1.1").checked = true;
+    }
 </script>
 
 <?php
+//Codigo PHP
 function CreateCheckBoxs(){
     $permits = GetAllPermit();
     $x = 1;
@@ -79,6 +79,23 @@ function CreateCheckBoxs(){
     echo $txt1;
     echo $txt2;
     echo $txt3;
+}
+
+function CreateCheckBoxSeccion($permits,$i,){
+    $x = 1;
+    $txt1 = "";
+    foreach($permits as $row){
+        $num = substr($row['MENU_CODE'] , 0, 1);
+        if($num == $i){
+            if($x == 1){
+                $txt1 = $txt1 ."<div id='sub_title_form'><b>" .$row['MENU_NAME'] ."</b><br></div>";
+                $x = 0;
+            }else{
+                $txt1 = $txt1 ."<input type='checkbox' id='" .$row['MENU_CODE'] ."' name='vehicle1' value='Bike'><label for='vehicle1'>" .$row['MENU_NAME'] ."</label><br>";
+            }
+        }
+    }
+    echo $txt1;
 }
 
 function CreateSelecLocation(){
