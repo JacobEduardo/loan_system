@@ -14,3 +14,8 @@ function GetPermitsAsJSON($id_user){
     return json_encode($result);
 }
 
+function GetIdUserLocation ($rut_user){
+    $query = "SELECT ID_LOCATION FROM user WHERE Rut = '$rut_user'";
+    $id = ExecuteQueryGetResultLikeString($query);
+    return($id);
+}

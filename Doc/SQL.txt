@@ -1,3 +1,22 @@
+CREATE TABLE `MENU`
+(
+ `ID_MENU`   int NOT NULL AUTO_INCREMENT ,
+ `MENU_NAME` varchar(45) NOT NULL ,
+ `MENU_CODE` varchar(45) NOT NULL ,
+ `URL`       varchar(45) NOT NULL ,
+
+PRIMARY KEY (`ID_MENU`)
+);
+
+
+CREATE TABLE `LOCATION`
+(
+ `ID_LOCATION` int NOT NULL AUTO_INCREMENT ,
+ `NAME`        varchar(45) NOT NULL ,
+
+PRIMARY KEY (`ID_LOCATION`)
+);
+
 
 CREATE TABLE `CLIENT`
 (
@@ -11,25 +30,17 @@ PRIMARY KEY (`ID_CLIENT`)
 );
 
 
-CREATE TABLE `LOCATION`
-(
- `ID_LOCATION` int NOT NULL AUTO_INCREMENT ,
- `NAME`        varchar(45) NOT NULL ,
-
-PRIMARY KEY (`ID_LOCATION`)
-);
-
-
 CREATE TABLE `USER`
 (
  `ID_USER`     int NOT NULL AUTO_INCREMENT ,
  `NAME`        varchar(45) NOT NULL ,
  `RUT`         varchar(45) NOT NULL ,
- `PERMITIS`    varchar(45) NOT NULL ,
+ `PERMITS`    varchar(45) NOT NULL ,
  `ID_LOCATION` int NOT NULL ,
  `PASSWORD`    varchar(45) NOT NULL ,
  `LAST_NAME`   varchar(45) NOT NULL ,
  `NICKNAME`    varchar(45) NOT NULL ,
+ `STATUS`      tinyint NOT NULL ,
 
 PRIMARY KEY (`ID_USER`),
 KEY `fkIdx_72` (`ID_LOCATION`),
@@ -37,10 +48,9 @@ CONSTRAINT `FK_71` FOREIGN KEY `fkIdx_72` (`ID_LOCATION`) REFERENCES `LOCATION` 
 );
 
 
-
 CREATE TABLE `PRODUCT`
 (
- `ID_PRODUCT`         int NOT NULL AUTO_INCREMENT ,
+ `ID_PRODUCT`       int NOT NULL AUTO_INCREMENT ,
  `NAME`             varchar(45) NOT NULL ,
  `VALUE`            int NOT NULL ,
  `LOAN_STATUS`      tinyint NOT NULL ,
@@ -58,13 +68,13 @@ CONSTRAINT `FK_68` FOREIGN KEY `fkIdx_69` (`ID_LOCATION`) REFERENCES `LOCATION` 
 CREATE TABLE `LOAN_HISTORY`
 (
  `ID_HISTORY`    int NOT NULL AUTO_INCREMENT ,
- `DATE_START`    date NOT NULL ,
- `ID_PRODUCT`      int NOT NULL ,
+ `DATE_START`    timestamp NOT NULL ,
+ `ID_PRODUCT`    int NOT NULL ,
  `ID_USER_START` int NOT NULL ,
  `ID_CLIENT`     int NOT NULL ,
- `DATE_END`      date NOT NULL ,
+ `DATE_END`      timestamp NULL ,
  `STATUS`        tinyint NOT NULL ,
- `ID_USER_END`   int NOT NULL ,
+ `ID_USER_END`   int NULL ,
 
 PRIMARY KEY (`ID_HISTORY`),
 KEY `fkIdx_35` (`ID_PRODUCT`),
@@ -78,8 +88,36 @@ CONSTRAINT `FK_74` FOREIGN KEY `fkIdx_75` (`ID_USER_END`) REFERENCES `USER` (`ID
 );
 
 
+
+
 /////////////////////////////////////////////////////////////////////////////////////////////////////////////
 
+INSERT INTO `location`(`NAME`) VALUES ('Oficina ARL');
+INSERT INTO `location`(`NAME`) VALUES ('Electronica');
+INSERT INTO `location`(`NAME`) VALUES ('Sala de Profesores');
+
+INSERT INTO `user`(`NAME`, `RUT`, `PERMITIS`, `ID_LOCATION`, `PASS`, `LAST_NAME`, `NICKNAME`, `STATUS`)
+VALUES ('Jacob','16457773-2', '1,1.1,2.1,2.2,2.3','1', 'ojoescher','Parraguez Vargas','jparraguezv','1');
+
+INSERT INTO `product`(`NAME`, `VALUE`, `LOAN_STATUS`, `DESCRIPTION`, `CODE`, `INVENTORY_STATUS`, `ID_LOCATION`) VALUES ('Cable HDMI', '1' , '1','Cable HDMI 1,8 metros','HDMI01', '1', '1');
+INSERT INTO `product`(`NAME`, `VALUE`, `LOAN_STATUS`, `DESCRIPTION`, `CODE`, `INVENTORY_STATUS`, `ID_LOCATION`) VALUES ('Cable HDMI', '1' , '1','Cable HDMI 1,8 metros','HDMI02', '1', '1');
+INSERT INTO `product`(`NAME`, `VALUE`, `LOAN_STATUS`, `DESCRIPTION`, `CODE`, `INVENTORY_STATUS`, `ID_LOCATION`) VALUES ('Cable HDMI', '1' , '1','Cable HDMI 1,8 metros','HDMI03', '1', '1');
+INSERT INTO `product`(`NAME`, `VALUE`, `LOAN_STATUS`, `DESCRIPTION`, `CODE`, `INVENTORY_STATUS`, `ID_LOCATION`) VALUES ('Cable HDMI', '1' , '1','Cable HDMI 1,8 metros','HDMI04', '1', '1');
+INSERT INTO `product`(`NAME`, `VALUE`, `LOAN_STATUS`, `DESCRIPTION`, `CODE`, `INVENTORY_STATUS`, `ID_LOCATION`) VALUES ('Cable HDMI', '1' , '1','Cable HDMI 1,8 metros','HDMI05', '1', '1');
+
+INSERT INTO `menu`(`MENU_NAME`, `MENU_CODE`, `URL`) VALUES ('Inicio','1','');
+INSERT INTO `menu`(`MENU_NAME`, `MENU_CODE`, `URL`) VALUES ('Prestamo','1.1','inicio');
+INSERT INTO `menu`(`MENU_NAME`, `MENU_CODE`, `URL`) VALUES ('Historial','2','');
+INSERT INTO `menu`(`MENU_NAME`, `MENU_CODE`, `URL`) VALUES ('Global','2.1','inicio');
+INSERT INTO `menu`(`MENU_NAME`, `MENU_CODE`, `URL`) VALUES ('En Curso','2.2','inicio');
+INSERT INTO `menu`(`MENU_NAME`, `MENU_CODE`, `URL`) VALUES ('Deudores','2.3','inicio');
+INSERT INTO `menu`(`MENU_NAME`, `MENU_CODE`, `URL`) VALUES ('Administracion','3','');
+INSERT INTO `menu`(`MENU_NAME`, `MENU_CODE`, `URL`) VALUES ('Agregar Usuario','3.1','inicio');
+INSERT INTO `menu`(`MENU_NAME`, `MENU_CODE`, `URL`) VALUES ('Agregar Producto','3.2','inicio');
+INSERT INTO `menu`(`MENU_NAME`, `MENU_CODE`, `URL`) VALUES ('Agregar locaion','3.3','inicio');
+INSERT INTO `menu`(`MENU_NAME`, `MENU_CODE`, `URL`) VALUES ('Agregar Cliente','3.4','inicio');
+
+//////////////////////////////////////////////////////////////////////////////////////////////////////////
 INSERT INTO location (NAME) VALUES ('Oficina ARL');
 
 INSERT INTO user (ID_LOCATION, NICKNAME,PASSWORD) VALUES (1, 'jparraguezv', 'ojoescher');

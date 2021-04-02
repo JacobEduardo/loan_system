@@ -7,9 +7,18 @@ function LendProduct($code_product, $rut_client, $rut_user){
     $id_client = GetIdClientByRut($rut_client);
     $id_user = GetIdUserByRut($rut_user);  
     $id_product = GetIdProductByCode($code_product);
+    $id_user_location = GetIdUserLocation($rut_user);
 
     if(!$id_product){
         return 1;
+    }
+
+    ECHO "<script>" ."console.log(".$id_user_location .")" ."</script>";
+    ECHO "<script>" ."console.log(".$code_product .")" ."</script>";
+    $result = ExecuteQueryBoolean("SELECT * FROM product WHERE (CODE=$code_product) AND (ID_LOCATION=$id_user_location)");
+    ECHO "<script>" ."console.log('1223344".$result ."')" ."</script>";
+    if($result == 0){
+        return 4;
     }
 
     $result = ExecuteQueryBoolean("SELECT * FROM `loan_history` WHERE (STATUS='1') AND (ID_PRODUCT=$id_product)");

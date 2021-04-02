@@ -80,7 +80,7 @@ function CreateCheckBoxs(){
     echo $txt2;
     echo $txt3;
 }
-
+/*
 function CreateCheckBoxSeccion($permits,$i,){
     $x = 1;
     $txt1 = "";
@@ -96,7 +96,7 @@ function CreateCheckBoxSeccion($permits,$i,){
         }
     }
     echo $txt1;
-}
+}*/
 
 function CreateSelecLocation(){
     echo "<select id='select' name='locations'>";

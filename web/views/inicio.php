@@ -219,6 +219,9 @@ function LendProduct(id_client){
                 if(result == 3){
                     txt = "<div style='margin-top: 5px; margin-bottom: 5px; padding: 5px; color: green; padding-right: 10px;'>Prestamo exitoso</div>";   
                 }   
+                if(result == 4){
+                    txt = "<div style='margin-top: 5px; margin-bottom: 5px; padding: 5px; color: red; padding-right: 10px;'>Imposible devolver</div>";   
+                }  
                 if(result == 0){
                     txt = "<div style='margin-top: 5px; margin-bottom: 5px; padding: 5px;  padding-right: 10px;'>Error</div>";   
                 }               
