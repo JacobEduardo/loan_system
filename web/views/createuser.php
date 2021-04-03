@@ -1,18 +1,18 @@
 <?php  require_once 'C:\xampp\htdocs\loan_system\web\controllers\createuser.php'; ?>
 
-<form onSubmit="return AddUser()"; >
+<form METHOD="POST" ACTION="controllers\createuser.php"; >
     <div id='title_form'><b>Agregar Usuario</b><br></div>
 
     <label for="fname">Nombre:</label><br>
-    <input size="35" type="text" id="form_imput" name="fname" value=""><br>
+    <input size="35" type="text" id="form_imput" name="name" value=""><br>
     <label for="lname">Apellidos:</label><br>
-    <input size="35" type="text" id="form_imput" name="lname" value=""><br>
+    <input size="35" type="text" id="form_imput" name="las_name" value=""><br>
     <label for="lname">RUT:</label><br>
-    <input size="35" type="text" id="form_imput" name="lname" value=""><br>
+    <input size="35" type="text" id="form_imput" name="rut" value=""><br>
     <label for="lname">Nombre de Usuario:</label><br>
-    <input size="35" type="text" id="form_imput" name="lname" value=""><br>
+    <input size="35" type="text" id="form_imput" name="user_name" value=""><br>
     <label for="lname">Contraseña:</label><br>
-    <input size="35" type="text" id="form_imput" name="lname" value=""><br><br>
+    <input size="35" type="text" id="form_imput" name="password" value=""><br><br>
 
     <div id='sub_title_form'><b>Lugar</b><br></div>
     <?php  
@@ -25,7 +25,7 @@
     ?>
 
     <br>
-    <input type="submit" value="Submit">
+    <input type="submit" value="Submit" name="send">
 </form>
 
 <script>
@@ -36,6 +36,7 @@
 </script>
 
 <?php
+
 //Codigo PHP
 function CreateCheckBoxs(){
     $permits = GetAllPermit();
@@ -53,7 +54,7 @@ function CreateCheckBoxs(){
                 $txt1 = $txt1 ."<div id='sub_title_form'><b>" .$row['MENU_NAME'] ."</b><br></div>";
                 $x = 0;
             }else{
-                $txt1 = $txt1 ."<input type='checkbox' id='" .$row['MENU_CODE'] ."' name='vehicle1' value='Bike'><label for='vehicle1'>" .$row['MENU_NAME'] ."</label><br>";
+                $txt1 = $txt1 ."<input type='checkbox' name='" .$row['MENU_CODE'] ."' value='Bike'><label for='vehicle1'>" .$row['MENU_NAME'] ."</label><br>";
             }
         }
         
@@ -80,23 +81,7 @@ function CreateCheckBoxs(){
     echo $txt2;
     echo $txt3;
 }
-/*
-function CreateCheckBoxSeccion($permits,$i,){
-    $x = 1;
-    $txt1 = "";
-    foreach($permits as $row){
-        $num = substr($row['MENU_CODE'] , 0, 1);
-        if($num == $i){
-            if($x == 1){
-                $txt1 = $txt1 ."<div id='sub_title_form'><b>" .$row['MENU_NAME'] ."</b><br></div>";
-                $x = 0;
-            }else{
-                $txt1 = $txt1 ."<input type='checkbox' id='" .$row['MENU_CODE'] ."' name='vehicle1' value='Bike'><label for='vehicle1'>" .$row['MENU_NAME'] ."</label><br>";
-            }
-        }
-    }
-    echo $txt1;
-}*/
+
 
 function CreateSelecLocation(){
     echo "<select id='select' name='locations'>";
@@ -105,4 +90,8 @@ function CreateSelecLocation(){
         echo "<option>" .$row['NAME'] ."</option>";
     }
     echo "</select><BR><BR>";
+}
+
+function AddUser() {
+
 }

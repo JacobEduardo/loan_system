@@ -9,3 +9,8 @@ function GetAllPermit(){
 function GetAllLocation(){
     return GetTableLocation();
 }
+
+if(isset($_POST['send'])) {
+    echo $_POST["name"];
+}
+

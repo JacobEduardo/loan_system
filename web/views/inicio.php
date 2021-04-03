@@ -1,4 +1,4 @@
-<h2 id="demo">Sistema de Prestamos</h2>
+<div id="title_form"><b>Sistema de Prestamos</b></div>
 <FORM onSubmit="return Search(text_input.value)";>
     <input name="text_input" placeholder="Buscar" type="text" size="20" maxlength="128" onkeyup="Search(this.value)" />
     <input name="search" type="submit" value="Buscar"/>
@@ -102,7 +102,7 @@ function CreateHtmlOneClient(json){
         txt = txt +         "<div id='kind_client'>" + json[row]['KIND'] + "</div>";
         txt = txt +     "</div>";
 
-        txt = txt +     "<div style='text-align: right; margin-top: 10px; margin-bottom: 25px;'>";
+        txt = txt +     "<div style='text-align: right; padding: 10px;'>";
         let funt =        "return " +  "LendProduct(" + json[row]['ID_CLIENT'] + ");"
         txt = txt +     "<form  method='post' onSubmit='" + funt +"') >";
         txt = txt +         "<input  id='code_product' placeholder='Buscar' class='form-control form-text' type='text' size='20' maxlength='150' />";
@@ -151,7 +151,11 @@ function LoadDebt(id_client) {
 }
 
 function CreateHtmlDebt(json){
+    let count = Object.keys(json).length;
     let txt = "";
+    if(count > 0){
+        txt = txt + "<div id='id='sub_title_form' style='padding: 15px' ><b>Productos en deuda:</b></div>";
+    }
     for(let row in json) {
         txt = txt + "<div id=simple_debt>";
         txt = txt +     "<div style='padding: 8px 20px 8px 20px;';>";
@@ -209,7 +213,8 @@ function LendProduct(id_client){
             if (this.readyState === 4 && this.status === 200) {
                 let result =  xhttp.responseText;
                 var txt = "";
-                console.log("valor prestamo: " + result);
+                console.log("valor prestamo: " + result + " fin valor");
+                
                 if(result == 1){
                     txt = "<div style='margin-top: 5px; margin-bottom: 5px; padding: 5px;  padding-right: 10px;'>No se encontraron concidencias</div>";   
                 }
@@ -220,8 +225,11 @@ function LendProduct(id_client){
                     txt = "<div style='margin-top: 5px; margin-bottom: 5px; padding: 5px; color: green; padding-right: 10px;'>Prestamo exitoso</div>";   
                 }   
                 if(result == 4){
-                    txt = "<div style='margin-top: 5px; margin-bottom: 5px; padding: 5px; color: red; padding-right: 10px;'>Imposible devolver</div>";   
+                    txt = "<div style='margin-top: 5px; margin-bottom: 5px; padding: 5px; color: orange; padding-right: 10px;'>No pertenece a este lugar</div>";   
                 }  
+                if(result == 5){
+                    txt = "<div style='margin-top: 5px; margin-bottom: 5px; padding: 5px; color: orange; padding-right: 10px;'>Producto eliminado</div>";   
+                } 
                 if(result == 0){
                     txt = "<div style='margin-top: 5px; margin-bottom: 5px; padding: 5px;  padding-right: 10px;'>Error</div>";   
                 }               
