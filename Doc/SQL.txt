@@ -1,4 +1,4 @@
-CREATE TABLE `MENU`
+﻿CREATE TABLE `MENU`
 (
  `ID_MENU`   int NOT NULL AUTO_INCREMENT ,
  `MENU_NAME` varchar(45) NOT NULL ,
@@ -96,7 +96,7 @@ INSERT INTO `location`(`NAME`) VALUES ('Oficina ARL');
 INSERT INTO `location`(`NAME`) VALUES ('Electronica');
 INSERT INTO `location`(`NAME`) VALUES ('Sala de Profesores');
 
-INSERT INTO `user`(`NAME`, `RUT`, `PERMITIS`, `ID_LOCATION`, `PASS`, `LAST_NAME`, `NICKNAME`, `STATUS`)
+INSERT INTO `user`(`NAME`, `RUT`, `PERMITS`, `ID_LOCATION`, `PASSWORD`, `LAST_NAME`, `NICKNAME`, `STATUS`)
 VALUES ('Jacob','16457773-2', '1,1.1,2.1,2.2,2.3','1', 'ojoescher','Parraguez Vargas','jparraguezv','1');
 
 INSERT INTO `product`(`NAME`, `VALUE`, `LOAN_STATUS`, `DESCRIPTION`, `CODE`, `INVENTORY_STATUS`, `ID_LOCATION`) VALUES ('Cable HDMI', '1' , '1','Cable HDMI 1,8 metros','HDMI01', '1', '1');
