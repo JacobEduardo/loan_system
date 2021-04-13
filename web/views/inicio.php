@@ -20,6 +20,16 @@ function Search(srt){
     return false;
 }
 
+function SearchClientById(srt){
+    FetchServer("controllers/inicio.php?search_id=",srt,function(response){
+        let json = JSON.parse(response);
+        console.log(Object.keys(json).length);
+        console.log(json);
+        CreatHtmlClientSearch(json);
+    });
+}
+
+
 function SearchClient(srt){
     FetchServer("controllers/inicio.php?search=",srt,function(response){
         let json = JSON.parse(response);
@@ -43,7 +53,6 @@ function CreatHtmlClientSearch(json){
 
 function SearchProduct(data_entered){
         FetchServer("controllers/inicio.php?check_product=",data_entered,function(response){
-            console.log("asdasdasd" + response);
         if(response == 1){
             document.getElementById("result_product").innerHTML = "";
             CreateHtmlProductInLoan(data_entered);
@@ -125,7 +134,7 @@ function CreateHtmlOneClient(json){
 function CreateHtmlTwoOrMoreClients(json){
     let txt = "";
     for(let row in json) {
-        txt = txt + "<div onclick=Search('" + json[row]['RUT'] + "') id=simple_client>";
+        txt = txt + "<div onclick='SearchClientById(" + json[row]['ID_CLIENT'] + ")' id=simple_client>";
         txt = txt + "<b>" + json[row]['NAME'] + "</b></br>";
         txt = txt + json[row]['RUT'] ;
         txt = txt + "</br>";
@@ -216,7 +225,7 @@ function LendProduct(id_client){
                 console.log("valor prestamo: " + result + " fin valor");
                 
                 if(result == 1){
-                    txt = "<div style='margin-top: 5px; margin-bottom: 5px; padding: 5px;  padding-right: 10px;'>No se encontraron concidencias</div>";   
+                    txt = "<div ";   
                 }
                 if(result == 2){
                     txt = "<div style='margin-top: 5px; margin-bottom: 5px; padding: 5px; color: red; padding-right: 10px;'>El producto se encuentra en prestamo</div>";   

@@ -19,3 +19,9 @@ function GetIdUserLocation ($rut_user){
     $id = ExecuteQueryGetResultLikeString($query);
     return($id);
 }
+
+function CreateUser($id_location, $name, $last_name, $rut, $permit, $nickname, $password){
+    $query = "INSERT INTO `user`(`ID_LOCATION`, `NAME`, `LAST_NAME`, `RUT`, `PERMITS`, `NICKNAME`, `PASSWORD`)
+    VALUES ('".$id_location."','".$name."','".$last_name."','".$rut."','".$permit."','".$nickname."','".$password."')";
+    return ExecuteQuery($query);
+}

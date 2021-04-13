@@ -52,7 +52,6 @@ CREATE TABLE `PRODUCT`
 (
  `ID_PRODUCT`       int NOT NULL AUTO_INCREMENT ,
  `NAME`             varchar(45) NOT NULL ,
- `VALUE`            int NOT NULL ,
  `LOAN_STATUS`      tinyint NOT NULL ,
  `DESCRIPTION`      text NOT NULL ,
  `CODE`             varchar(45) NOT NULL ,

@@ -1,4 +1,15 @@
-<?php  require_once 'C:\xampp\htdocs\loan_system\web\controllers\createuser.php'; ?>
+<?php  require_once 'C:\xampp\htdocs\loan_system\web\controllers\createuser.php'; 
+    if(isset($_GET['result'])){
+        $result = $_GET['result'];
+        if ($result == 2){
+            echo "<div style='color:red;margin-bottom:15px;' >Rellene todos los campos</div>";
+        }elseif($result == 1){
+            echo "<div style='color:green;margin-bottom:10px;'>Usuario ingresado exitosamente</div>";
+        }elseif($result == 0){
+            echo "<div style='color:red;margin-bottom:10px;'>Error</div>";
+        }
+    }   
+?>
 
 <form METHOD="POST" ACTION="controllers\createuser.php"; >
     <div id='title_form'><b>Agregar Usuario</b><br></div>
@@ -6,7 +17,7 @@
     <label for="fname">Nombre:</label><br>
     <input size="35" type="text" id="form_imput" name="name" value=""><br>
     <label for="lname">Apellidos:</label><br>
-    <input size="35" type="text" id="form_imput" name="las_name" value=""><br>
+    <input size="35" type="text" id="form_imput" name="last_name" value=""><br>
     <label for="lname">RUT:</label><br>
     <input size="35" type="text" id="form_imput" name="rut" value=""><br>
     <label for="lname">Nombre de Usuario:</label><br>
@@ -16,12 +27,12 @@
 
     <div id='sub_title_form'><b>Lugar</b><br></div>
     <?php  
-        CreateSelecLocation();
+        CreateHtmlSelecLocation();
     ?>
 
     <div id='sub_title_form'><b>Permisos</b><br></div>
     <?php  
-        CreateCheckBoxs();
+        CreateHtmlCheckBoxs();
     ?>
 
     <br>
@@ -38,7 +49,7 @@
 <?php
 
 //Codigo PHP
-function CreateCheckBoxs(){
+function CreateHtmlCheckBoxs(){
     $permits = GetAllPermit();
     $x = 1;
     $y = 1;
@@ -54,7 +65,7 @@ function CreateCheckBoxs(){
                 $txt1 = $txt1 ."<div id='sub_title_form'><b>" .$row['MENU_NAME'] ."</b><br></div>";
                 $x = 0;
             }else{
-                $txt1 = $txt1 ."<input type='checkbox' name='" .$row['MENU_CODE'] ."' value='Bike'><label for='vehicle1'>" .$row['MENU_NAME'] ."</label><br>";
+                $txt1 = $txt1 ."<input type='checkbox' id='" .$row['MENU_CODE'] ."' name='check_list[]' value='" .$row['MENU_CODE'] ."'><label>".$row['MENU_NAME'] ."</label><br/>";
             }
         }
         
@@ -63,7 +74,7 @@ function CreateCheckBoxs(){
                 $txt2 = $txt2 ."<b>" .$row['MENU_NAME'] ."</b><br>";
                 $y = 0;
             }else{
-                $txt2 = $txt2 ."<input type='checkbox' id='vehicle1' name='vehicle1' value='Bike'><label for='vehicle1'>" .$row['MENU_NAME'] ."</label><br>";
+                $txt2 = $txt2 ."<input type='checkbox' name='check_list[]' value='" .$row['MENU_CODE'] ."'><label>".$row['MENU_NAME'] ."</label><br/>";
             }
         }
         
@@ -72,7 +83,7 @@ function CreateCheckBoxs(){
                 $txt3 = $txt3 ."<b>" .$row['MENU_NAME'] ."</b><br>";
                 $z = 0;
             }else{
-                $txt3 = $txt3 ."<input type='checkbox' id='vehicle1' name='vehicle1' value='Bike'><label for='vehicle1'>" .$row['MENU_NAME'] ."</label><br>";
+                $txt3 = $txt3 ."<input type='checkbox' name='check_list[]' value='" .$row['MENU_CODE'] ."'><label>".$row['MENU_NAME'] ."</label><br/>";
             }
         }
 
@@ -83,15 +94,11 @@ function CreateCheckBoxs(){
 }
 
 
-function CreateSelecLocation(){
-    echo "<select id='select' name='locations'>";
+function CreateHtmlSelecLocation(){
+    echo "<select id='select' name='location'>";
     $location =  GetAllLocation();
     foreach($location as $row){
-        echo "<option>" .$row['NAME'] ."</option>";
+        echo "<option value='".$row['ID_LOCATION'] ."value='".$row['ID_LOCATION'] ."'>" .$row['NAME'] ."</option>";
     }
     echo "</select><BR><BR>";
-}
-
-function AddUser() {
-
 }

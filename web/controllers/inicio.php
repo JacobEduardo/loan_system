@@ -6,8 +6,15 @@ if( isset($_GET['page']) ) {
 }
 
 if( isset($_GET['search']) ) {
-    require_once 'C:\xampp\htdocs\loan_system\web\models\Client.php';
+    require_once 'C:\xampp\htdocs\loan_system\web\models\client.php';
     $clients = GetClientsAsJSON($_GET['search']);
+    echo $clients;
+    exit();
+}
+
+if( isset($_GET['search_id']) ) {
+    require_once 'C:\xampp\htdocs\loan_system\web\models\client.php';
+    $clients = GetClientsByIdAsJSON($_GET['search_id']);
     echo $clients;
     exit();
 }
