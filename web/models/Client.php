@@ -9,8 +9,6 @@ function GetClientsAsJSON($rut_client){
 
 function GetClientsByIdAsJSON($id){
     $query = "SELECT * FROM client WHERE id_client = '$id';";
-    echo $query;
-    die;
     $result = ExecuteQueryGetResultLikeArray($query);
     return json_encode($result);
 }

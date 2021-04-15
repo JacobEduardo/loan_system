@@ -41,7 +41,7 @@
         <div id="pages">
             <div  style="padding: 20px;">
                 <?php  
-                    require_once 'views/' .$page .'.php';
+                    require_once 'views/' .$page ;
                 ?>
             </div>
         </div>

@@ -1,7 +1,7 @@
 <div id="title_form"><b>Sistema de Prestamos</b></div>
 <FORM onSubmit="return Search(text_input.value)";>
-    <input name="text_input" placeholder="Buscar" type="text" size="20" maxlength="128" onkeyup="Search(this.value)" />
-    <input name="search" type="submit" value="Buscar"/>
+    <input id="form_imput" name="text_input" placeholder="Buscar" type="text" size="20" maxlength="128" onkeyup="Search(this.value)" />
+    <input id="button_from" name="search" type="submit" value="Buscar"/>
     <div id="search_result" style="margin-top: 20px;">
     </div>
 </FORM>
@@ -21,12 +21,18 @@ function Search(srt){
 }
 
 function SearchClientById(srt){
-    FetchServer("controllers/inicio.php?search_id=",srt,function(response){
-        let json = JSON.parse(response);
-        console.log(Object.keys(json).length);
-        console.log(json);
-        CreatHtmlClientSearch(json);
-    });
+    console.log("Esto 1111 es todosss");
+    var xhttp = new XMLHttpRequest();
+    xhttp.onreadystatechange = function() {
+        if (this.readyState === 4 && this.status === 200) {
+            console.log("Esto 2222 es todosss");
+            let json = JSON.parse(xhttp.responseText);
+            console.log(json);
+            CreatHtmlClientSearch(json);
+        }
+    };
+    xhttp.open("GET", "controllers/inicio.php?search_id=" + srt, true);
+    xhttp.send();
 }
 
 
@@ -134,7 +140,7 @@ function CreateHtmlOneClient(json){
 function CreateHtmlTwoOrMoreClients(json){
     let txt = "";
     for(let row in json) {
-        txt = txt + "<div onclick='SearchClientById(" + json[row]['ID_CLIENT'] + ")' id=simple_client>";
+        txt = txt + "<div onclick=SearchClientById('" + json[row]['ID_CLIENT'] + "') id=simple_client>";
         txt = txt + "<b>" + json[row]['NAME'] + "</b></br>";
         txt = txt + json[row]['RUT'] ;
         txt = txt + "</br>";
@@ -225,7 +231,7 @@ function LendProduct(id_client){
                 console.log("valor prestamo: " + result + " fin valor");
                 
                 if(result == 1){
-                    txt = "<div ";   
+                    txt = "<div style='margin-top: 5px; margin-bottom: 5px; padding: 5px; padding-right: 10px;'>No se encontraron resultados</div>"; 
                 }
                 if(result == 2){
                     txt = "<div style='margin-top: 5px; margin-bottom: 5px; padding: 5px; color: red; padding-right: 10px;'>El producto se encuentra en prestamo</div>";   

@@ -52,7 +52,7 @@ CREATE TABLE `PRODUCT`
 (
  `ID_PRODUCT`       int NOT NULL AUTO_INCREMENT ,
  `NAME`             varchar(45) NOT NULL ,
- `LOAN_STATUS`      tinyint NOT NULL ,
+ `SERIAL`      	    varchar(45) NOT NULL ,
  `DESCRIPTION`      text NOT NULL ,
  `CODE`             varchar(45) NOT NULL ,
  `INVENTORY_STATUS` tinyint NOT NULL ,
@@ -111,10 +111,17 @@ INSERT INTO `menu`(`MENU_NAME`, `MENU_CODE`, `URL`) VALUES ('Global','2.1','inic
 INSERT INTO `menu`(`MENU_NAME`, `MENU_CODE`, `URL`) VALUES ('En Curso','2.2','inicio');
 INSERT INTO `menu`(`MENU_NAME`, `MENU_CODE`, `URL`) VALUES ('Deudores','2.3','inicio');
 INSERT INTO `menu`(`MENU_NAME`, `MENU_CODE`, `URL`) VALUES ('Administracion','3','');
-INSERT INTO `menu`(`MENU_NAME`, `MENU_CODE`, `URL`) VALUES ('Agregar Usuario','3.1','inicio');
-INSERT INTO `menu`(`MENU_NAME`, `MENU_CODE`, `URL`) VALUES ('Agregar Producto','3.2','inicio');
+INSERT INTO `menu`(`MENU_NAME`, `MENU_CODE`, `URL`) VALUES ('Agregar Usuario','3.1','createuser');
+INSERT INTO `menu`(`MENU_NAME`, `MENU_CODE`, `URL`) VALUES ('Agregar Producto','3.2','createproduct');
 INSERT INTO `menu`(`MENU_NAME`, `MENU_CODE`, `URL`) VALUES ('Agregar locaion','3.3','inicio');
-INSERT INTO `menu`(`MENU_NAME`, `MENU_CODE`, `URL`) VALUES ('Agregar Cliente','3.4','inicio');
+INSERT INTO `menu`(`MENU_NAME`, `MENU_CODE`, `URL`) VALUES ('Agregar Cliente','3.4','createclient');
+
+INSERT INTO `client`(`RUT`, `NAME`, `KIND`, `STATUS`) VALUES ('22388657-4' , 'Aroa Caroe' , 'Docente' , 1); 
+INSERT INTO `client`(`RUT`, `NAME`, `KIND`, `STATUS`) VALUES ('5355207-2' , 'Marisa Carpio' , 'Docente' , 1); 
+INSERT INTO `client`(`RUT`, `NAME`, `KIND`, `STATUS`) VALUES ('8794997-4' , 'Adan Gil' , 'Docente' , 1); 
+INSERT INTO `client`(`RUT`, `NAME`, `KIND`, `STATUS`) VALUES ('24966943-1' , 'Nina Felipe' , 'Administrativo' , 1); 
+INSERT INTO `client`(`RUT`, `NAME`, `KIND`, `STATUS`) VALUES ('8651521-0' , 'Angustias Cabanillas' , 'Docente' , 1); 
+
 
 //////////////////////////////////////////////////////////////////////////////////////////////////////////
 INSERT INTO location (NAME) VALUES ('Oficina ARL');

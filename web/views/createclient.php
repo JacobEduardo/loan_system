@@ -27,6 +27,6 @@
         <option value='Alumno'>Alumno</option>";
     </select><BR>
     <br>
-    <input type="submit" value="Submit" name="send">
+    <input id="button_from" type="submit" value="Enviar" name="send">
 </form>
 
