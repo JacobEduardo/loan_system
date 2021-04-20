@@ -10,7 +10,7 @@ private $conn;
         $this->host="localhost";
         $this->user="root";
         $this->password="";
-        $this->database="loan_system_management";
+        $this->database="loan_system";
     }
 
     public function CreateConnection(){

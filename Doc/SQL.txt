@@ -38,7 +38,6 @@ CREATE TABLE `USER`
  `PERMITS`    varchar(45) NOT NULL ,
  `ID_LOCATION` int NOT NULL ,
  `PASSWORD`    varchar(45) NOT NULL ,
- `LAST_NAME`   varchar(45) NOT NULL ,
  `NICKNAME`    varchar(45) NOT NULL ,
  `STATUS`      tinyint NOT NULL ,
 
@@ -105,14 +104,14 @@ INSERT INTO `product`(`NAME`, `VALUE`, `LOAN_STATUS`, `DESCRIPTION`, `CODE`, `IN
 INSERT INTO `product`(`NAME`, `VALUE`, `LOAN_STATUS`, `DESCRIPTION`, `CODE`, `INVENTORY_STATUS`, `ID_LOCATION`) VALUES ('Cable HDMI', '1' , '1','Cable HDMI 1,8 metros','HDMI05', '1', '1');
 
 INSERT INTO `menu`(`MENU_NAME`, `MENU_CODE`, `URL`) VALUES ('Inicio','1','');
-INSERT INTO `menu`(`MENU_NAME`, `MENU_CODE`, `URL`) VALUES ('Prestamo','1.1','inicio');
+INSERT INTO `menu`(`MENU_NAME`, `MENU_CODE`, `URL`) VALUES ('Prestamo','1.1','inicio.php');
 INSERT INTO `menu`(`MENU_NAME`, `MENU_CODE`, `URL`) VALUES ('Historial','2','');
 INSERT INTO `menu`(`MENU_NAME`, `MENU_CODE`, `URL`) VALUES ('Global','2.1','inicio');
 INSERT INTO `menu`(`MENU_NAME`, `MENU_CODE`, `URL`) VALUES ('En Curso','2.2','inicio');
 INSERT INTO `menu`(`MENU_NAME`, `MENU_CODE`, `URL`) VALUES ('Deudores','2.3','inicio');
 INSERT INTO `menu`(`MENU_NAME`, `MENU_CODE`, `URL`) VALUES ('Administracion','3','');
-INSERT INTO `menu`(`MENU_NAME`, `MENU_CODE`, `URL`) VALUES ('Agregar Usuario','3.1','createuser');
-INSERT INTO `menu`(`MENU_NAME`, `MENU_CODE`, `URL`) VALUES ('Agregar Producto','3.2','createproduct');
+INSERT INTO `menu`(`MENU_NAME`, `MENU_CODE`, `URL`) VALUES ('Agregar Usuario','3.1','createuser.php');
+INSERT INTO `menu`(`MENU_NAME`, `MENU_CODE`, `URL`) VALUES ('Agregar Producto','3.2','createproduct.php');
 INSERT INTO `menu`(`MENU_NAME`, `MENU_CODE`, `URL`) VALUES ('Agregar locaion','3.3','inicio');
 INSERT INTO `menu`(`MENU_NAME`, `MENU_CODE`, `URL`) VALUES ('Agregar Cliente','3.4','createclient');
 

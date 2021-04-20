@@ -119,7 +119,7 @@ function CreateHtmlOneClient(json){
         txt = txt +     "<div style='text-align: right; padding: 10px;'>";
         let funt =        "return " +  "LendProduct(" + json[row]['ID_CLIENT'] + ");"
         txt = txt +     "<form  method='post' onSubmit='" + funt +"') >";
-        txt = txt +         "<input  id='form_imput' placeholder='Buscar' class='form-control form-text' type='text' size='20' maxlength='150' />";
+        txt = txt +         "<input  id='code_product' placeholder='Buscar' class='form-control form-text' type='text' size='20' maxlength='150' />";
         txt = txt +         "<input  id='button_from' type='submit' value='Prestar' />";
         txt = txt +     "</form>";
         txt = txt +         "<div id='messenger_lend'></div>";

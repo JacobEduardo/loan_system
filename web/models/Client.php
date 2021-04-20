@@ -21,6 +21,6 @@ function GetIdClientByRut($rut_client)
 }
 
 function CreateClient ($name, $rut, $kind){
-        $query = "INSERT INTO `client`(`RUT`, `NAME`, `KIND`, `STATUS`) VALUES ('$rut','.$name ','$kind' ,1)";
+        $query = "INSERT INTO `client`(`RUT`, `NAME`, `KIND`, `STATUS`) VALUES ('$rut','$name ','$kind' ,1)";
         return ExecuteQuery($query);
 }
