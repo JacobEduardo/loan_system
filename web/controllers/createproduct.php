@@ -17,14 +17,14 @@ if(isset($_POST['send'])){
     if(!empty($name) && !empty($description) && !empty($code)){
         $result = CreateProduct($name,$description,$serial,$code,$id_location);
         if(!empty($result)){
-            header("location:../index.php?page=createproduct&result=1");
+            header("location:../index.php?page=createproduct.php&result=1");
             die;
         }else{
-            header("location:../index.php?page=createproduct&result=0");
+            header("location:../index.php?page=createproduct.php&result=0");
             die;
         }
     }else{
-        header("location:../index.php?page=createproduct&result=2");
+        header("location:../index.php?page=createproduct.php&result=2");
         die;
     }  
 }

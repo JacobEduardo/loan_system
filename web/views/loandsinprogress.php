@@ -1,15 +1,17 @@
-<div id="title_form"><b>Deudas Vijentes</b></div>
+<div id="title_form"><b>Deudas Vigentes</b></div>
 
 <?php
-    if(isset($_GET['page'])){
-        $page = $_GET['page']
+    if(isset($_GET['pag'])){
+        $pag = $_GET['pag'];
     }else{
-        $page = 1;
+        $pag = 1;
     }
-    require_once 'C:\xampp\htdocs\loan_system\web\models\history.php';
-    CreateHtmlTableLoandProggres();
 
-function CreateHtmlTableLoandProggres(){
+    require_once 'C:\xampp\htdocs\loan_system\web\models\history.php';
+    CreateHtmlTableLoandProggres($pag);
+
+function CreateHtmlTableLoandProggres($pag){
+
     require_once 'C:\xampp\htdocs\loan_system\web\controllers\loandsinprogress.php';
     $table = GetAllLoandsProgress();
 
@@ -25,26 +27,35 @@ function CreateHtmlTableLoandProggres(){
     echo "<tbody>";
 
     $count = count($table);
-    createTable($page,$table);
-
-    $pag = 1;
-    if($count > $pag ){
-        echo "<div> Avanzar </div>";
-    }
-
+    createTable($pag,$table,10);
+    CreateButtonTable($pag,$table,10);
+    
 }
 
-function createTable($page,$table){
+function CreateButtonTable($pag,$table,$multiplicador){
+    $finalpage = $pag * $multiplicador;
+    $startpage = $finalpage - ($multiplicador - 1);
 
-    $finalpage = $page * 30;
-    $startpage = $finalpage - 29;
+    if($pag > 1){
+        echo "<a href=index.php?page=loandsinprogress.php&pag=" .($pag -1)  ." ><input id='button_from' type='submit' value='Atras'/></a>";
+    }
+    if( (count($table)) > $finalpage){
+        echo "<a href=index.php?page=loandsinprogress.php&pag=" .($pag +1)  ." ><input id='button_from' type='submit' value='Avanzar'/></a>";
+    }
+    
+    
+}
 
-    if((count($table)> $finalpage){
-        $finalpage = count($table); 
+function createTable($pag,$table,$multiplicador){
+    $finalpage = $pag * $multiplicador;
+    $startpage = $finalpage - ($multiplicador - 1);
+
+    if( (count($table)) < $finalpage){
+        $finalpage = count($table) + 1; 
     }
 
     for( $i = $startpage; $i< $finalpage; $i++){
-        echo "<tr>";
+        echo "<tr onclick=document.location='index.php?page=inicio.php&code=" .$table[$i]['CODE']  ."'>";
 
         $k = 1;
         foreach($table[$i] as $row => $value){
@@ -60,6 +71,7 @@ function createTable($page,$table){
             }
         }
         echo "</tr>";
+
     }
     echo "</tbody>";
     echo "</table>";

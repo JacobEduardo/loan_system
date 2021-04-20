@@ -76,11 +76,10 @@ function CreateHtmlProductInLoan (data_entered){
         for(let row in json){
             txt = txt + "<div id=one_product>";
             txt = txt +     "<div id='client' style='padding: 20px';>";
-            txt = txt +         "<div>" + "<b>" + json[row]['CODEPRODUCT'] +"</b>" + "</div>";
-            txt = txt +         "<div>" + json[row]['DESCRIPTIONPRODUCT'] + "</div>";
+            txt = txt +         "<div style='margin-bottom: 5px;' >" + "<b>" + json[row]['CODEPRODUCT'] +"</b>" + " - " + json[row]['DESCRIPTIONPRODUCT'] + "</div>";
             txt = txt +         "<div>" + "<b>" + json[row]['NAME'] +"</b>" + "</div>";           
             txt = txt +         "<div>" + json[row]['DATE_START'] + 
-                                "<input  style='float:right' type='submit' value='Devolver' onclick=ReturnProduct('"+
+                                "<input id='button_from' style='float:right' type='submit' value='Devolver' onclick=ReturnProduct('"+
                                  json[row]['ID_PRODUCT'] + "','" + json[row]['ID_CLIENT'] + "','" + json[row]['CODEPRODUCT'] +"') /></div>";   
             txt = txt +     "</div>";
             txt = txt + "</div>";
@@ -120,8 +119,8 @@ function CreateHtmlOneClient(json){
         txt = txt +     "<div style='text-align: right; padding: 10px;'>";
         let funt =        "return " +  "LendProduct(" + json[row]['ID_CLIENT'] + ");"
         txt = txt +     "<form  method='post' onSubmit='" + funt +"') >";
-        txt = txt +         "<input  id='code_product' placeholder='Buscar' class='form-control form-text' type='text' size='20' maxlength='150' />";
-        txt = txt +         "<input  type='submit' value='Prestar' />";
+        txt = txt +         "<input  id='form_imput' placeholder='Buscar' class='form-control form-text' type='text' size='20' maxlength='150' />";
+        txt = txt +         "<input  id='button_from' type='submit' value='Prestar' />";
         txt = txt +     "</form>";
         txt = txt +         "<div id='messenger_lend'></div>";
         txt = txt +     "</div>";
@@ -169,14 +168,14 @@ function CreateHtmlDebt(json){
     let count = Object.keys(json).length;
     let txt = "";
     if(count > 0){
-        txt = txt + "<div id='id='sub_title_form' style='padding: 15px' ><b>Productos en deuda:</b></div>";
+        txt = txt + "<div style='background-color: #ffffff; padding: 15px' ><b>Productos en deuda:</b></div>";
     }
     for(let row in json) {
         txt = txt + "<div id=simple_debt>";
         txt = txt +     "<div style='padding: 8px 20px 8px 20px;';>";
         txt = txt +         "<b>" + json[row]['CODE'] + "</b></br>";
         txt = txt +         json[row]['DATE_START']; 
-        txt = txt +         "<input  style='float: right' type='submit' value='Devolver' onclick=ReturnPRODUCT('"+ json[row]['ID_PRODUCT'] + "','" + json[row]['ID_CLIENT'] +"') />";
+        txt = txt +         "<input  style='float: right;  cursor:pointer;' type='submit' value='Devolver' onclick=ReturnPRODUCT('"+ json[row]['ID_PRODUCT'] + "','" + json[row]['ID_CLIENT'] +"') />";
         txt = txt +     "</div>";
         txt = txt + "</div>";
     }
@@ -276,5 +275,12 @@ function FetchServer(direction,srt,fn){
     }
 }
 
-
 </script>
+
+<?php
+    if(isset($_GET['code']) ){
+        echo "<script>";
+        echo "SearchProduct('" .$_GET['code']  ."');";
+        echo "</script>";
+        die;
+    }

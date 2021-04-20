@@ -36,8 +36,8 @@ if(isset($_POST['send'])){
 
     $result = CreateUser($id_location,$name,$last_name,$rut,$permits,$nickname,$password);
     if(!empty($result)){
-        header("location:../index.php?page=createuser&result=1");
+        header("location:../index.php?page=createuser.php&result=1");
     }else{
-        header("location:../index.php?page=createuser&result=0");
+        header("location:../index.php?page=createuser.php&result=0");
     }
 }

@@ -4,7 +4,7 @@
     if(isset($_GET['page'])){
         $page = CheckPermits($permits);
     }else{
-        $page =  'inicio';
+        $page =  'inicio.php';
     }   
 
     function CheckPermits($permits){
@@ -18,7 +18,6 @@
     }
 
 ?>
-
 
 <div id="master">
     <div id="menu"> 
@@ -41,7 +40,7 @@
         <div id="pages">
             <div  style="padding: 20px;">
                 <?php  
-                    require_once 'views/' .$page ;
+                    require_once ('C:/xampp/htdocs/loan_system/web/views/' .$page) ;
                 ?>
             </div>
         </div>

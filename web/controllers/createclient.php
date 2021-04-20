@@ -14,14 +14,14 @@ if(isset($_POST['send'])){
     if(!empty($name) && !empty($rut) ){
         $result = CreateClient($name,$rut,$kind);
         if(!empty($result)){
-            header("location:../index.php?page=createclient&result=1");
+            header("location:../index.php?page=createclient.php&result=1");
             die;
         }else{
-            header("location:../index.php?page=createclient&result=0");
+            header("location:../index.php?page=createclient.php&result=0");
             die;
         }
     }else{
-        header("location:../index.php?page=createclient&result=2");
+        header("location:../index.php?page=createclient.php&result=2");
         die;
     }  
 }
