@@ -35,7 +35,6 @@ function SearchClientById(srt){
     xhttp.send();
 }
 
-
 function SearchClient(srt){
     FetchServer("controllers/inicio.php?search=",srt,function(response){
         let json = JSON.parse(response);
@@ -206,6 +205,8 @@ function ReturnProduct(ID_PRODUCT, id_client, code_product){
         var xhttp = new XMLHttpRequest();
         xhttp.onreadystatechange = function() {
             if (this.readyState === 4 && this.status === 200) {
+                let result =  xhttp.responseText;
+                console.log(result);
                 CreateHtmlProductAvailable(code_product);
             }
         };

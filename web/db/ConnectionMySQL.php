@@ -10,7 +10,7 @@ private $conn;
         $this->host="localhost";
         $this->user="root";
         $this->password="";
-        $this->database="loan_system";
+        $this->database="loan_system_management";
     }
 
     public function CreateConnection(){
@@ -79,8 +79,8 @@ function ExecuteQuery($query){
     $conn = new ConnectionMySQL();
     $conn->CreateConnection();
     $result = $conn->ExecuteQuery($query);
-    return $result;
     $conn->CloseConnection();
+    return $result;
 }
     
 function ExecuteQueryGetResultLikeString($query){

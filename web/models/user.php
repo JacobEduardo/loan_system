@@ -20,8 +20,8 @@ function GetIdUserLocation ($rut_user){
     return($id);
 }
 
-function CreateUser($id_location, $name, $last_name, $rut, $permit, $nickname, $password){
-    $query = "INSERT INTO `user`(`ID_LOCATION`, `NAME`, `LAST_NAME`, `RUT`, `PERMITS`, `NICKNAME`, `PASSWORD`)
-    VALUES ('".$id_location."','".$name."','".$last_name."','".$rut."','".$permit."','".$nickname."','".$password."')";
+function CreateUser($id_location, $name, $rut, $permit, $nickname, $password){
+    $query = "INSERT INTO `user`(`ID_LOCATION`, `NAME`, `RUT`, `PERMITS`, `NICKNAME`, `PASSWORD`)
+    VALUES ('".$id_location."','".$name."','".$rut."','".$permit."','".$nickname."','".$password."')";
     return ExecuteQuery($query);
 }

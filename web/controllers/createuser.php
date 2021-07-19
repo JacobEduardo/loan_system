@@ -14,7 +14,6 @@ function GetAllLocation(){
 if(isset($_POST['send'])){
     $permits = "";
     $name = $_POST["name"];
-    $last_name = $_POST["last_name"];
     $rut = $_POST["rut"];
     $nickname = $_POST["user_name"];
     $password = $_POST["password"];
@@ -22,7 +21,7 @@ if(isset($_POST['send'])){
     $id_location = $_POST["location"];
 
 
-    if(!empty($nickname) && !empty($name) && !empty($last_name) && !empty($rut) && !empty($password)){
+    if(!empty($nickname) && !empty($name) && !empty($rut) && !empty($password)){
         if(!empty($_POST['check_list'])){
             foreach($_POST['check_list'] as $selected){
                 $permits = $permits .",".$selected;
@@ -34,7 +33,7 @@ if(isset($_POST['send'])){
         die;
     }
 
-    $result = CreateUser($id_location,$name,$last_name,$rut,$permits,$nickname,$password);
+    $result = CreateUser($id_location,$name,$rut,$permits,$nickname,$password);
     if(!empty($result)){
         header("location:../index.php?page=createuser.php&result=1");
     }else{

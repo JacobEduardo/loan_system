@@ -16,8 +16,6 @@
 
     <label for="fname">Nombre:</label><br>
     <input size="35" type="text" id="form_imput" name="name" value=""><br>
-    <label for="lname">Apellidos:</label><br>
-    <input size="35" type="text" id="form_imput" name="last_name" value=""><br>
     <label for="lname">RUT:</label><br>
     <input size="35" type="text" id="form_imput" name="rut" value=""><br>
     <label for="lname">Nombre de Usuario:</label><br>

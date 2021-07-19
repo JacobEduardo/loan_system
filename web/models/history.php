@@ -8,9 +8,8 @@ function GetDebsAsJSON($id_client){
 }
 
 function ReturnPRODUCT ($return_ID_PRODUCT){
-    $query = "UPDATE loan_history SET loan_history.STATUS = 0 WHERE loan_history.ID_PRODUCT = $return_ID_PRODUCT";
-    ExecuteQuerySimple($query);
-    return "OK";
+    $query = "UPDATE loan_history SET loan_history.STATUS = 0, loan_history.DATE_END = CURRENT_TIMESTAMP, loan_history.ID_USER_END =" .$_SESSION['id_user'] ." WHERE loan_history.ID_PRODUCT = $return_ID_PRODUCT";
+    return ExecuteQuery($query);
 }
 
 function GetLoandsInProgress(){
