@@ -6,3 +6,8 @@ function GetTableLocation(){
     $result = ExecuteQueryGetResultLikeArray($query);
     return $result;
 }
+
+function CreateLocation ($name){
+    $query = "INSERT INTO `location`(`NAME`) VALUES ('$name')";
+    return ExecuteQuery($query);
+}
