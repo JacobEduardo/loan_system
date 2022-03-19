@@ -13,6 +13,7 @@ CREATE TABLE `LOCATION`
 (
  `ID_LOCATION` int NOT NULL AUTO_INCREMENT ,
  `NAME`        varchar(45) NOT NULL ,
+ `STATUS`      tinyint NOT NULL ,
 
 PRIMARY KEY (`ID_LOCATION`)
 );
@@ -25,6 +26,7 @@ CREATE TABLE `CLIENT`
  `NAME`      varchar(45) NOT NULL ,
  `KIND`      varchar(45) NOT NULL ,
  `STATUS`    tinyint NOT NULL ,
+ `MAIL`      varchar(45) NOT NULL ,
 
 PRIMARY KEY (`ID_CLIENT`)
 );
@@ -90,30 +92,32 @@ CONSTRAINT `FK_74` FOREIGN KEY `fkIdx_75` (`ID_USER_END`) REFERENCES `USER` (`ID
 
 /////////////////////////////////////////////////////////////////////////////////////////////////////////////
 
-INSERT INTO `location`(`NAME`) VALUES ('Oficina ARL');
 INSERT INTO `location`(`NAME`) VALUES ('Electronica');
-INSERT INTO `location`(`NAME`) VALUES ('Sala de Profesores');
+INSERT INTO `location`(`NAME`) VALUES ('Coordinación Docente');
+INSERT INTO `location`(`NAME`) VALUES ('Oficina ARL');
 
-INSERT INTO `user`(`NAME`, `RUT`, `PERMITS`, `ID_LOCATION`, `PASSWORD`, `LAST_NAME`, `NICKNAME`, `STATUS`)
-VALUES ('Jacob','16457773-2', '1,1.1,2.1,2.2,2.3','1', 'ojoescher','Parraguez Vargas','jparraguezv','1');
-
-INSERT INTO `product`(`NAME`, `VALUE`, `LOAN_STATUS`, `DESCRIPTION`, `CODE`, `INVENTORY_STATUS`, `ID_LOCATION`) VALUES ('Cable HDMI', '1' , '1','Cable HDMI 1,8 metros','HDMI01', '1', '1');
-INSERT INTO `product`(`NAME`, `VALUE`, `LOAN_STATUS`, `DESCRIPTION`, `CODE`, `INVENTORY_STATUS`, `ID_LOCATION`) VALUES ('Cable HDMI', '1' , '1','Cable HDMI 1,8 metros','HDMI02', '1', '1');
-INSERT INTO `product`(`NAME`, `VALUE`, `LOAN_STATUS`, `DESCRIPTION`, `CODE`, `INVENTORY_STATUS`, `ID_LOCATION`) VALUES ('Cable HDMI', '1' , '1','Cable HDMI 1,8 metros','HDMI03', '1', '1');
-INSERT INTO `product`(`NAME`, `VALUE`, `LOAN_STATUS`, `DESCRIPTION`, `CODE`, `INVENTORY_STATUS`, `ID_LOCATION`) VALUES ('Cable HDMI', '1' , '1','Cable HDMI 1,8 metros','HDMI04', '1', '1');
-INSERT INTO `product`(`NAME`, `VALUE`, `LOAN_STATUS`, `DESCRIPTION`, `CODE`, `INVENTORY_STATUS`, `ID_LOCATION`) VALUES ('Cable HDMI', '1' , '1','Cable HDMI 1,8 metros','HDMI05', '1', '1');
+INSERT INTO `user`(`NAME`, `RUT`, `PERMITS`, `ID_LOCATION`, `PASSWORD`, `NICKNAME`, `STATUS`)
+VALUES ('Administrador','16457773-2', '1.1,2.1,2.3,3.1,3.2,3.3,3.4,3.8','1', 'soporte.2021','admin','1');
 
 INSERT INTO `menu`(`MENU_NAME`, `MENU_CODE`, `URL`) VALUES ('Inicio','1','');
 INSERT INTO `menu`(`MENU_NAME`, `MENU_CODE`, `URL`) VALUES ('Prestamo','1.1','inicio.php');
 INSERT INTO `menu`(`MENU_NAME`, `MENU_CODE`, `URL`) VALUES ('Historial','2','');
 INSERT INTO `menu`(`MENU_NAME`, `MENU_CODE`, `URL`) VALUES ('Global','2.1','inicio');
 INSERT INTO `menu`(`MENU_NAME`, `MENU_CODE`, `URL`) VALUES ('En Curso','2.2','inicio');
-INSERT INTO `menu`(`MENU_NAME`, `MENU_CODE`, `URL`) VALUES ('Deudores','2.3','inicio');
+INSERT INTO `menu`(`MENU_NAME`, `MENU_CODE`, `URL`) VALUES ('Deudores','2.3','loandsinprogress.php');
 INSERT INTO `menu`(`MENU_NAME`, `MENU_CODE`, `URL`) VALUES ('Administracion','3','');
 INSERT INTO `menu`(`MENU_NAME`, `MENU_CODE`, `URL`) VALUES ('Agregar Usuario','3.1','createuser.php');
 INSERT INTO `menu`(`MENU_NAME`, `MENU_CODE`, `URL`) VALUES ('Agregar Producto','3.2','createproduct.php');
-INSERT INTO `menu`(`MENU_NAME`, `MENU_CODE`, `URL`) VALUES ('Agregar locaion','3.3','inicio');
-INSERT INTO `menu`(`MENU_NAME`, `MENU_CODE`, `URL`) VALUES ('Agregar Cliente','3.4','createclient');
+INSERT INTO `menu`(`MENU_NAME`, `MENU_CODE`, `URL`) VALUES ('Agregar Lugar','3.3','createlocation.php');
+INSERT INTO `menu`(`MENU_NAME`, `MENU_CODE`, `URL`) VALUES ('Agregar Cliente','3.4','createclient.php');
+INSERT INTO `menu`(`MENU_NAME`, `MENU_CODE`, `URL`) VALUES ('Eliminar Usuario','3.5','deleteuser.php');
+INSERT INTO `menu`(`MENU_NAME`, `MENU_CODE`, `URL`) VALUES ('Eliminar Producto','3.6','deleteproduct.php');
+INSERT INTO `menu`(`MENU_NAME`, `MENU_CODE`, `URL`) VALUES ('Eliminar Lugar','3.7','deletelocation.php');
+INSERT INTO `menu`(`MENU_NAME`, `MENU_CODE`, `URL`) VALUES ('Eliminar Cliente','3.8','deleteclient.php');
+INSERT INTO `menu`(`MENU_NAME`, `MENU_CODE`, `URL`) VALUES ('Editar Usuario','3.9','editeuser.php');
+INSERT INTO `menu`(`MENU_NAME`, `MENU_CODE`, `URL`) VALUES ('Editar Producto','3.10','editproduct.php');
+INSERT INTO `menu`(`MENU_NAME`, `MENU_CODE`, `URL`) VALUES ('Editar Lugar','3.11','editlocation.php');
+INSERT INTO `menu`(`MENU_NAME`, `MENU_CODE`, `URL`) VALUES ('Editar Cliente','3.12','editclient.php');
 
 INSERT INTO `client`(`RUT`, `NAME`, `KIND`, `STATUS`) VALUES ('22388657-4' , 'Aroa Caroe' , 'Docente' , 1); 
 INSERT INTO `client`(`RUT`, `NAME`, `KIND`, `STATUS`) VALUES ('5355207-2' , 'Marisa Carpio' , 'Docente' , 1); 

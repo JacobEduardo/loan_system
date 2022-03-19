@@ -20,7 +20,13 @@ function GetIdClientByRut($rut_client)
     return($id);
 }
 
-function CreateClient ($name, $rut, $kind){
-        $query = "INSERT INTO `client`(`RUT`, `NAME`, `KIND`, `STATUS`) VALUES ('$rut','$name ','$kind' ,1)";
-        return ExecuteQuery($query);
+function CreateClient ($name, $rut, $kind ,$mail){
+    $query = "INSERT INTO `client`(`RUT`, `NAME`, `KIND`, `STATUS`, `MAIL`) VALUES ('$rut','$name','$kind', 1 ,'$mail' )";
+    return ExecuteQuery($query);
+}
+
+function GetAllActiveClient (){
+    $query = "SELECT RUT, NAME, KIND, MAIL FROM `client` WHERE 1";
+    $result = ExecuteQueryGetResultLikeArray($query);
+    return $result;
 }

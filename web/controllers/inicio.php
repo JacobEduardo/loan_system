@@ -1,6 +1,5 @@
 <?php
     session_start ();
-    
 if( isset($_GET['page']) ) {
     require_once('C:\xampp\htdocs\loan_system\web\views\inicio.php');
 }

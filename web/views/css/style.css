@@ -76,6 +76,7 @@ table.one {
 table{
     font-size: 14px; 
     border-collapse: collapse;
+    border: 2px solid #dddddd;
 }
 
 th {

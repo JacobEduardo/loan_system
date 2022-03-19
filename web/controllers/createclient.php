@@ -8,11 +8,12 @@ function GetAllLocation(){
 if(isset($_POST['send'])){
     $name = $_POST["name"];
     $rut = $_POST["rut"];
+    $mail = $_POST["mail"];
 
     $kind = $_POST["kind"];
 
     if(!empty($name) && !empty($rut) ){
-        $result = CreateClient($name,$rut,$kind);
+        $result = CreateClient($name,$rut,$kind,$mail);
         if(!empty($result)){
             header("location:../index.php?page=createclient.php&result=1");
             die;

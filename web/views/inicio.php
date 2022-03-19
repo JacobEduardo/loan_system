@@ -112,6 +112,7 @@ function CreateHtmlOneClient(json){
         txt = txt +     "<div id='client' style='padding: 20px';>";
         txt = txt +         "<div id='name_client'>" + "<b>" + json[row]['NAME'] + "</b>" + "</div>";
         txt = txt +         "<div id='rut_client'>" + json[row]['RUT'] + "</div>";
+        txt = txt +         "<div id='kind_client'>" + json[row]['MAIL'] + "</div>";
         txt = txt +         "<div id='kind_client'>" + json[row]['KIND'] + "</div>";
         txt = txt +     "</div>";
 
@@ -251,7 +252,7 @@ function LendProduct(id_client){
                 document.getElementById("messenger_lend").innerHTML = txt; 
             }
         };
-        xhttp.open("GET", "controllers/inicio.php?code_product=" + code_product + "&rut_client=" + rut_client, true);
+        xhttp.open("GET", "controllers/inicio.php?code_product=" + code_product + "&rut_client=" + rut_client, false);
         xhttp.send();
     }
     LoadDebt(id_client);
@@ -277,6 +278,7 @@ function FetchServer(direction,srt,fn){
 }
 
 </script>
+
 
 <?php
     if(isset($_GET['code']) ){
