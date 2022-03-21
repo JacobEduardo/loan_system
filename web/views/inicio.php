@@ -21,11 +21,9 @@ function Search(srt){
 }
 
 function SearchClientById(srt){
-    console.log("Esto 1111 es todosss");
     var xhttp = new XMLHttpRequest();
     xhttp.onreadystatechange = function() {
         if (this.readyState === 4 && this.status === 200) {
-            console.log("Esto 2222 es todosss");
             let json = JSON.parse(xhttp.responseText);
             console.log(json);
             CreatHtmlClientSearch(json);
@@ -69,14 +67,18 @@ function SearchProduct(data_entered){
 }
 
 function CreateHtmlProductInLoan (data_entered){
-    FetchServer("controllers/inicio.php?product_inloan=",data_entered,function(response){
+    code_product = data_entered;
+    let txt = "";
+    FetchServer("controllers/inicio.php?product_inloan=",code_product,function(response){
         let json = JSON.parse(response);
-        let txt = "";
+        console.log("asdasdasdasd");
+        console.log(json);
         for(let row in json){
             txt = txt + "<div id=one_product>";
             txt = txt +     "<div id='client' style='padding: 20px';>";
             txt = txt +         "<div style='margin-bottom: 5px;' >" + "<b>" + json[row]['CODEPRODUCT'] +"</b>" + " - " + json[row]['DESCRIPTIONPRODUCT'] + "</div>";
-            txt = txt +         "<div>" + "<b>" + json[row]['NAME'] +"</b>" + "</div>";           
+            txt = txt +         "<div>" + "<b>" + json[row]['NAME'] +"</b>" + "</div>";   
+            txt = txt +         "<div>"  + json[row]['RUT'] + "</div>";          
             txt = txt +         "<div>" + json[row]['DATE_START'] + 
                                 "<input id='button_from' style='float:right' type='submit' value='Devolver' onclick=ReturnProduct('"+
                                  json[row]['ID_PRODUCT'] + "','" + json[row]['ID_CLIENT'] + "','" + json[row]['CODEPRODUCT'] +"') /></div>";   
@@ -85,6 +87,9 @@ function CreateHtmlProductInLoan (data_entered){
             document.getElementById("result_product").innerHTML = txt;
         }
     });
+    txt2 = CreateProductHistory(code_product);
+    //txt = txt +  txt2;
+    document.getElementById("result_product").innerHTML = txt;
 }
 
 function CreateHtmlProductAvailable (data_entered){
@@ -97,12 +102,22 @@ function CreateHtmlProductAvailable (data_entered){
             txt = txt +     "<div id='client' style='padding: 20px';>";
             txt = txt +         "<div id='name_product'>" + "<b>" + json[row]['NAME'] + "</b>" + "</div>";
             txt = txt +         "<div id='code_product'>" + json[row]['CODE'] + "</div>";
-            txt = txt +         "<div id='code_product'> Disponible </div>";
+            txt = txt +         "<div id='code_product'>Disponible </div>";
             txt = txt +     "</div>";
             txt = txt + "</div>";
             document.getElementById("result_product").innerHTML = txt;
         }
     });
+}
+
+function CreateProductHistory(code_product){
+    FetchServer("controllers/inicio.php?search_product_history=",code_product,function(response){
+        let json = JSON.parse(response);
+        console.log("json");
+        console.log(json);
+        console.log(code_product);
+    });
+    return "asdasdrespuesta";
 }
 
 function CreateHtmlOneClient(json){

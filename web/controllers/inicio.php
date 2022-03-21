@@ -65,3 +65,10 @@ if( isset($_GET['search_product_available']) ) {
     exit();
 }
 
+if( isset($_GET['search_product_history']) ) {
+    $id_product = $_GET['search_product_history'];
+    require_once 'C:\xampp\htdocs\loan_system\web\models\history.php';
+    $resutl = GetProductHistory($id_product);
+    echo $resutl;
+    exit();
+}

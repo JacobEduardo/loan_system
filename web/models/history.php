@@ -13,7 +13,13 @@ function ReturnPRODUCT ($return_ID_PRODUCT){
 }
 
 function GetLoandsInProgress(){
-    $query = "SELECT loan_history.DATE_START, client.NAME as 'NAME_CLIENT', product.CODE, user.NAME as 'NAME_USER' FROM loan_history INNER JOIN user ON loan_history.ID_USER_START = user.ID_USER INNER JOIN client ON loan_history.ID_CLIENT = client.ID_CLIENT INNER JOIN product ON loan_history.ID_PRODUCT = product.ID_PRODUCT AND loan_history.STATUS = 1";
+    $query = "SELECT loan_history.DATE_START, client.NAME as 'NAME_CLIENT', client.RUT as 'RUT_CLIENT', client.MAIL as 'MAIL_CLIENT', product.CODE, user.NAME as 'NAME_USER' FROM loan_history INNER JOIN user ON loan_history.ID_USER_START = user.ID_USER INNER JOIN client ON loan_history.ID_CLIENT = client.ID_CLIENT INNER JOIN product ON loan_history.ID_PRODUCT = product.ID_PRODUCT AND loan_history.STATUS = 1";
     $result = ExecuteQueryGetResultLikeArray($query);
     return $result;
+}
+
+function GetProductHistory($id_product){
+    $query = "SELECT * FROM loan_history WHERE (loan_history.ID_PRODUCT = '$id_product') AND (STATUS = 0)";
+    $result = ExecuteQueryGetResultLikeArray($query);
+    return json_encode($result);
 }
