@@ -1,5 +1,6 @@
 <?php
 require_once 'C:\xampp\htdocs\loan_system\web\db\ConnectionMySQL.php';
+require_once 'C:\xampp\htdocs\loan_system\web\models\product.php';
 
 function GetDebsAsJSON($id_client){
     $query = "Select loan_history.ID_PRODUCT, loan_history.ID_CLIENT, product.CODE, product.DESCRIPTION, loan_history.DATE_START FROM loan_history JOIN product ON loan_history.ID_PRODUCT = product.ID_PRODUCT WHERE (loan_history.ID_CLIENT = $id_client) AND (loan_history.STATUS = 1)";
@@ -18,7 +19,8 @@ function GetLoandsInProgress(){
     return $result;
 }
 
-function GetProductHistory($id_product){
+function GetProductHistory($code_product){
+    $id_product = GetIdProductByCode($code_product);
     $query = "SELECT * FROM loan_history WHERE (loan_history.ID_PRODUCT = '$id_product') AND (STATUS = 0)";
     $result = ExecuteQueryGetResultLikeArray($query);
     return json_encode($result);

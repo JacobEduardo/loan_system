@@ -84,12 +84,11 @@ function CreateHtmlProductInLoan (data_entered){
                                  json[row]['ID_PRODUCT'] + "','" + json[row]['ID_CLIENT'] + "','" + json[row]['CODEPRODUCT'] +"') /></div>";   
             txt = txt +     "</div>";
             txt = txt + "</div>";
+            txt2 = CreateProductHistory(code_product);
+            txt = txt +  txt2;
             document.getElementById("result_product").innerHTML = txt;
         }
     });
-    txt2 = CreateProductHistory(code_product);
-    //txt = txt +  txt2;
-    document.getElementById("result_product").innerHTML = txt;
 }
 
 function CreateHtmlProductAvailable (data_entered){
@@ -101,8 +100,8 @@ function CreateHtmlProductAvailable (data_entered){
             txt = txt + "<div id=one_product>";
             txt = txt +     "<div id='client' style='padding: 20px';>";
             txt = txt +         "<div id='name_product'>" + "<b>" + json[row]['NAME'] + "</b>" + "</div>";
-            txt = txt +         "<div id='code_product'>" + json[row]['CODE'] + "</div>";
-            txt = txt +         "<div id='code_product'>Disponible </div>";
+            txt = txt +         "<div id='data_product'>" + json[row]['CODE'] + "</div>";
+            txt = txt +         "<div id='data_product'>Disponible </div>";
             txt = txt +     "</div>";
             txt = txt + "</div>";
             document.getElementById("result_product").innerHTML = txt;
@@ -112,7 +111,7 @@ function CreateHtmlProductAvailable (data_entered){
 
 function CreateProductHistory(code_product){
     FetchServer("controllers/inicio.php?search_product_history=",code_product,function(response){
-        let json = JSON.parse(response);
+        let json = response;
         console.log("json");
         console.log(json);
         console.log(code_product);

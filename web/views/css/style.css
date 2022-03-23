@@ -226,7 +226,6 @@ a{
     font-size: 16px;
 }
 
-
 #sidebar ul li a:hover:not(.active) {
     background-color: #02a125;
     color: rgb(255, 255, 255);
@@ -263,7 +262,6 @@ a{
     max-width: 600px;
   }
 
-
   /* Login */
   #login{
     min-width: 200px;
@@ -277,7 +275,12 @@ a{
     background: #fcfcfc;
   }
 
-
 #code_product{
+    margin-bottom: 5px;;
+    font-size: 14px;
+    padding: 5px;
+}
+
+#data_product{
     font-size: 14px;
 }

@@ -17,7 +17,9 @@
     <label for="fname">Nombre:</label><br>
     <input size="35" type="text" id="form_imput" name="name" value=""><br>
     <label for="lname">Rut:</label><br>
-    <input size="35" type="text" id="form_imput" name="rut" value=""><br><br>
+    <input size="35" type="text" id="form_imput" name="rut" value=""><br>
+    <label for="fname">Correo:</label><br>
+    <input size="35" type="text" id="form_imput" name="mail" value=""><br><br>
 
     <div id='sub_title_form'><b>Tipo</b><br></div>
 
