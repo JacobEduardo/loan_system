@@ -8,7 +8,6 @@
 
 <div id="result_client">
 </div>
-
 <div id="result_product">
 </div>
 
@@ -76,15 +75,16 @@ function CreateHtmlProductInLoan (data_entered){
         for(let row in json){
             txt = txt + "<div id=one_product>";
             txt = txt +     "<div id='client' style='padding: 20px';>";
-            txt = txt +         "<div style='margin-bottom: 5px;' >" + "<b>" + json[row]['CODEPRODUCT'] +"</b>" + " - " + json[row]['DESCRIPTIONPRODUCT'] + "</div>";
+            txt = txt +     "<div id='title_product_inloan'> <b> En Prestamo </b> </div>";
+            txt = txt +         "<div style='margin-bottom: 5px;' >" + json[row]['CODEPRODUCT'] + " - " + json[row]['DESCRIPTIONPRODUCT'] + "</div>";
             txt = txt +         "<div>" + "<b>" + json[row]['NAME'] +"</b>" + "</div>";   
-            txt = txt +         "<div>"  + json[row]['RUT'] + "</div>";          
+            txt = txt +         "<div>"  + json[row]['RUT'] + " - " + json[row]['MAIL'] + "</div>";   
             txt = txt +         "<div>" + json[row]['DATE_START'] + 
                                 "<input id='button_from' style='float:right' type='submit' value='Devolver' onclick=ReturnProduct('"+
                                  json[row]['ID_PRODUCT'] + "','" + json[row]['ID_CLIENT'] + "','" + json[row]['CODEPRODUCT'] +"') /></div>";   
             txt = txt +     "</div>";
             txt = txt + "</div>";
-            txt2 = CreateProductHistory(code_product);
+            txt2 = CreateProductHistory(data_entered);
             txt = txt +  txt2;
             document.getElementById("result_product").innerHTML = txt;
         }
@@ -94,14 +94,15 @@ function CreateHtmlProductInLoan (data_entered){
 function CreateHtmlProductAvailable (data_entered){
     FetchServer("controllers/inicio.php?search_product_available=",data_entered,function(response){
         let json = JSON.parse(response);
+        console.log(json);
         let count = Object.keys(json).length;
         let txt = "";
         for(let row in json){
             txt = txt + "<div id=one_product>";
             txt = txt +     "<div id='client' style='padding: 20px';>";
-            txt = txt +         "<div id='name_product'>" + "<b>" + json[row]['NAME'] + "</b>" + "</div>";
+            txt = txt +     "<div id='title_product_avalible'> <b> Disponible </b> </div>";
+            txt = txt +         "<div id='name_product'>" + "<b>" + json[row]['NAME'] + "</b>" + " - " + json[row]['DESCRIPTION'] + "</div>";
             txt = txt +         "<div id='data_product'>" + json[row]['CODE'] + "</div>";
-            txt = txt +         "<div id='data_product'>Disponible </div>";
             txt = txt +     "</div>";
             txt = txt + "</div>";
             document.getElementById("result_product").innerHTML = txt;
@@ -110,13 +111,29 @@ function CreateHtmlProductAvailable (data_entered){
 }
 
 function CreateProductHistory(code_product){
-    FetchServer("controllers/inicio.php?search_product_history=",code_product,function(response){
-        let json = response;
-        console.log("json");
-        console.log(json);
-        console.log(code_product);
-    });
-    return "asdasdrespuesta";
+    var html = "";
+    var xhttp = new XMLHttpRequest();
+    xhttp.onreadystatechange = function() {
+        if (this.readyState === 4 && this.status === 200) {
+            let json = JSON.parse(xhttp.responseText);
+            console.log(json);
+            html = html + "<div id='title_history_product'> <b> Historial de prestamos </b> </div>";
+            html = html + "<table>";
+            html = html + "<thead>";
+            html = html + "<tr>";
+            html = html + "<th>Fecha inicio</th>";
+            html = html + "<th>Presta</th>";
+            html = html + "<th>Deudor</th>";
+            html = html + "<th>Fecha termino</th>";
+            html = html + "<th>Recibe</th>";
+            html = html + "</tr>";
+            html = html + "</thead>";
+            html = html + "<tbody>";
+        }
+    };
+    xhttp.open("GET", "controllers/inicio.php?search_product_history=" + code_product, false);
+    xhttp.send();
+    return html;
 }
 
 function CreateHtmlOneClient(json){
