@@ -7,6 +7,8 @@
             echo "<div style='color:green;margin-bottom:10px;'>Producto ingresado exitosamente</div>";
         }elseif($result == 0){
             echo "<div style='color:red;margin-bottom:10px;'>Error</div>";
+        }elseif($result == 3){
+            echo "<div style='color:red;margin-bottom:10px;'>El codigo de pructo ya existe</div>";
         }
     }   
 ?>

@@ -105,6 +105,8 @@ function CreateHtmlProductAvailable (data_entered){
             txt = txt +         "<div id='data_product'>" + json[row]['CODE'] + "</div>";
             txt = txt +     "</div>";
             txt = txt + "</div>";
+            txt2 = CreateProductHistory(data_entered);
+            txt = txt +  txt2;
             document.getElementById("result_product").innerHTML = txt;
         }
     });
@@ -129,6 +131,16 @@ function CreateProductHistory(code_product){
             html = html + "</tr>";
             html = html + "</thead>";
             html = html + "<tbody>";
+
+            for(let row in json) {
+                html = html + "<tr>"
+                html = html  + "<td>" + json[row]['DATE_START'] +  "</td>";
+                html = html  + "<td>" + json[row]['USER_START'] +  "</td>";
+                html = html  + "<td>" + json[row]['RUT'] +  "</td>";
+                html = html  + "<td>" + json[row]['DATE_END'] +  "</td>";
+                html = html  + "<td>" + json[row]['USER_END'] +  "</td>";
+                html = html + "</tr>"
+            }
         }
     };
     xhttp.open("GET", "controllers/inicio.php?search_product_history=" + code_product, false);
@@ -146,7 +158,6 @@ function CreateHtmlOneClient(json){
         txt = txt +         "<div id='kind_client'>" + json[row]['MAIL'] + "</div>";
         txt = txt +         "<div id='kind_client'>" + json[row]['KIND'] + "</div>";
         txt = txt +     "</div>";
-
         txt = txt +     "<div style='text-align: right; padding: 10px;'>";
         let funt =        "return " +  "LendProduct(" + json[row]['ID_CLIENT'] + ");"
         txt = txt +     "<form  method='post' onSubmit='" + funt +"') >";
@@ -162,6 +173,7 @@ function CreateHtmlOneClient(json){
         txt = txt + "</div>";
 
         document.getElementById("result_client").innerHTML = txt;
+        document.getElementById("result_product").innerHTML = "";
         console.log("id:" + json[row]['ID_CLIENT']);
         LoadDebt(json[row]['ID_CLIENT']);
     }
@@ -176,6 +188,7 @@ function CreateHtmlTwoOrMoreClients(json){
         txt = txt + "</br>";
         txt = txt + "</div>";
         document.getElementById("result_client").innerHTML = txt;
+        document.getElementById("result_product").innerHTML = "";
     }
 }
 

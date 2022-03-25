@@ -14,6 +14,12 @@ if(isset($_POST['send'])){
 
     $id_location = $_POST["location"];
 
+    $id = GetIdProductByCode($code);
+    if(!empty($id)){
+        header("location:../index.php?page=createproduct.php&result=3");
+        die;
+    }
+
     if(!empty($name) && !empty($description) && !empty($code)){
         $result = CreateProduct($name,$description,$serial,$code,$id_location);
         if(!empty($result)){

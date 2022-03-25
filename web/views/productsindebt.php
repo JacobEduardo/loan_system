@@ -13,7 +13,7 @@
 function CreateHtmlTableLoandProggres($pag){
 
     require_once 'C:\xampp\htdocs\loan_system\web\controllers\loandsinprogress.php';
-    $table = GetAllLoandsProgress();
+    $table = GetAllDebtors();
 
     echo "<table>";
     echo "<thead>";
