@@ -9,7 +9,7 @@ function GetDebsAsJSON($id_client){
 }
 
 function ReturnPRODUCT ($return_ID_PRODUCT){
-    $query = "UPDATE loan_history SET loan_history.STATUS = 1 loan_history.DATE_END = CURRENT_TIMESTAMP, loan_history.ID_USER_END =" .$_SESSION['id_user'] ." WHERE loan_history.ID_PRODUCT = $return_ID_PRODUCT";
+    $query = "UPDATE loan_history SET loan_history.STATUS = 0, loan_history.DATE_END = CURRENT_TIMESTAMP, loan_history.ID_USER_END =" .$_SESSION['id_user'] ." WHERE loan_history.ID_PRODUCT = $return_ID_PRODUCT AND loan_history.STATUS = 1";
     return ExecuteQuery($query);
 }
 
@@ -27,7 +27,7 @@ function GetDebtors(){
 
 function GetProductHistory($code_product){
     $id_product = GetIdProductByCode($code_product);
-    $query = "Select loan_history.DATE_START, user1.NICKNAME AS USER_START, client.RUT, loan_history.DATE_END, user2.NICKNAME AS USER_END FROM loan_history INNER JOIN user AS user1 ON loan_history.ID_USER_START = user1.ID_USER INNER JOIN user AS user2 ON loan_history.ID_USER_END = user2.ID_USER INNER JOIN client ON loan_history.ID_CLIENT = client.ID_CLIENT WHERE loan_history.ID_PRODUCT = $id_product AND loan_history.STATUS = 0";
+    $query = "Select loan_history.DATE_START, user1.NICKNAME AS USER_START, client.RUT, loan_history.DATE_END, user2.NICKNAME AS USER_END FROM loan_history INNER JOIN user AS user1 ON loan_history.ID_USER_START = user1.ID_USER INNER JOIN user AS user2 ON loan_history.ID_USER_END = user2.ID_USER INNER JOIN client ON loan_history.ID_CLIENT = client.ID_CLIENT WHERE loan_history.ID_PRODUCT = $id_product AND loan_history.STATUS = 0 ORDER BY `loan_history`.`DATE_START` DESC";
     $result = ExecuteQueryGetResultLikeArray($query);
     return json_encode($result);
 }

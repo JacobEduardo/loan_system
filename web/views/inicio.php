@@ -120,7 +120,7 @@ function CreateProductHistory(code_product){
             let json = JSON.parse(xhttp.responseText);
             console.log(json);
             html = html + "<div id='title_history_product'> <b> Historial de prestamos </b> </div>";
-            html = html + "<table>";
+            html = html + "<table style='width: -webkit-fill-available';>";
             html = html + "<thead>";
             html = html + "<tr>";
             html = html + "<th>Fecha inicio</th>";
@@ -132,14 +132,24 @@ function CreateProductHistory(code_product){
             html = html + "</thead>";
             html = html + "<tbody>";
 
+            j = 0;
             for(let row in json) {
+                let fechastart = new Date(json[row]['DATE_START']);
+                let fechaend = new Date(json[row]['DATE_END']);
+                console.log(fechastart);
+                console.log(fechaend);
+
                 html = html + "<tr>"
-                html = html  + "<td>" + json[row]['DATE_START'] +  "</td>";
+                html = html  + "<td>" + fechastart.getDate() +"/"+ (fechastart.getMonth() + 1) +"/"+ fechastart.getFullYear() +" "+ fechastart.getHours() +":"+ fechastart.getMinutes() + "</td>";
                 html = html  + "<td>" + json[row]['USER_START'] +  "</td>";
                 html = html  + "<td>" + json[row]['RUT'] +  "</td>";
-                html = html  + "<td>" + json[row]['DATE_END'] +  "</td>";
+                html = html  + "<td>" + fechaend.getDate() +"/"+ (fechaend.getMonth() + 1) +"/"+ fechaend.getFullYear() +" "+ fechaend.getHours() +":"+ fechaend.getMinutes() + "</td>";
                 html = html  + "<td>" + json[row]['USER_END'] +  "</td>";
                 html = html + "</tr>"
+                j = j + 1;
+                if( j >= 14){
+                    break;
+                }
             }
         }
     };

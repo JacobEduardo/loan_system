@@ -149,7 +149,7 @@ a{
 
 #simple_debt{
     background-color: #ffffff;
-    max-width: 600px;
+    max-width: 750px;
     border-bottom: 1pt solid #dadce0;
 }
 
@@ -255,11 +255,11 @@ a{
   }
 
   #result_client{
-    max-width: 600px;
+    max-width: 750px;
   }
 
   #result_product{
-    max-width: 600px;
+    max-width: 750px;
   }
 
   /* Login */

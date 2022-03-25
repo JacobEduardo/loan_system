@@ -28,7 +28,7 @@ function LendProduct($code_product, $rut_client, $rut_user){
         return 2;
     }
 
-    $query = "INSERT INTO loan_history (`ID_PRODUCT`,`ID_USER_START`,`ID_CLIENT`,`STATUS`) values ($id_product,$id_user,$id_client,1);";
+    $query = "INSERT INTO loan_history (`ID_PRODUCT`,`ID_USER_START`,`ID_CLIENT`,`STATUS`) values ($id_product,$id_user,$id_client,1)";
     $dasd = ExecuteQuery($query);
     if($dasd == 1){
         return 3;
