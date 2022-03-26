@@ -22,7 +22,7 @@
 <div id="master">
     <div id="menu"> 
         <ul>
-        <li><a> <?php echo $_SESSION['name'] ." " .$_SESSION['last_name']; ?> </a> </li>   
+        <li><a> <?php echo $_SESSION['name']; ?> </a> </li>   
         <li><a class="btn" href="db/close_session.php">Cerrar Sesion </a></li>   
         </ul>
     </div>

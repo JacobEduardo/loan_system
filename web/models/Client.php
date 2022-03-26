@@ -1,9 +1,13 @@
 <?php
 require_once 'C:\xampp\htdocs\loan_system\web\db\ConnectionMySQL.php';
 
-function GetClientsAsJSON($rut_client){
-    $query = "SELECT * FROM client WHERE rut LIKE '%$rut_client%';";
+function GetClientsAsJSON($imput){
+    $query = "SELECT * FROM client WHERE rut LIKE '%$imput%';";
     $result = ExecuteQueryGetResultLikeArray($query);
+    if (empty($result)) {
+        $query = "SELECT * FROM client WHERE client.NAME LIKE '%$imput%'";
+        $result = ExecuteQueryGetResultLikeArray($query);
+    }
     return json_encode($result);
 }
 

@@ -41,8 +41,15 @@
 function CreateHtmlSelecLocation(){
     echo "<select id='select' name='location'>";
     $location =  GetAllLocation();
-    foreach($location as $row){
-        echo "<option value='".$row['ID_LOCATION'] ."'>" .$row['NAME'] ."</option>";
+
+    if ($_SESSION['nickname'] == "admin"){    
+        foreach($location as $row){
+            echo "<option value='".$row['ID_LOCATION'] ."'>" .$row['NAME'] ."</option>";
+        }
+    }else{
+        $location_id = $_SESSION['id_location']; 
+        echo "<option value='".$location[$location_id]['ID_LOCATION'] ."'>" .$location[$location_id]['NAME'] ."</option>";
     }
+
     echo "</select><BR>";
 }

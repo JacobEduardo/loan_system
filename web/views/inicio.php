@@ -70,8 +70,6 @@ function CreateHtmlProductInLoan (data_entered){
     let txt = "";
     FetchServer("controllers/inicio.php?product_inloan=",code_product,function(response){
         let json = JSON.parse(response);
-        console.log("asdasdasdasd");
-        console.log(json);
         for(let row in json){
             txt = txt + "<div id=one_product>";
             txt = txt +     "<div id='client' style='padding: 20px';>";
@@ -119,7 +117,7 @@ function CreateProductHistory(code_product){
         if (this.readyState === 4 && this.status === 200) {
             let json = JSON.parse(xhttp.responseText);
             console.log(json);
-            html = html + "<div id='title_history_product'> <b> Historial de prestamos </b> </div>";
+            html = html + "<div id='title_history_product'> <b> Historial de prestamos "+ code_product +" </b> </div>";
             html = html + "<table style='width: -webkit-fill-available';>";
             html = html + "<thead>";
             html = html + "<tr>";
