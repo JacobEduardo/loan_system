@@ -13,14 +13,14 @@ function ReturnPRODUCT ($return_ID_PRODUCT){
     return ExecuteQuery($query);
 }
 
-function GetLoandsInProgress(){
-    $query = "SELECT loan_history.DATE_START, client.NAME as 'NAME_CLIENT', client.RUT as 'RUT_CLIENT', client.MAIL as 'MAIL_CLIENT', product.CODE, user.NAME as 'NAME_USER' FROM loan_history INNER JOIN user ON loan_history.ID_USER_START = user.ID_USER INNER JOIN client ON loan_history.ID_CLIENT = client.ID_CLIENT INNER JOIN product ON loan_history.ID_PRODUCT = product.ID_PRODUCT AND loan_history.STATUS = 1";
+function GetLoandsInProgress($id_location){
+    $query = "SELECT loan_history.DATE_START, client.NAME as 'NAME_CLIENT', client.RUT as 'RUT_CLIENT', client.MAIL as 'MAIL_CLIENT', product.CODE, user.NAME as 'NAME_USER' FROM loan_history INNER JOIN user ON loan_history.ID_USER_START = user.ID_USER INNER JOIN client ON loan_history.ID_CLIENT = client.ID_CLIENT INNER JOIN product ON loan_history.ID_PRODUCT = product.ID_PRODUCT AND loan_history.STATUS = 1 AND product.ID_LOCATION = $id_location;";
     $result = ExecuteQueryGetResultLikeArray($query);
     return $result;
 }
 
-function GetDebtors(){
-    $query = "SELECT loan_history.DATE_START, client.NAME as 'NAME_CLIENT', client.RUT as 'RUT_CLIENT', client.MAIL as 'MAIL_CLIENT', product.CODE, user.NAME as 'NAME_USER' FROM loan_history INNER JOIN user ON loan_history.ID_USER_START = user.ID_USER INNER JOIN client ON loan_history.ID_CLIENT = client.ID_CLIENT INNER JOIN product ON loan_history.ID_PRODUCT = product.ID_PRODUCT AND loan_history.STATUS = 1 AND DATE_START <= NOW() - INTERVAL 1 DAY";
+function GetDebtors($id_location){
+    $query = "SELECT loan_history.DATE_START, client.NAME as 'NAME_CLIENT', client.RUT as 'RUT_CLIENT', client.MAIL as 'MAIL_CLIENT', product.CODE, user.NAME as 'NAME_USER' FROM loan_history INNER JOIN user ON loan_history.ID_USER_START = user.ID_USER INNER JOIN client ON loan_history.ID_CLIENT = client.ID_CLIENT INNER JOIN product ON loan_history.ID_PRODUCT = product.ID_PRODUCT AND loan_history.STATUS = 1 AND DATE_START <= NOW() - INTERVAL 1 DAY AND product.ID_LOCATION = $id_location;";
     $result = ExecuteQueryGetResultLikeArray($query);
     return $result;
 }
