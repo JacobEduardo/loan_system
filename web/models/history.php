@@ -3,14 +3,9 @@ require_once 'C:\xampp\htdocs\loan_system\web\db\ConnectionMySQL.php';
 require_once 'C:\xampp\htdocs\loan_system\web\models\product.php';
 
 function GetHistory(){
-    $query = "Select product.CODE ,loan_history.DATE_START, user1.NICKNAME AS USER_START, client.RUT, client.NAME, client.MAIL ,loan_history.DATE_END, user2.NICKNAME AS USER_END FROM loan_history     
-    INNER JOIN user AS user1 ON loan_history.ID_USER_START = user1.ID_USER 
-    INNER JOIN user AS user2 ON loan_history.ID_USER_END = user2.ID_USER 
-    INNER JOIN client ON loan_history.ID_CLIENT = client.ID_CLIENT
-    INNER JOIN product ON loan_history.ID_PRODUCT = product.ID_PRODUCT
-    WHERE product.ID_LOCATION =" .$_SESSION['id_location'] ."; ";
+    $query = "Select product.CODE ,loan_history.DATE_START, user1.NICKNAME AS USER_START, client.RUT, client.NAME, client.MAIL ,loan_history.DATE_END, user2.NICKNAME AS USER_END FROM loan_history  INNER JOIN user AS user1 ON loan_history.ID_USER_START = user1.ID_USER   INNER JOIN user AS user2 ON loan_history.ID_USER_END = user2.ID_USER    INNER JOIN client ON loan_history.ID_CLIENT = client.ID_CLIENT  INNER JOIN product ON loan_history.ID_PRODUCT = product.ID_PRODUCT  WHERE product.ID_LOCATION = " .$_SESSION["id_location"] .";";
     $result = ExecuteQueryGetResultLikeArray($query);
-    return $result;
+    return json_encode($result);
 }
 
 function GetDebsAsJSON($id_client){
