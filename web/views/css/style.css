@@ -177,6 +177,12 @@ a{
     font-size: 14px;
 }
 
+#form_imput_date{
+    padding: 3px;
+    margin-bottom: 5px;;
+    font-size: 14px;
+}
+
 #select {
     padding: 5px;
     font-size: 14px;
