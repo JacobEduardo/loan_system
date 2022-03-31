@@ -309,3 +309,20 @@ a{
 #AllHisotry{
     min-width: 1000px;
 }
+#input_keyword{
+    margin-bottom: 5px;;
+    font-size: 14px;
+    padding: 5px;
+}
+
+#input_date_start{
+    margin-bottom: 5px;;
+    font-size: 14px;
+    padding: 3px;
+}
+
+#input_date_end{
+    margin-bottom: 5px;;
+    font-size: 14px;
+    padding: 3px;
+}

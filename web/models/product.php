@@ -70,7 +70,7 @@ function CreateProduct($name,$description,$serial,$code,$id_location){
 }
 
 function GetAllProduct(){
-    $query = "SELECT * FROM `product`";
+    $query = "SELECT * FROM product";
     $result = ExecuteQueryGetResultLikeArray($query);
     return json_encode($result);
 }
@@ -88,8 +88,13 @@ function GetAllProduct3($imput_date_start, $imput_date_end){
 }
 
 function GetAllProduct4($code_imput, $imput_date_start, $imput_date_end){
-    $query = "SELECT * FROM `product` WHERE code LIKE '%hdmi%' OR name LIKE '%" . $code_imput ."%' AND product.CREATION_DATE BETWEEN '" .$imput_date_start ."' AND '" .$imput_date_end ."';";
+    $query = "SELECT * FROM `product` WHERE (code LIKE '%".$code_imput .".%' OR name LIKE '%" . $code_imput ."%' ) AND product.CREATION_DATE BETWEEN '" .$imput_date_start ."' AND '" .$imput_date_end ."';";
     $result = ExecuteQueryGetResultLikeArray($query);
     return json_encode($result);
 }
 
+function console_log( $data ){
+    echo '<script>';
+    echo 'console.log('. json_encode( $data ) .')';
+    echo '</script>';
+}
