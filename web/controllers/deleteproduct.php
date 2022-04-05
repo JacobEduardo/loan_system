@@ -10,7 +10,7 @@ if( isset( $_GET['code_product']) ) {
         $product = GetAllProduct4($code_product,$input_date_start,$input_date_end);
         echo $product;
         die;
-    }elseif (!empty($code_product) && !empty($input_date_end) ){
+    }elseif (!empty($input_date_start) && !empty($input_date_end) ){
         $product = GetAllProduct3($input_date_start,$input_date_end);
         echo $product;
         die;

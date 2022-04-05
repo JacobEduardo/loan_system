@@ -45,7 +45,6 @@ function CreateButtonTable($pag,$table,$multiplicador){
         echo "<a href=index.php?page=loandsinprogress.php&pag=" .($pag +1)  ." ><input id='button_from' type='submit' value='Avanzar'/></a>";
     }
     
-    
 }
 
 function createTable($pag,$table,$multiplicador){

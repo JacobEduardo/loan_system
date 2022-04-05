@@ -332,10 +332,3 @@ function FetchServer(direction,srt,fn){
 </script>
 
 
-<?php
-    if(isset($_GET['code']) ){
-        echo "<script>";
-        echo "SearchProduct('" .$_GET['code']  ."');";
-        echo "</script>";
-        die;
-    }
