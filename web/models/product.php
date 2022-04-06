@@ -51,7 +51,7 @@ function GetProductAsJSON ($product){
 
 function GetProductInLoanAsJSON ($code_product){
     $id_product = GetIdProductByCode($code_product);
-    $query = "SELECT loan_history.ID_PRODUCT, loan_history.ID_CLIENT, loan_history.ID_USER_START, loan_history.DATE_START, client.NAME, client.RUT, client.MAIL , product.DESCRIPTION as DESCRIPTIONPRODUCT, product.CODE as CODEPRODUCT FROM loan_history JOIN product ON loan_history.ID_PRODUCT = product.ID_PRODUCT JOIN client ON loan_history.ID_CLIENT = client.ID_CLIENT WHERE (loan_history.ID_PRODUCT = $id_product ) AND (loan_history.STATUS = 1)";
+    $query = "SELECT loan_history.ID_PRODUCT, loan_history.ID_CLIENT, loan_history.ID_USER_START, loan_history.DATE_START, client.NAME, client.RUT, client.MAIL ,product.CREATION_DATE, product.DESCRIPTION as DESCRIPTIONPRODUCT, product.CODE as CODEPRODUCT FROM loan_history JOIN product ON loan_history.ID_PRODUCT = product.ID_PRODUCT JOIN client ON loan_history.ID_CLIENT = client.ID_CLIENT WHERE (loan_history.ID_PRODUCT = $id_product ) AND (loan_history.STATUS = 1)";
     $result = ExecuteQueryGetResultLikeArray($query);
     return json_encode($result);
 }

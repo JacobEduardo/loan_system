@@ -1,6 +1,6 @@
 <div id="title_form"><b>Eliminar Activos</b></div>
 
-<div>
+<div id="from_table">
     <FORM onSubmit="return Search(text_input.value)" ;>
         <div style="float:left;"> Buscar palabra clave:</br>
             <input id="input_keyword" name="text_input" type="text" id="fname" name="input_keyword" onkeyup="LoadTable(this.value)">
@@ -12,10 +12,11 @@
     </FORM>
 </div>
 
-
 <div style="clear: left;" id="table_product">
 </div>
 <div style="" id="button_table">
+</div>
+<div style="max-width: 530px;" id="delete_product">
 </div>
 
 <script>
@@ -104,7 +105,7 @@
 
         for (i; i <= last_result; i++) {
             var funt = "DeleteProduct('" + json[i]['CODE'] + "')"
-            html = html + "<tr onclick="+ funt +">"
+            html = html + "<tr onclick=" + funt + ">"
             html = html + "<td>" + json[i]['NAME'] + "</td>";
             html = html + "<td>" + json[i]['CODE'] + "</td>";
             html = html + "<td>" + json[i]['DESCRIPTION'] + "</td>";
@@ -135,16 +136,58 @@
         return results === null ? "" : decodeURIComponent(results[1].replace(/\+/g, " "));
     }
 
-    function DeleteProduct(data_entered) {
-        FetchServer("controllers/inicio.php?check_product=" + data_entered, function(response) {
+    function DeleteProduct(code_product) {
+        FetchServer("controllers/inicio.php?check_product=" + code_product, function(response) {
+            console.log("asdasdas response" + response);
             if (response == 1) {
-                document.getElementById("table_product").innerHTML = "111";
-                CreateHtmlProductInLoan(data_entered);
+                CreateHtmlProductInLoan(code_product);
             }
             if (response == 0) {
-                document.getElementById("table_product").innerHTML = "0000";
-                CreateHtmlProductAvailable(data_entered);
+                console.log("asdasdasgggggggggggg");
+                CreateHtmlProductAvailable(code_product);
             }
         });
     }
-</script>
+
+    function CreateHtmlProductInLoan(code_product) {
+        FetchServer("controllers/inicio.php?product_inloan=" + code_product, function(response) {
+            var txt = "";
+            let json = JSON.parse(response);
+            for (let row in json) {
+                txt = txt + "<div id='client' style='padding: 20px; padding-bottom: 50px;';>";
+                txt = txt + "<div id='title_product_inloan'> <b> Eliminar Activo </b> </div>";
+                txt = txt + "<div style='margin-bottom: 5px;' >" + json[row]['CODEPRODUCT'] + " - " + json[row]['DESCRIPTIONPRODUCT'] + "</div>";
+                txt = txt + "<div style='margin-bottom: 5px;' >Fecha de Creación:" + json[row]['CREATION_DATE'] + "</div>";
+                txt = txt + "<a style='float: left;'>Este es un texto</a>  <input id='button_from' style='float:right; background-color: #cbcbcb;' type='submit' value='Eliminar' onclick=ReturnProduct('" + json[row]['ID_PRODUCT'] + "','" + json[row]['ID_CLIENT'] + "','" + json[row]['CODEPRODUCT'] + "') /></div>";
+                txt = txt + "</div>";
+
+                document.getElementById("table_product").innerHTML = "";
+                document.getElementById("button_table").innerHTML = "";
+                document.getElementById("from_table").innerHTML = "";
+                document.getElementById("delete_product").innerHTML = txt;
+            }
+        });
+    }
+
+    function CreateHtmlProductAvailable(code_product) {
+        FetchServer("controllers/inicio.php?product_inloan=" + code_product, function(response) {
+            var txt = "";
+            let json = JSON.parse(response);
+            for (let row in json) {
+                txt = txt + "<div id='client' style='padding: 20px; padding-bottom: 50px;';>";
+                txt = txt + "<div id='title_product_inloan'> <b> Eliminar Activo </b> </div>";
+                txt = txt + "<div style='margin-bottom: 5px;' >" + json[row]['CODEPRODUCT'] + " - " + json[row]['DESCRIPTIONPRODUCT'] + "</div>";
+                txt = txt + "<div style='margin-bottom: 5px;' >Fecha de Creación:" + json[row]['CREATION_DATE'] + "</div>";
+                txt = txt + "<a style='float: left;'>Este es un texto</a>  <input id='button_from' style='float:right; background-color: #c71818;' type='submit' value='Eliminar' onclick=ReturnProduct('" + json[row]['ID_PRODUCT'] + "','" + json[row]['ID_CLIENT'] + "','" + json[row]['CODEPRODUCT'] + "') /></div>";
+                txt = txt + "</div>";
+
+                document.getElementById("table_product").innerHTML = "";
+                document.getElementById("button_table").innerHTML = "";
+                document.getElementById("from_table").innerHTML = "";
+                document.getElementById("delete_product").innerHTML = txt;
+            }
+        });
+    }
+
+
+</script>   
