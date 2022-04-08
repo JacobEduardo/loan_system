@@ -154,11 +154,11 @@
             var txt = "";
             let json = JSON.parse(response);
             for (let row in json) {
-                txt = txt + "<div id='client' style='padding: 20px; padding-bottom: 50px;';>";
+                txt = txt + "<div id='client' style='padding: 20px; padding-bottom: 50px; border: 1pt solid #dadce0;'>";
                 txt = txt + "<div id='title_product_inloan'> <b> Eliminar Activo </b> </div>";
                 txt = txt + "<div style='margin-bottom: 5px;' >" + json[row]['CODEPRODUCT'] + " - " + json[row]['DESCRIPTIONPRODUCT'] + "</div>";
                 txt = txt + "<div style='margin-bottom: 5px;' >Fecha de Creación:" + json[row]['CREATION_DATE'] + "</div>";
-                txt = txt + "<a style='float: left;'>Este es un texto</a>  <input id='button_from' style='float:right; background-color: #cbcbcb;' type='submit' value='Eliminar' onclick=ReturnProduct('" + json[row]['ID_PRODUCT'] + "','" + json[row]['ID_CLIENT'] + "','" + json[row]['CODEPRODUCT'] + "') /></div>";
+                txt = txt + "<a style='float: left;  color: crimson;'>El activo  esta en prestamo y no se puede eliminar</a>  <input id='button_from' style='float:right; background-color: #cbcbcb;' type='submit' value='Eliminar'></div>";
                 txt = txt + "</div>";
 
                 document.getElementById("table_product").innerHTML = "";
@@ -170,24 +170,29 @@
     }
 
     function CreateHtmlProductAvailable(code_product) {
-        FetchServer("controllers/inicio.php?product_inloan=" + code_product, function(response) {
+        FetchServer("controllers/inicio.php?search_product_available=" + code_product, function(response) {
+            console.log("asdasd estoy aqui 2" + response);
             var txt = "";
-            let json = JSON.parse(response);
+            var json = JSON.parse(response);
             for (let row in json) {
-                txt = txt + "<div id='client' style='padding: 20px; padding-bottom: 50px;';>";
+                txt = txt + "<div id='client' style='padding: 20px; padding-bottom: 50px; border: 1pt solid #dadce0;'>";
                 txt = txt + "<div id='title_product_inloan'> <b> Eliminar Activo </b> </div>";
-                txt = txt + "<div style='margin-bottom: 5px;' >" + json[row]['CODEPRODUCT'] + " - " + json[row]['DESCRIPTIONPRODUCT'] + "</div>";
+                txt = txt + "<div style='margin-bottom: 5px;' >" + json[row]['CODE'] + " - " + json[row]['DESCRIPTION'] + "</div>";
                 txt = txt + "<div style='margin-bottom: 5px;' >Fecha de Creación:" + json[row]['CREATION_DATE'] + "</div>";
-                txt = txt + "<a style='float: left;'>Este es un texto</a>  <input id='button_from' style='float:right; background-color: #c71818;' type='submit' value='Eliminar' onclick=ReturnProduct('" + json[row]['ID_PRODUCT'] + "','" + json[row]['ID_CLIENT'] + "','" + json[row]['CODEPRODUCT'] + "') /></div>";
+                txt = txt + "<a style='float: left;'>Este es un texto</a>  <input id='button_from' style='float:right; background-color: #c71818;' type='submit' value='Eliminar' onclick=FinishDeleteProduct('" + json[row]['ID_PRODUCT'] + "') /></div>";
                 txt = txt + "</div>";
-
+                console.log("asdasd estoy aqui 3");
                 document.getElementById("table_product").innerHTML = "";
                 document.getElementById("button_table").innerHTML = "";
                 document.getElementById("from_table").innerHTML = "";
                 document.getElementById("delete_product").innerHTML = txt;
+                console.log("asdasd estoy aqui 3");
             }
         });
     }
 
+    function FinishDeleteProduct(){
+        
+    }
 
 </script>   

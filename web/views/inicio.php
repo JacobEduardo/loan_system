@@ -73,8 +73,8 @@ function CreateHtmlProductInLoan (data_entered){
         for(let row in json){
             txt = txt + "<div id=one_product>";
             txt = txt +     "<div id='client' style='padding: 20px';>";
-            txt = txt +     "<div id='title_product_inloan'> <b> En Prestamo </b> </div>";
-            txt = txt +         "<div style='margin-bottom: 5px;' >" + json[row]['CODEPRODUCT'] + " - " + json[row]['DESCRIPTIONPRODUCT'] + "</div>";
+            txt = txt +         "<div>" + "<b>" + json[row]['NAME_PRODUCT'] +"</b>" + " - " + json[row]['DESCRIPTIONPRODUCT'] + "</div>";
+            txt = txt +     "<div id='title_product_inloan'> <b> En Prestamo a:</b> </div>";
             txt = txt +         "<div>" + "<b>" + json[row]['NAME'] +"</b>" + "</div>";   
             txt = txt +         "<div>"  + json[row]['RUT'] + " - " + json[row]['MAIL'] + "</div>";   
             txt = txt +         "<div>" + json[row]['DATE_START'] + 
