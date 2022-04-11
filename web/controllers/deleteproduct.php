@@ -25,3 +25,8 @@ if( isset( $_GET['code_product']) ) {
     }
     die;
 }
+
+if( isset( $_GET['delete_product']) ) {
+        echo  "var";
+    die;
+}

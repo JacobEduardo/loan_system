@@ -69,6 +69,12 @@ function CreateProduct($name,$description,$serial,$code,$id_location){
     return ExecuteQuery($query);
 }
 
+function DeleteProduct($id_product){
+    $query = "DELETE FROM `product` WHERE product.ID_PRODUCT = $id_product ;)";
+    $result = ExecuteQueryBoolean($query);
+    return $result;
+}
+
 function GetAllProduct(){
     $query = "SELECT * FROM product";
     $result = ExecuteQueryGetResultLikeArray($query);
