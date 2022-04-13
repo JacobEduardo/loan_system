@@ -59,12 +59,19 @@ private $conn;
 function ExecuteQueryBoolean($sql){
     $conn = new ConnectionMySQL();
     $conn->CreateConnection();
-    $result = $conn->ExecuteQuery($sql);
+    $cuenta = $conn->rowCount();
     if(!empty($result) AND mysqli_num_rows($result) == 1){
         return 1;
     }else{
         return 0;
     }
+}
+
+function ExecuteDelete ($query){
+    $conn = new ConnectionMySQL();
+    $conn->CreateConnection();
+    $conn->ExecuteQuery($query);
+    return $conn->affected_rows;
 }
 
 function  ExecuteQueryGetResultLikeArray($query){

@@ -70,8 +70,8 @@ function CreateProduct($name,$description,$serial,$code,$id_location){
 }
 
 function DeleteProduct($id_product){
-    $query = "DELETE FROM `product` WHERE product.ID_PRODUCT = $id_product ;)";
-    $result = ExecuteQueryBoolean($query);
+    $query = "DELETE FROM `product` WHERE product.ID_PRODUCT = $id_product ;";
+    $result = ExecuteDelete($query);
     return $result;
 }
 

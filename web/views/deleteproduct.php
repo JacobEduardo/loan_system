@@ -186,7 +186,7 @@
                 document.getElementById("button_table").innerHTML = "";
                 document.getElementById("from_table").innerHTML = "";
                 document.getElementById("delete_product").innerHTML = txt;
-                console.log("asdasd estoy aqui 3");
+                console.log("asdasd estoy aqui 4");
             }
         });
     }
