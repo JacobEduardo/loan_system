@@ -75,8 +75,8 @@ function DeleteProduct($id_product){
     return $result;
 }
 
-function GetAllProduct(){
-    $query = "SELECT * FROM product";
+function GetAllProduct($id_location_user){
+    $query = "SELECT * FROM product WHERE product.ID_LOCATION =" .$id_location_user .";";
     $result = ExecuteQueryGetResultLikeArray($query);
     return json_encode($result);
 }

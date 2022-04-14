@@ -42,6 +42,15 @@ private $conn;
     public function SetFreeResult($result){
         $result->free_result();
     }
+
+    public function Delete($sql){
+        $result = $this->conn->query($sql);
+        if ($result === TRUE) {
+            return 1;
+        } else {
+            return 0;
+        }
+    }
     
     function ExecuteQueryReturnAsArray($query){
         $arr = array();
@@ -59,7 +68,7 @@ private $conn;
 function ExecuteQueryBoolean($sql){
     $conn = new ConnectionMySQL();
     $conn->CreateConnection();
-    $cuenta = $conn->rowCount();
+    $result = $conn->ExecuteQuery($sql);
     if(!empty($result) AND mysqli_num_rows($result) == 1){
         return 1;
     }else{
@@ -67,11 +76,11 @@ function ExecuteQueryBoolean($sql){
     }
 }
 
-function ExecuteDelete ($query){
+function ExecuteDelete($query){
     $conn = new ConnectionMySQL();
-    $conn->CreateConnection();
-    $conn->ExecuteQuery($query);
-    return $conn->affected_rows;
+    $conn-> CreateConnection();
+    $result = $conn->Delete($query);
+    return $result;
 }
 
 function  ExecuteQueryGetResultLikeArray($query){

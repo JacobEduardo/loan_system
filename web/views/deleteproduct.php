@@ -20,6 +20,7 @@
 </div>
 
 <script>
+    let id_location_user = "<?php echo $_SESSION['idlocsation'] ?>";
     LoadTable();
 
     var page_number = 1;
@@ -60,7 +61,7 @@
         txt = txt + "</thead>";
         txt = txt + "<tbody>";
 
-        direction = "controllers/deleteproduct.php?code_product=" + input_keyword + "&input_date_start=" + input_date_start + "&input_date_end=" + input_date_end;
+        direction = "controllers/deleteproduct.php?code_product=" + input_keyword + "&input_date_start=" + input_date_start + "&input_date_end=" + input_date_end + "&id_location_user=" + id_location_user ;
         FetchServer(direction, function(response) {
             let json = JSON.parse(response);
             let quantity_result = Object.keys(json).length;
@@ -196,7 +197,11 @@
         xhttp.onreadystatechange = function() {
             if (this.readyState === 4 && this.status === 200) {
                 let response = xhttp.responseText;
-                console.log(response) ;
+                if(response = 1 ){
+                    document.getElementById("delete_product").innerHTML = "Activo Eliminado Correctamente";
+                }else{
+                    document.getElementById("delete_product").innerHTML = "Hubo un problema y no se pudo eliminar";
+                }
             }
         };
         xhttp.open("GET", "controllers/deleteproduct.php?delete_product=" + id_product, false);
