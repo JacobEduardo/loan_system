@@ -47,7 +47,7 @@ function CreateHtmlSelecLocation(){
             echo "<option value='".$row['ID_LOCATION'] ."'>" .$row['NAME'] ."</option>";
         }
     }else{
-        $location_id = $_SESSION['id_location']; 
+        $location_id = $_SESSION['session_id_location']; 
         echo "<option value='".$location[$location_id]['ID_LOCATION'] ."'>" .$location[$location_id]['NAME'] ."</option>";
     }
 

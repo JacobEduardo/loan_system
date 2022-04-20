@@ -20,7 +20,7 @@
 </div>
 
 <script>
-    let id_location_user = "<?php echo $_SESSION['idlocsation'] ?>";
+    let id_location_user = "<?php echo $_SESSION['session_id_location'] ?>";
     LoadTable();
 
     var page_number = 1;
@@ -98,20 +98,21 @@
         var i = ((page_number * multiplier) - 19);
         var last_result = page_number * multiplier;
         console.log("i= " + i);
-
+        
         if (last_result > quantity_result) {
             last_result = quantity_result;
         }
         console.log("last_result= " + last_result);
 
         for (i; i <= last_result; i++) {
+            let  fechaend = new Date(json[i]['CREATION_DATE']);
             var funt = "DeleteProduct('" + json[i]['CODE'] + "')"
             html = html + "<tr onclick=" + funt + ">"
             html = html + "<td>" + json[i]['NAME'] + "</td>";
             html = html + "<td>" + json[i]['CODE'] + "</td>";
             html = html + "<td>" + json[i]['DESCRIPTION'] + "</td>";
             html = html + "<td>" + json[i]['SERIAL'] + "</td>";
-            html = html + "<td>" + json[i]['CREATION_DATE'] + "</td>";
+            html = html + "<td>" + fechaend.getDate() +"/"+ (fechaend.getMonth() + 1) +"/"+ fechaend.getFullYear() +" "+ fechaend.getHours() +":"+ fechaend.getMinutes() + "</td>";
             html = html + "</tr>"
         }
 

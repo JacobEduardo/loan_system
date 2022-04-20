@@ -13,7 +13,7 @@
 function CreateHtmlTableLoandProggres($pag){
 
     require_once 'C:\xampp\htdocs\loan_system\web\controllers\loandsinprogress.php';
-    $table = GetAllLoandsInProgress($_SESSION['id_location']);
+    $table = GetAllLoandsInProgress($_SESSION['session_id_location']);
 
     echo "<table>";
     echo "<thead>";
@@ -62,7 +62,7 @@ function createTable($pag,$table,$multiplicador){
         foreach($table[$i] as $row => $value){
             if ($k == 1){
                 echo "<td>";
-                echo date("jS F, Y h:i:s A" , strtotime($value) );
+                echo date("d/m/Y H:i" , strtotime($value) );
                 echo " </td>";
                 $k = 0;
             }else{
