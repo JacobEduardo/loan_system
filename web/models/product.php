@@ -81,20 +81,20 @@ function GetAllProduct($id_location_user){
     return json_encode($result);
 }
 
-function GetAllProduct2($code_imput){
-    $query = "SELECT * FROM `product` WHERE code LIKE '%" .$code_imput ."%' OR name LIKE '%" .$code_imput ."%';";
+function GetAllProduct2($code_imput,$id_location_user){
+    $query = "SELECT * FROM `product` WHERE code LIKE '%" .$code_imput ."%' AND product.ID_LOCATION ='" .$id_location_user ."' OR name LIKE '%" .$code_imput ."%' AND product.ID_LOCATION ='" .$id_location_user ."';";
     $result = ExecuteQueryGetResultLikeArray($query);
     return json_encode($result);
 }
 
-function GetAllProduct3($imput_date_start, $imput_date_end){
-    $query = "SELECT * FROM `product` WHERE product.CREATION_DATE BETWEEN '" .$imput_date_start ."' AND '" .$imput_date_end ."';";
+function GetAllProduct3($imput_date_start, $imput_date_end,$id_location_user){
+    $query = "SELECT * FROM `product` WHERE product.CREATION_DATE BETWEEN '" .$imput_date_start ."' AND '" .$imput_date_end ."' product.ID_LOCATION =" .$id_location_user .";";
     $result = ExecuteQueryGetResultLikeArray($query);
     return json_encode($result);
 }
 
-function GetAllProduct4($code_imput, $imput_date_start, $imput_date_end){
-    $query = "SELECT * FROM `product` WHERE (code LIKE '%".$code_imput .".%' OR name LIKE '%" . $code_imput ."%' ) AND product.CREATION_DATE BETWEEN '" .$imput_date_start ."' AND '" .$imput_date_end ."';";
+function GetAllProduct4($code_imput, $imput_date_start, $imput_date_end,$id_location_user){
+    $query = "SELECT * FROM `product` WHERE code LIKE '%".$code_imput ."%' AND product.CREATION_DATE BETWEEN '" .$imput_date_start ."' AND '" .$imput_date_end ."' AND product.ID_LOCATION =" .$id_location_user ." OR name LIKE '%" . $code_imput ."%'  AND product.CREATION_DATE BETWEEN '" .$imput_date_start ."' AND '" .$imput_date_end ."' AND product.ID_LOCATION =" .$id_location_user .";";
     $result = ExecuteQueryGetResultLikeArray($query);
     return json_encode($result);
 }

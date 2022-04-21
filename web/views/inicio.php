@@ -71,13 +71,14 @@ function CreateHtmlProductInLoan (data_entered){
     FetchServer("controllers/inicio.php?product_inloan=",code_product,function(response){
         let json = JSON.parse(response);
         for(let row in json){
+            let fechastartproduct = new Date(json[row]['DATE_START']);
             txt = txt + "<div id=one_product>";
             txt = txt +     "<div id='client' style='padding: 20px';>";
             txt = txt +         "<div>" + "<b>" + json[row]['NAME_PRODUCT'] +"</b>" + " - " + json[row]['DESCRIPTIONPRODUCT'] + "</div>";
             txt = txt +     "<div id='title_product_inloan'> <b> En Prestamo a:</b> </div>";
             txt = txt +         "<div>" + "<b>" + json[row]['NAME'] +"</b>" + "</div>";   
             txt = txt +         "<div>"  + json[row]['RUT'] + " - " + json[row]['MAIL'] + "</div>";   
-            txt = txt +         "<div>" + json[row]['DATE_START'] + 
+            txt = txt +         "<div>"+ fechastartproduct.getDate() +"/"+ (fechastartproduct.getMonth() + 1) +"/"+ fechastartproduct.getFullYear() +" "+ fechastartproduct.getHours() +":"+ fechastartproduct.getMinutes() + 
                                 "<input id='button_from' style='float:right' type='submit' value='Devolver' onclick=ReturnProduct('"+
                                  json[row]['ID_PRODUCT'] + "','" + json[row]['ID_CLIENT'] + "','" + json[row]['CODEPRODUCT'] +"') /></div>";   
             txt = txt +     "</div>";
@@ -220,7 +221,7 @@ function CreateHtmlDebt(json){
     let count = Object.keys(json).length;
     let txt = "";
     if(count > 0){
-        txt = txt + "<div style='background-color: #ffffff; padding: 15px' ><b>Productos en deuda:</b></div>";
+        txt = txt + "<div style='background-color: #ffffff; padding: 15px' ><b>Activos en deuda:</b></div>";
     }
     for(let row in json) {
         txt = txt + "<div id=simple_debt>";
@@ -287,7 +288,7 @@ function LendProduct(id_client){
                     txt = "<div style='margin-top: 5px; margin-bottom: 5px; padding: 5px; padding-right: 10px;'>No se encontraron resultados</div>"; 
                 }
                 if(result == 2){
-                    txt = "<div style='margin-top: 5px; margin-bottom: 5px; padding: 5px; color: red; padding-right: 10px;'>El producto se encuentra en prestamo</div>";   
+                    txt = "<div style='margin-top: 5px; margin-bottom: 5px; padding: 5px; color: red; padding-right: 10px;'>El activo se encuentra en prestamo</div>";   
                 }   
                 if(result == 3){
                     txt = "<div style='margin-top: 5px; margin-bottom: 5px; padding: 5px; color: green; padding-right: 10px;'>Prestamo exitoso</div>";   
@@ -296,7 +297,7 @@ function LendProduct(id_client){
                     txt = "<div style='margin-top: 5px; margin-bottom: 5px; padding: 5px; color: orange; padding-right: 10px;'>No pertenece a este lugar</div>";   
                 }  
                 if(result == 5){
-                    txt = "<div style='margin-top: 5px; margin-bottom: 5px; padding: 5px; color: orange; padding-right: 10px;'>Producto eliminado</div>";   
+                    txt = "<div style='margin-top: 5px; margin-bottom: 5px; padding: 5px; color: orange; padding-right: 10px;'>Activo eliminado</div>";   
                 } 
                 if(result == 0){
                     txt = "<div style='margin-top: 5px; margin-bottom: 5px; padding: 5px;  padding-right: 10px;'>Error</div>";   

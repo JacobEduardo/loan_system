@@ -34,3 +34,9 @@ function GetAllActiveClient (){
     $result = ExecuteQueryGetResultLikeArray($query);
     return $result;
 }
+
+function GetFilteredClients($input_keyword){
+    $query = "SELECT * FROM client WHERE client.NAME LIKE '%" .$input_keyword ."%' OR client.RUT LIKE '%" .$input_keyword ."%';";
+    $result = ExecuteQueryGetResultLikeArray($query);
+    return $result;
+}

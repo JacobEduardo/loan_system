@@ -4,7 +4,7 @@
         if ($result == 2){
             echo "<div style='color:red;margin-bottom:15px;' >Rellene todos los campos</div>";
         }elseif($result == 1){
-            echo "<div style='color:green;margin-bottom:10px;'>Producto ingresado exitosamente</div>";
+            echo "<div style='color:green;margin-bottom:10px;'>Activo ingresado exitosamente</div>";
         }elseif($result == 0){
             echo "<div style='color:red;margin-bottom:10px;'>Error</div>";
         }elseif($result == 3){
@@ -14,7 +14,7 @@
 ?>
 
 <form METHOD="POST" ACTION="controllers\createproduct.php"; >
-    <div id='title_form'><b>Agregar Producto</b><br></div>
+    <div id='title_form'><b>Agregar Activo</b><br></div>
 
     <label for="fname">Nombre:</label><br>
     <input size="35" type="text" id="form_imput" name="name" value=""><br>

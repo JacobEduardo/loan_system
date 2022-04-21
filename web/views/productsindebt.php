@@ -22,7 +22,7 @@ function CreateHtmlTableLoandProggres($pag){
     echo "<th>Cliente</th>";
     echo "<th>Rut</th>";
     echo "<th>Correo</th>";
-    echo "<th>Codigo Producto</th>";
+    echo "<th>Codigo Activo</th>";
     echo "<th>Iniciador</th>";
     echo "</tr>";
     echo "</thead>";
