@@ -56,7 +56,7 @@ function createTable($pag,$table,$multiplicador){
     }
 
     for( $i = $startpage; $i< $finalpage; $i++){
-        echo "<tr onclick=document.location='index.php?page=inicio.php&code=" .$table[$i]['CODE']  ."'>";
+        echo "<tr onclick=document.location='controllers/inicio.php?check_product=" .$table[$i]['CODE']  ."'>";
 
         $k = 1;
         foreach($table[$i] as $row => $value){

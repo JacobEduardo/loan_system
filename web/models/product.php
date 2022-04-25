@@ -18,7 +18,7 @@ function LendProduct($code_product, $rut_client, $rut_user){
         return 1;
     }
 
-    $result2 = ExecuteQueryBoolean("SELECT * FROM product WHERE (CODE='".$code_product ."') AND (ID_LOCATION=$id_user_location)");
+    $result2 = ExecuteQueryBoolean("SELECT * FROM product WHERE (CODE='".$code_product ."') AND (ID_LOCATION='" .$id_user_location ."');");
     if($result2 == 0){
         return 4;
     }
