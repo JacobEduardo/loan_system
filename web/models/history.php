@@ -8,8 +8,13 @@ function GetHistory(){
     return json_encode($result);
 }
 
-function GetDebsAsJSON($id_client){
-    $query = "Select loan_history.ID_PRODUCT, loan_history.ID_CLIENT, product.CODE, product.DESCRIPTION, loan_history.DATE_START FROM loan_history JOIN product ON loan_history.ID_PRODUCT = product.ID_PRODUCT WHERE (loan_history.ID_CLIENT = $id_client) AND (loan_history.STATUS = 1)";
+function GetDebsAsJSON($id_client)
+{
+    $query = "Select loan_history.ID_PRODUCT, loan_history.ID_CLIENT, product.CODE, product.DESCRIPTION, loan_history.DATE_START, location.NAME as LOCATION_NAME, location.ID_LOCATION
+    FROM loan_history 
+    JOIN product ON loan_history.ID_PRODUCT = product.ID_PRODUCT
+    JOIN location On product.ID_LOCATION = location.ID_LOCATION
+    WHERE (loan_history.ID_CLIENT = $id_client ) AND (loan_history.STATUS = 1)";
     $result = ExecuteQueryGetResultLikeArray($query);
     return json_encode($result);
 }

@@ -167,7 +167,7 @@
                 txt = txt + "<div id='title_product_inloan'> <b> Eliminar Activo </b> </div>";
                 txt = txt + "<div style='margin-bottom: 5px;' >" + json[row]['CODE'] + " - " + json[row]['DESCRIPTION'] + "</div>";
                 txt = txt + "<div style='margin-bottom: 5px;' >Fecha de Creación:" + json[row]['CREATION_DATE'] + "</div>";
-                txt = txt + "<a style='float: left;'>Este es un texto</a>  <input id='button_from' style='float:right; background-color: #c71818;' type='submit' value='Eliminar' onclick=FinishDeleteProduct('" + json[row]['ID_PRODUCT'] + "') /></div>";
+                txt = txt + "<a style='float: left;'></a>  <input id='button_from' style='float:right; background-color: #c71818;' type='submit' value='Eliminar' onclick=FinishDeleteProduct('" + json[row]['ID_PRODUCT'] + "') /></div>";
                 txt = txt + "</div>";
                 console.log("asdasd estoy aqui 3");
                 document.getElementById("table_product").innerHTML = "";

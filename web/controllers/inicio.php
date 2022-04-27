@@ -72,3 +72,11 @@ if( isset($_GET['search_product_history']) ) {
     echo $resutl;
     exit();
 }
+
+if( isset($_GET['session_id_location']) ) {
+    require_once 'C:\xampp\htdocs\loan_system\web\models\location.php';
+    $product = GetNameLocationById($_GET['session_id_location']);
+    echo json_encode($product);
+    exit();
+}
+

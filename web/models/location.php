@@ -11,3 +11,9 @@ function CreateLocation ($name){
     $query = "INSERT INTO `location`(`NAME`) VALUES ('$name')";
     return ExecuteQuery($query);
 }
+
+function GetNameLocationById($id_location){
+    $query = "SELECT * FROM location WHERE ID_LOCATION = $id_location;";
+    $result = ExecuteQueryGetResultLikeArray($query);
+    return $result;
+}
