@@ -89,7 +89,7 @@
                 txt = txt + "<div id='title_product_inloan'> <b> En Prestamo a:</b> </div>";
                 txt = txt + "<div>" + "<b>" + json[row]['NAME'] + "</b>" + "</div>";
                 txt = txt + "<div style='margin-bottom: 3px;margin-top: 3px;' >" + json[row]['RUT'] + " - " + json[row]['MAIL'] + "</div>";
-                txt = txt + "<div>Fecha inicio: " + fechastartproduct.getDate() + "/" + (fechastartproduct.getMonth() + 1) + "/" + fechastartproduct.getFullYear() + " " + fechastartproduct.getHours() + ":" + fechastartproduct.getMinutes();
+                txt = txt + "<div>Fecha inicio: " + fechastartproduct.getDate() + "/" + (fechastartproduct.getMonth() + 1) + "/" + fechastartproduct.getFullYear() + " " + fechastartproduct.getHours() + ":" + addZero(fechastartproduct.getMinutes());
                 if (session_id_location == json[row]['ID_LOCATION']) {
                     txt = txt + "<input id='button_from' style='float:right' type='submit' value='Devolver' onclick=ReturnProduct('" +
                         json[row]['ID_PRODUCT'] + "','" + json[row]['ID_CLIENT'] + "','" + json[row]['CODEPRODUCT'] + "') /></div>";
@@ -116,8 +116,7 @@
                 txt = txt + "<div id=one_product>";
                 txt = txt + "<div id='client' style='padding: 20px';>";
                 txt = txt + "<div id='title_product_avalible'> <b> Disponible </b> </div>";
-                txt = txt + "<div id='title_product_avalible'> <b>" + json[row]['NAME'] + "</b> </div>";
-                txt = txt + "<div id='name_product'>" + "<b>" + json[row]['NAME'] + "</b>" + " - " + json[row]['DESCRIPTION'] + "</div>";
+                txt = txt + "<div id='name_product'>" + "<b>" + json[row]['NAME'] + "</b>" + " - " + json[row]['DESCRIPTION'] + "<b>  " +json[row]['NAME_LOCATION'] + "</b></div>";
                 txt = txt + "<div id='data_product'>" + json[row]['CODE'] + "</div>";
                 txt = txt + "</div>";
                 txt = txt + "</div>";
@@ -244,15 +243,16 @@
             txt = txt + "<div style='background-color: #ffffff; padding: 15px' ><b>Activos en deuda:</b></div>";
         }
         for (let row in json) {
+            let fechastartproduct = new Date(json[row]['DATE_START']);
             txt = txt + "<div id=simple_debt>";
             txt = txt + "<div style='padding: 8px 20px 15px 20px;';>";
-            txt = txt + "<b>" + json[row]['CODE'] + "</b></br>";
-            txt = txt + json[row]['DATE_START'];
+            txt = txt + "<b>" + json[row]['CODE'] + "</b>  " + json[row]['DESCRIPTION'] + "</br>";
+            txt = txt + fechastartproduct.getDate() + "/" + (fechastartproduct.getMonth() + 1) + "/" + fechastartproduct.getFullYear() + " " + fechastartproduct.getHours() + ":" + addZero(fechastartproduct.getMinutes());
             if (session_id_location == json[row]['ID_LOCATION']) {
-                txt = txt + "<a style='text-decoration: none; color: forestgreen; font-weight: bolder;'> " + json[row]['LOCATION_NAME'] + "</a>" 
+                txt = txt + "<a style='text-decoration: none; color: forestgreen; font-weight: bolder;'>   " + json[row]['LOCATION_NAME'] + "</a>"
                 txt = txt + "<input  id='mini_button_from' style='float: right;  cursor:pointer;' type='submit' value='Devolver' onclick=ReturnPRODUCT('" + json[row]['ID_PRODUCT'] + "','" + json[row]['ID_CLIENT'] + "') />";
             } else {
-                txt = txt + "<a style='text-decoration: none; color: lightcoral; font-weight: bolder;'> " + json[row]['LOCATION_NAME'] + "</a>" 
+                txt = txt + "<a style='text-decoration: none; color: lightcoral; font-weight: bolder;'>   " + json[row]['LOCATION_NAME'] + "</a>"
                 txt = txt + "<input  id='mini_button_other_place' style='float: right;  cursor:pointer;' type='submit' value='Devolver' onclick=ReturnPRODUCT('" + json[row]['ID_PRODUCT'] + "','" + json[row]['ID_CLIENT'] + "') />";
             }
             txt = txt + "</div>";
@@ -261,6 +261,13 @@
         document.getElementById("debt").innerHTML = txt;
         console.log("deb");
         console.log(json);
+    }
+
+    function addZero(i) {
+        if (i < 10) {
+            i = "0" + i
+        }
+        return i;
     }
 
     function ReturnPRODUCT(ID_PRODUCT, id_client) {

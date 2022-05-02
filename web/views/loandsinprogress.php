@@ -28,7 +28,6 @@ function CreateHtmlTableLoandProggres($pag){
     echo "</thead>";
     echo "<tbody>";
 
-    $count = count($table);
     createTable($pag,$table,10);
     CreateButtonTable($pag,$table,10);
     
@@ -36,7 +35,6 @@ function CreateHtmlTableLoandProggres($pag){
 
 function CreateButtonTable($pag,$table,$multiplicador){
     $finalpage = $pag * $multiplicador;
-    $startpage = $finalpage - ($multiplicador - 1);
 
     if($pag > 1){
         echo "<a href=index.php?page=loandsinprogress.php&pag=" .($pag -1)  ." ><input id='button_from' type='submit' value='Atras'/></a>";

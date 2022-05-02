@@ -139,7 +139,7 @@
     }
 
     function DeleteProduct(code_product) {
-        FetchServer("controllers/inicio.php?check_product=" + code_product, function(response) {
+        FetchServer("controllers/deleteproduct.php?delete_product=" + code_product, function(response) {
             console.log("asdasdas response" + response);
             if (response == 1) {
                 CreateHtmlProductInLoan(code_product);

@@ -44,7 +44,7 @@ function GetIdProductByCode($code_product){
 }
 
 function GetProductAsJSON ($product){
-    $query = "SELECT * FROM product WHERE code LIKE '$product';";
+    $query = "SELECT product.NAME, product.DESCRIPTION, product.CODE, location.NAME as NAME_LOCATION FROM product JOIN location ON location.ID_LOCATION = product.ID_LOCATION WHERE code LIKE '$product';";
     $result = ExecuteQueryGetResultLikeArray($query);
     return json_encode($result);
 }
@@ -77,8 +77,8 @@ function CreateProduct($name,$description,$serial,$code,$id_location){
     return ExecuteQuery($query);
 }
 
-function DeleteProduct($id_product){
-    $query = "DELETE FROM `product` WHERE product.ID_PRODUCT = $id_product ;";
+function DeleteProduct($name_product){
+    $query = "DELETE FROM `product` WHERE product.NAME = $name_product ;";
     $result = ExecuteDelete($query);
     return $result;
 }
@@ -90,13 +90,15 @@ function GetAllProduct($id_location_user){
 }
 
 function GetAllProduct2($code_imput,$id_location_user){
-    $query = "SELECT * FROM `product` WHERE code LIKE '%" .$code_imput ."%' AND product.ID_LOCATION ='" .$id_location_user ."' OR name LIKE '%" .$code_imput ."%' AND product.ID_LOCATION ='" .$id_location_user ."';";
+    $query = "SELECT * FROM `product` WHERE code LIKE '%" .$code_imput ."%' AND product.ID_LOCATION ='" 
+    .$id_location_user ."' OR name LIKE '%" .$code_imput ."%' AND product.ID_LOCATION ='" .$id_location_user ."';";
     $result = ExecuteQueryGetResultLikeArray($query);
     return json_encode($result);
 }
 
 function GetAllProduct3($imput_date_start, $imput_date_end,$id_location_user){
-    $query = "SELECT * FROM `product` WHERE product.CREATION_DATE BETWEEN '" .$imput_date_start ."' AND '" .$imput_date_end ."' product.ID_LOCATION =" .$id_location_user .";";
+    $query = "SELECT * FROM `product` WHERE product.CREATION_DATE BETWEEN '" .$imput_date_start ."' AND '" 
+    .$imput_date_end ."' product.ID_LOCATION =" .$id_location_user .";";
     $result = ExecuteQueryGetResultLikeArray($query);
     return json_encode($result);
 }
