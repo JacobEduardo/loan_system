@@ -196,7 +196,7 @@ a{
 
 #sidebar{
     width: 260px;
-    background-color: #cbcbcb;
+    background: linear-gradient(319deg, rgb(189 189 189) 0%, rgb(245 245 245) 100%);
 }
 
 #sidebar ul{
@@ -215,7 +215,6 @@ a{
     padding-left: 24px;
     text-decoration: none;
     display: block;
-    background-color:   #cbcbcb;
     border-style: ridge; border-width: 0px;
     border-color: rgb(194, 194, 194);
     font-size: 15px;
@@ -229,7 +228,6 @@ a{
     padding-right: 20px;
     text-decoration: none;
     display: block;
-    background-color:  #cbcbcb;
     user-select: none;
     border-style: groove; border-width: 0px;
     font-weight: bold;

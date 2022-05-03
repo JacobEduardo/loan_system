@@ -18,7 +18,8 @@ function LendProduct($code_product, $rut_client, $rut_user){
         return 1;
     }
 
-    $result2 = ExecuteQueryBoolean("SELECT * FROM product WHERE (CODE='".$code_product ."') AND (ID_LOCATION='" .$id_user_location ."');");
+    $result2 = ExecuteQueryBoolean("SELECT * FROM product WHERE (CODE='".$code_product ."') AND (ID_LOCATION='" .$id_user_location ."') AND product.INVENTORY_STATUS = '1' ;");
+    echo $result2;
     if($result2 == 0){
         return 4;
     }
@@ -38,13 +39,13 @@ function LendProduct($code_product, $rut_client, $rut_user){
 }
 
 function GetIdProductByCode($code_product){
-    $query = "SELECT ID_PRODUCT FROM product WHERE code = '$code_product';";
+    $query = "SELECT ID_PRODUCT FROM product WHERE code = '$code_product' AND product.INVENTORY_STATUS = '1';";
     $id = ExecuteQueryGetResultLikeString($query);
     return($id);
 }
 
 function GetProductAsJSON ($product){
-    $query = "SELECT product.NAME, product.DESCRIPTION, product.CODE, location.NAME as NAME_LOCATION FROM product JOIN location ON location.ID_LOCATION = product.ID_LOCATION WHERE code LIKE '$product';";
+    $query = "SELECT product.NAME, product.DESCRIPTION, product.CODE, location.NAME as NAME_LOCATION FROM product JOIN location ON location.ID_LOCATION = product.ID_LOCATION WHERE code LIKE '$product' AND product.INVENTORY_STATUS = '1';";
     $result = ExecuteQueryGetResultLikeArray($query);
     return json_encode($result);
 }
@@ -91,7 +92,7 @@ function GetAllProduct($id_location_user){
 
 function GetAllProduct2($code_imput,$id_location_user){
     $query = "SELECT * FROM `product` WHERE code LIKE '%" .$code_imput ."%' AND product.ID_LOCATION ='" 
-    .$id_location_user ."' OR name LIKE '%" .$code_imput ."%' AND product.ID_LOCATION ='" .$id_location_user ."' AND product.INVENTORY_STATUS = '1' ;";
+    .$id_location_user ."' AND product.INVENTORY_STATUS = '1' OR name LIKE '%" .$code_imput ."%' AND product.ID_LOCATION ='" .$id_location_user ."' AND product.INVENTORY_STATUS = '1' ;";
     $result = ExecuteQueryGetResultLikeArray($query);
     return json_encode($result);
 }
