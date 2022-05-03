@@ -22,9 +22,9 @@ body{
 #menu{
     width: 100%;
     height: 40px;
-    background-color:  #000000;
     text-align: right;
     position: relative;
+    background: linear-gradient(90deg, rgb(16, 34, 41) 12%, rgb(11 54 72) 82%)
 }
 #menu ul{
     list-style: none;
@@ -51,8 +51,7 @@ body{
 
 #pages{
     width: 100%;
-    background-color: rgb(255, 255, 255);
-    box-shadow: inset 1px -2px 4px 0px;
+    background: linear-gradient(0deg, rgb(233 233 233) 0%, rgb(247 247 247) 100%);
 }
 
 #seeker{
@@ -75,25 +74,22 @@ table.one {
 }
 table{
     font-size: 14px; 
-    border-collapse: collapse;
-    border: 2px solid #dddddd;
+    width: -webkit-fill-available;
+    min-width: 1200px;
 }
 
 th {
-    font-size: 15px; 
+    font-size: 15px;
     text-align: left;
     padding: 10px 15px 8px 15px;
-    background: #400E8F;
-    color: rgb(255, 255, 255);
-    font-weight: normal;
+    background: #ccd3b3;
+    color: rgb(0 0 0);
+    font-weight: bold;
 }
 td {
-    border: 0px solid #dddddd;
     font-size: 14px; 
     text-align: left;
     padding: 9px 15px 7px 15px;
-    border-bottom: 1pt solid #b6b6b6;
-
 }
 
 tr:nth-child(odd){
@@ -162,11 +158,18 @@ a{
 /* Estilo de formularios */ 
 
 #title_form{
-    padding-bottom: 15px;
+    padding: 15px;
     font-size: 18px;
-    font-weight: bold;
+    background-color: #d5dfdd;
+    color: rgb(0, 0, 0);
+    margin: 2px;
 }
-
+#title_form_two{
+    padding: 15px;
+    font-size: 18px;
+    color: rgb(0, 0, 0);
+    padding-left: 0px;
+}
 #sub_title_form{
     padding-bottom: 10px;
 }
@@ -193,7 +196,7 @@ a{
 
 #sidebar{
     width: 260px;
-    background-color: #ecebeb;
+    background-color: #cbcbcb;
 }
 
 #sidebar ul{
@@ -212,10 +215,11 @@ a{
     padding-left: 24px;
     text-decoration: none;
     display: block;
-    background-color:  #ecebeb;
+    background-color:   #cbcbcb;
     border-style: ridge; border-width: 0px;
     border-color: rgb(194, 194, 194);
     font-size: 15px;
+    padding-left:  30px;
 }
 
 #sidebar ul li a.active{
@@ -225,15 +229,16 @@ a{
     padding-right: 20px;
     text-decoration: none;
     display: block;
-    background-color:  #ecebeb;
+    background-color:  #cbcbcb;
     user-select: none;
     border-style: groove; border-width: 0px;
     font-weight: bold;
     font-size: 16px;
+    padding-left:  20px;
 }
 
 #sidebar ul li a:hover:not(.active) {
-    background-color: #02a125;
+    background-color:  #37783f;
     color: rgb(255, 255, 255);
     border-color: #e6f6ff;
 }
@@ -256,7 +261,7 @@ a{
     padding: 5px;
     font-size: 14px;
     color: #ffffff;
-    background-color: #008f1f;
+    background-color: #37783f;
     border: none;
     outline:none;
     width:80px;
@@ -297,7 +302,7 @@ a{
     padding: 5px 15px 5px 15px;
     font-size: 14px;
     color: #ffffff;
-    background-color: #008f1f;
+    background-color: #37783f;
     border: none;
     outline:none;
     cursor:pointer;

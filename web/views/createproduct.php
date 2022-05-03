@@ -14,7 +14,7 @@
 ?>
 
 <form METHOD="POST" ACTION="controllers\createproduct.php"; >
-    <div id='title_form'><b>Agregar Activo</b><br></div>
+    <div id='title_form_two'><b>Agregar Activo</b><br></div>
 
     <label for="fname">Nombre:</label><br>
     <input size="35" type="text" id="form_imput" name="name" value=""><br>

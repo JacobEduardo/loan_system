@@ -12,7 +12,7 @@
 ?>
 
 <form METHOD="POST" ACTION="controllers\createlocation.php"; >
-    <div id='title_form'><b>Agregar Local</b><br></div>
+    <div id='title_form_two'><b>Agregar Local</b><br></div>
 
     <label for="fname">Nombre:</label><br>
     <input size="35" type="text" id="form_imput" name="name" value=""><br>

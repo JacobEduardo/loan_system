@@ -77,34 +77,34 @@ function CreateProduct($name,$description,$serial,$code,$id_location){
     return ExecuteQuery($query);
 }
 
-function DeleteProduct($name_product){
-    $query = "DELETE FROM `product` WHERE product.NAME = $name_product ;";
+function DeleteProduct($code_product){
+    $query = "UPDATE `product` SET `INVENTORY_STATUS`='0' WHERE `CODE`='" .$code_product ."';";
     $result = ExecuteDelete($query);
     return $result;
 }
 
 function GetAllProduct($id_location_user){
-    $query = "SELECT * FROM product WHERE product.ID_LOCATION =" .$id_location_user .";";
+    $query = "SELECT * FROM product WHERE product.ID_LOCATION =" .$id_location_user ." AND product.INVENTORY_STATUS = '1' ;";
     $result = ExecuteQueryGetResultLikeArray($query);
     return json_encode($result);
 }
 
 function GetAllProduct2($code_imput,$id_location_user){
     $query = "SELECT * FROM `product` WHERE code LIKE '%" .$code_imput ."%' AND product.ID_LOCATION ='" 
-    .$id_location_user ."' OR name LIKE '%" .$code_imput ."%' AND product.ID_LOCATION ='" .$id_location_user ."';";
+    .$id_location_user ."' OR name LIKE '%" .$code_imput ."%' AND product.ID_LOCATION ='" .$id_location_user ."' AND product.INVENTORY_STATUS = '1' ;";
     $result = ExecuteQueryGetResultLikeArray($query);
     return json_encode($result);
 }
 
 function GetAllProduct3($imput_date_start, $imput_date_end,$id_location_user){
     $query = "SELECT * FROM `product` WHERE product.CREATION_DATE BETWEEN '" .$imput_date_start ."' AND '" 
-    .$imput_date_end ."' product.ID_LOCATION =" .$id_location_user .";";
+    .$imput_date_end ."' product.ID_LOCATION =" .$id_location_user ." AND product.INVENTORY_STATUS = '1' ;";
     $result = ExecuteQueryGetResultLikeArray($query);
     return json_encode($result);
 }
 
 function GetAllProduct4($code_imput, $imput_date_start, $imput_date_end,$id_location_user){
-    $query = "SELECT * FROM `product` WHERE code LIKE '%".$code_imput ."%' AND product.CREATION_DATE BETWEEN '" .$imput_date_start ."' AND '" .$imput_date_end ."' AND product.ID_LOCATION =" .$id_location_user ." OR name LIKE '%" . $code_imput ."%'  AND product.CREATION_DATE BETWEEN '" .$imput_date_start ."' AND '" .$imput_date_end ."' AND product.ID_LOCATION =" .$id_location_user .";";
+    $query = "SELECT * FROM `product` WHERE code LIKE '%".$code_imput ."%' AND product.CREATION_DATE BETWEEN '" .$imput_date_start ."' AND '" .$imput_date_end ."' AND product.ID_LOCATION =" .$id_location_user ." OR name LIKE '%" . $code_imput ."%'  AND product.CREATION_DATE BETWEEN '" .$imput_date_start ."' AND '" .$imput_date_end ."' AND product.ID_LOCATION =" .$id_location_user ." AND product.INVENTORY_STATUS = '1' ;";
     $result = ExecuteQueryGetResultLikeArray($query);
     return json_encode($result);
 }

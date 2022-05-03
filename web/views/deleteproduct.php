@@ -1,4 +1,4 @@
-<div id="title_form"><b>Eliminar Activos</b></div>
+<div id="title_form_two"><b>Eliminar Activos</b></div>
 
 <div id="from_table">
     <FORM onSubmit="return Search(text_input.value)" ;>
@@ -49,7 +49,7 @@
 
     function CreateHtmlTableLoandProggres(input_keyword, input_date_start, input_date_end, page_number) {
         var txt = "";
-        txt = txt + "<table style='min-width: 700px; margin-top: 60px';>";
+        txt = txt + "<table style='min-width: 700px; margin-top: 60px; max-width: 900px;'>";
         txt = txt + "<thead>";
         txt = txt + "<tr>";
         txt = txt + "<th>Nombre</th>";
@@ -139,13 +139,12 @@
     }
 
     function DeleteProduct(code_product) {
-        FetchServer("controllers/deleteproduct.php?delete_product=" + code_product, function(response) {
-            console.log("asdasdas response" + response);
+        FetchServer("controllers/inicio.php?check_product=" + code_product, function(response) {
+            console.log("asdasdas response: " + response);
             if (response == 1) {
                 CreateHtmlProductInLoan(code_product);
             }
             if (response == 0) {
-                console.log("asdasdasgggggggggggg");
                 CreateHtmlProductAvailable(code_product);
             }
         });
@@ -181,7 +180,7 @@
                 txt = txt + "<div id='title_product_inloan'> <b> Eliminar Activo </b> </div>";
                 txt = txt + "<div style='margin-bottom: 5px;' >" + json[row]['CODE'] + " - " + json[row]['DESCRIPTION'] + "</div>";
                 txt = txt + "<div style='margin-bottom: 5px;' >Fecha de Creación:" + json[row]['CREATION_DATE'] + "</div>";
-                txt = txt + "<a style='float: left;'></a>  <input id='button_from' style='float:right; background-color: #c71818;' type='submit' value='Eliminar' onclick=FinishDeleteProduct('" + json[row]['ID_PRODUCT'] + "') /></div>";
+                txt = txt + "<a style='float: left;'></a>  <input id='button_from' style='float:right; background-color: #c71818;' type='submit' value='Eliminar' onclick=FinishDeleteProduct('" + json[row]['CODE'] + "') /></div>";
                 txt = txt + "</div>";
                 console.log("asdasd estoy aqui 3");
                 document.getElementById("table_product").innerHTML = "";
@@ -193,19 +192,21 @@
         });
     }
 
-    function FinishDeleteProduct(id_product){
+    function FinishDeleteProduct(name_product){
         var xhttp = new XMLHttpRequest();
         xhttp.onreadystatechange = function() {
             if (this.readyState === 4 && this.status === 200) {
                 let response = xhttp.responseText;
-                if(response = 1 ){
+                if(response == 1 ){
                     document.getElementById("delete_product").innerHTML = "Activo Eliminado Correctamente";
+                    console.log("1111111" + response);
                 }else{
                     document.getElementById("delete_product").innerHTML = "Hubo un problema y no se pudo eliminar";
+                    console.log("222222" + response);
                 }
             }
         };
-        xhttp.open("GET", "controllers/deleteproduct.php?delete_product=" + id_product, false);
+        xhttp.open("GET", "controllers/deleteproduct.php?delete_product=" + name_product, true);
         xhttp.send();    
     }
 

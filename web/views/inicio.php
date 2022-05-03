@@ -1,4 +1,4 @@
-<div id="title_form"><b>Sistema de Prestamos</b></div>
+<div id="title_form_two"><b>Sistema de Prestamos</b></div>
 <FORM onSubmit="return Search(text_input.value)" ;>
     <input id="form_imput" name="text_input" placeholder="Buscar" type="text" size="20" maxlength="128" onkeyup="Search(this.value)" />
     <input id="button_from" name="search" type="submit" value="Buscar" />
@@ -135,7 +135,7 @@
                 let json = JSON.parse(xhttp.responseText);
                 console.log(json);
                 html = html + "<div id='title_history_product'> <b> Historial de prestamos " + code_product + " </b> </div>";
-                html = html + "<table style='width: -webkit-fill-available';>";
+                html = html + "<table style='min-width: 752px;'>";
                 html = html + "<thead>";
                 html = html + "<tr>";
                 html = html + "<th>Fecha inicio</th>";

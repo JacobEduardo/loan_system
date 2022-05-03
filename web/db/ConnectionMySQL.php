@@ -79,8 +79,8 @@ function ExecuteQueryBoolean($sql){
 function ExecuteDelete($query){
     $conn = new ConnectionMySQL();
     $conn-> CreateConnection();
-    $result = $conn->Delete($query);
-    return $result;
+    $result =  $conn->Delete($query);
+    return $result ;
 }
 
 function  ExecuteQueryGetResultLikeArray($query){
