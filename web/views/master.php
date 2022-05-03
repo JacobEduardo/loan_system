@@ -38,7 +38,7 @@
         </div>
 
         <div id="pages">
-            <div  style="padding: 20px;">
+            <div  style="padding: 20px; padding: 20px;max-width: 1200px;">
                 <?php  
                     require_once ('C:/xampp/htdocs/loan_system/web/views/' .$page) ;
                 ?>

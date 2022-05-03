@@ -163,6 +163,7 @@ a{
     background-color: #d5dfdd;
     color: rgb(0, 0, 0);
     margin: 2px;
+    max-width: 1150px;
 }
 #title_form_two{
     padding: 15px;
@@ -214,7 +215,7 @@ a{
     padding: 4px;
     padding-left: 24px;
     text-decoration: none;
-    display: block;
+    display: block;     
     border-style: ridge; border-width: 0px;
     border-color: rgb(194, 194, 194);
     font-size: 15px;
