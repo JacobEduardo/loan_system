@@ -2,10 +2,10 @@
 require_once 'C:\xampp\htdocs\loan_system\web\db\ConnectionMySQL.php';
 
 function GetClientsAsJSON($imput){
-    $query = "SELECT * FROM client WHERE rut LIKE '%$imput%';";
+    $query = "SELECT * FROM client WHERE rut LIKE '%$imput%' AND client.status = 1;";
     $result = ExecuteQueryGetResultLikeArray($query);
     if (empty($result)) {
-        $query = "SELECT * FROM client WHERE client.NAME LIKE '%$imput%'";
+        $query = "SELECT * FROM client WHERE client.NAME LIKE '%$imput%' AND client.status = 1";
         $result = ExecuteQueryGetResultLikeArray($query);
     }
     return json_encode($result);
@@ -34,7 +34,7 @@ function GetIdClientByRutAndStatus($rut_client)
 {
     $result = "SELECT ID_CLIENT FROM client WHERE rut = '$rut_client'  AND client.STATUS = 1;" ;
     $id = ExecuteQueryGetResultLikeString($result);
-    return($id);
+    return $id;
 }
 
 function CreateClient ($name, $rut, $kind ,$mail){
