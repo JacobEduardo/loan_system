@@ -11,6 +11,12 @@ function GetClientsAsJSON($imput){
     return json_encode($result);
 }
 
+function DeleteClient($rut){
+    $query = "UPDATE `client` SET `STATUS`='0' WHERE `RUT`='" .$rut ."';";
+    $result = ExecuteDelete($query);
+    return $result;
+}
+
 function GetClientsByIdAsJSON($id){
     $query = "SELECT * FROM client WHERE id_client = '$id';";
     $result = ExecuteQueryGetResultLikeArray($query);
@@ -30,13 +36,15 @@ function CreateClient ($name, $rut, $kind ,$mail){
 }
 
 function GetAllActiveClient (){
-    $query = "SELECT RUT, NAME, KIND, MAIL FROM `client` WHERE 1";
+    $query = "SELECT RUT, NAME, KIND, MAIL FROM `client` WHERE client.STATUS = 1;";
     $result = ExecuteQueryGetResultLikeArray($query);
-    return $result;
+    return json_encode($result);
 }
 
+
+
 function GetFilteredClients($input_keyword){
-    $query = "SELECT * FROM client WHERE client.NAME LIKE '%" .$input_keyword ."%' OR client.RUT LIKE '%" .$input_keyword ."%';";
+    $query = "SELECT * FROM client WHERE client.NAME LIKE '%" .$input_keyword ."%' AND client.STATUS = '1' OR client.RUT LIKE '%" .$input_keyword ."%' AND client.STATUS = '1'  OR client.MAIL LIKE '%" .$input_keyword ."%'  AND client.STATUS = '1' ;";
     $result = ExecuteQueryGetResultLikeArray($query);
-    return $result;
+    return json_encode($result);
 }

@@ -2,10 +2,10 @@
 
 <div id="from_table">
     <FORM onSubmit="return Search(text_input.value)" ;>
-        <div style="float:left;"> Buscar palabra clave:</br>
+        <div style="float:left; font-size: 14px;"> <a> Buscar palabra clave:</a> </br>
             <input id="input_keyword" name="text_input" type="text" id="fname" name="input_keyword" onkeyup="LoadTable(this.value)">
         </div>
-        <div style="margin-left:30px; float:left;"> Entre que fechas:</br>
+        <div style="margin-left:30px; float:left; font-size: 14px;"> Entre que fechas:</br>
             <input id="input_date_start" type="date" id="fname" name="input_date_start" onchange="LoadTable(this.value)">
             <input id="input_date_end" type="date" id="fname" name="input_date_end" onchange="LoadTable(this.value)"></br>
         </div>

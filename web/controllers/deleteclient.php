@@ -15,3 +15,16 @@ if( isset( $_GET['input_keyword']) ) {
     }
     die;
 }
+
+if( isset( $_GET['rut_client']) ) {
+    $rut = $_GET['rut_client'];
+    $result = GetClientsAsJSON($rut);
+    echo $result;
+    die;
+}
+
+if( isset( $_GET['rut_client_delete']) ) {
+    $result = DeleteClient($_GET['rut_client_delete']);
+    echo $result;
+    die;
+}
