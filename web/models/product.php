@@ -4,7 +4,7 @@ require_once 'C:\xampp\htdocs\loan_system\web\models\client.php';
 require_once 'C:\xampp\htdocs\loan_system\web\models\user.php';
 
 function LendProduct($code_product, $rut_client, $rut_user){
-    $id_client = GetIdClientByRut($rut_client);
+    $id_client = GetIdClientByRutAndStatus($rut_client);
     $id_user = GetIdUserByRut($rut_user);  
     $id_product = GetIdProductByCode($code_product);
     $id_user_location = GetIdUserLocation($rut_user);
