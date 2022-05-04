@@ -30,6 +30,13 @@ function GetIdClientByRut($rut_client)
     return($id);
 }
 
+function GetIdClientByRutAndStatus($rut_client)
+{
+    $result = "SELECT ID_CLIENT FROM client WHERE rut = '$rut_client'  AND client.STATUS = 1;" ;
+    $id = ExecuteQueryGetResultLikeString($result);
+    return($id);
+}
+
 function CreateClient ($name, $rut, $kind ,$mail){
     $query = "INSERT INTO `client`(`RUT`, `NAME`, `KIND`, `STATUS`, `MAIL`) VALUES ('$rut','$name','$kind', 1 ,'$mail' )";
     return ExecuteQuery($query);

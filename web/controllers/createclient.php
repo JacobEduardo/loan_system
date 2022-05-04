@@ -12,9 +12,10 @@ if(isset($_POST['send'])){
 
     $kind = $_POST["kind"];
 
-    if(!empty($name) && !empty($rut) ){
-        $result = CreateClient($name,$rut,$kind,$mail);
-        if(!empty($result)){
+    if(!empty($name) && !empty($rut) && !empty($mail)){
+        $id = GetIdClientByRutAndStatus($rut);        
+        if(empty($id)){
+            CreateClient($name,$rut,$kind,$mail);
             header("location:../index.php?page=createclient.php&result=1");
             die;
         }else{

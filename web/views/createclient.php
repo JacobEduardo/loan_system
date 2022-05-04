@@ -6,7 +6,7 @@
         }elseif($result == 1){
             echo "<div style='color:green; margin-bottom:10px;'>Cliente ingresado exitosamente</div>";
         }elseif($result == 0){
-            echo "<div style='color:red; margin-bottom:10px;'>Error</div>";
+            echo "<div style='color:red; margin-bottom:10px;'>El RUT ya esta registrado</div>";
         }
     }   
 ?>
