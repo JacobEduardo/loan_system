@@ -20,6 +20,17 @@ if(isset($_POST['send'])){
 
     $id_location = $_POST["location"];
 
+    $nikname = GetUserByNick($nickname);
+    if($nikname == 1){
+        header("location:../index.php?page=createuser.php&result=4");
+        die;
+    }
+
+    $rrut = GetIdUserByRut($rut);
+    if(!empty($rrut)){
+        header("location:../index.php?page=createuser.php&result=5");
+        die;
+    }
 
     if(!empty($nickname) && !empty($name) && !empty($rut) && !empty($password)){
         if(!empty($_POST['check_list'])){
@@ -29,7 +40,7 @@ if(isset($_POST['send'])){
             $permits=substr($permits,1);
         }
     }else{
-        header("location:../index.php?page=createuser&result=2");
+        header("location:../index.php?page=createuser.php&result=2");
         die;
     }
 

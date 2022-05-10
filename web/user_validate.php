@@ -8,7 +8,7 @@ $password = $_POST['password'];
 $conn = new ConnectionMySQL();
 $conn->CreateConnection();
 
-$query_result = $conn->ExecuteQuery("SELECT * FROM user where NICKNAME='$user' and PASSWORD='$password'");
+$query_result = $conn->ExecuteQuery("SELECT * FROM user where NICKNAME='$user' and PASSWORD='$password' and status = 1");
 
 
 if($query_result->num_rows == 1){

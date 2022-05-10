@@ -7,6 +7,10 @@
             echo "<div style='color:green;margin-bottom:10px;'>Usuario ingresado exitosamente</div>";
         }elseif($result == 0){
             echo "<div style='color:red;margin-bottom:10px;'>Error</div>";
+        }elseif($result == 4){
+            echo "<div style='color:red; margin-bottom:10px;'>Nombre de usuario ya en uso</div>";
+        }elseif($result == 5){
+            echo "<div style='color:red; margin-bottom:10px;'>Rut de usuario ya en uso</div>";
         }
     }   
 ?>

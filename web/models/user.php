@@ -21,7 +21,12 @@ function GetIdUserLocation ($rut_user){
 }
 
 function CreateUser($id_location, $name, $rut, $permit, $nickname, $password){
-    $query = "INSERT INTO `user`(`ID_LOCATION`, `NAME`, `RUT`, `PERMITS`, `NICKNAME`, `PASSWORD`)
-    VALUES ('".$id_location."','".$name."','".$rut."','".$permit."','".$nickname."','".$password."')";
+    $query = "INSERT INTO `user`(`ID_LOCATION`, `NAME`, `RUT`, `PERMITS`, `NICKNAME`, `PASSWORD`,`STATUS`)
+    VALUES ('".$id_location."','".$name."','".$rut."','".$permit."','".$nickname."','".$password."', 1)";
     return ExecuteQuery($query);
+}
+
+function GetUserByNick($nickname){
+    $query = "SELECT ID_USER FROM user WHERE NICKNAME = '$nickname' AND user.status = 1";
+    return ExecuteQueryBoolean($query);
 }
